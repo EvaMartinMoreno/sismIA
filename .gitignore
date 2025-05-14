@@ -1,0 +1,11 @@
+# Ignorar entorno virtual
+sismia_venv/
+__pycache__/
+*.pyc
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Datos sensibles
+.env
