@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 # Reemplaza con tu token válido (¡esto caduca! puedes usar dotenv luego)
-ACCESS_TOKEN = "EAAJg1EXrT80BO9zZBtaBazG4jmt3jIA551zZCs8qTTNHUbxMqinXctSMbqopfRE0nmQ2cJThlFyls62ZB89qAhXYU910cpGupsbNL90dAnSDIUfXDnD6Ow1volYZBRnZCkrpkwhNhuxrZBNrPWxStUU5VXWLo96XnDrZBiZCQVODEm5EMieAhNs8c8DybSkDouzIHfa6UFudYZAASSPAZD"
+ACCESS_TOKEN = "EAAJg1EXrT80BO42KgisKKLP5gqsKmtn6VUsL7PZCnra3uZCDtlMfTTvW4Lsxlq0PWNlyz1hMpL2rZB2k3QZCkpNSJVe3UATadn7725xc4w869ZCqQ4Uj20mqjjb4fWR81i9LrAxmkvzQqgdvW0oAcjwmSZC9b53s7jHxPQ4vSUujRgBeYOXgZDZD"
 IG_USER_ID = "17841458252704780"  # Instagram Business Account ID
 API_VERSION = "v22.0"
 BASE_URL = f"https://graph.facebook.com/{API_VERSION}"
@@ -52,6 +52,7 @@ def get_user_insights():
 
 def save_user_insights(followers_record, insights_data):
     rows = []
+
     if followers_record:
         rows.append(followers_record)
 
@@ -66,16 +67,36 @@ def save_user_insights(followers_record, insights_data):
 
     df_new = pd.DataFrame(rows)
 
-    if os.path.exists(USER_CSV) and os.path.getsize(USER_CSV) > 0:
-        df_old = pd.read_csv(USER_CSV)
-        df = pd.concat([df_old, df_new]).drop_duplicates()
-    else:
+    try:
+        if os.path.exists(USER_CSV) and os.path.getsize(USER_CSV) > 0:
+            df_old = pd.read_csv(USER_CSV)
+            df = pd.concat([df_old, df_new]).drop_duplicates()
+        else:
+            df = df_new
+    except pd.errors.EmptyDataError:
+        print("⚠ Archivo user_insights.csv está vacío. Se sobrescribirá.")
         df = df_new
 
     df.to_csv(USER_CSV, index=False)
     print(f"✅ Guardado en {USER_CSV} ({len(df_new)} nuevas filas)")
 
-def get_recent_media(limit=10):
+    df_new = pd.DataFrame(rows)
+
+    try:
+        if os.path.exists(USER_CSV) and os.path.getsize(USER_CSV) > 0:
+            df_old = pd.read_csv(USER_CSV)
+            df = pd.concat([df_old, df_new]).drop_duplicates()
+        else:
+            df = df_new
+    except pd.errors.EmptyDataError:
+        print("⚠ Archivo user_insights.csv está vacío. Se sobrescribirá.")
+        df = df_new
+
+    df.to_csv(USER_CSV, index=False)
+    print(f"✅ Guardado en {USER_CSV} ({len(df_new)} nuevas filas)")
+    print(f"✅ Guardado en {USER_CSV} ({len(df_new)} nuevas filas)")
+
+def get_recent_media(limit=1000):
     url = f"{BASE_URL}/{IG_USER_ID}/media"
     params = {
         "fields": "id,caption,timestamp,media_type,permalink",
@@ -164,8 +185,8 @@ def run_combined_tracker():
 
         save_media_insights(media_rows)
 
-        print("⏳ Esperando 12 horas...\n")
-        time.sleep(12 * 60 * 60)
+        #print("⏳ Esperando 12 horas...\n")
+        #time.sleep(12 * 60 * 60)
 
 if __name__ == "__main__":
     run_combined_tracker()

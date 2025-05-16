@@ -72,15 +72,15 @@ def scrape_races(province, year):
     return df
 
 def save_race_data(df, province, year):
-    path = f"data/raw/carreras_runedia_{province}_{year}.csv"
+    path = f"data/raw/races/carreras_runedia_{province}_{year}.csv"
     os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, index=False)
     print(f"Saved: {path}")
 
 def run_race_scraping():
     provinces = [
-        "valencia"
-    ]
+        "valencia", "girona", "barcelona", "alicante"
+        ]
     for year in range(2000, 2026):
         for province in provinces:
             df = scrape_races(province, year)
