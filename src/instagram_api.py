@@ -145,7 +145,7 @@ def run_combined_tracker():
         media = get_recent_media(limit=10)
         media_rows = []
 
-        for item in media:
+                for item in media:
             media_id = item["id"]
             media_type = item["media_type"]
 
@@ -153,7 +153,7 @@ def run_combined_tracker():
             if media_type == "IMAGE":
                 valid_metrics = ["reach", "saved", "likes", "comments", "shares", "views", "total_interactions"]
             elif media_type == "VIDEO":
-                valid_metrics = ["reach", "saved", "likes", "comments", "shares", "video_views", "views", "total_interactions"]
+                valid_metrics = ["reach", "saved", "likes", "comments", "shares", "total_interactions"]  # Quitamos video_views
             elif media_type == "CAROUSEL_ALBUM":
                 valid_metrics = ["reach", "saved", "likes", "comments", "shares", "total_interactions"]
             else:
@@ -166,22 +166,28 @@ def run_combined_tracker():
                 "access_token": ACCESS_TOKEN
             }
 
-            res = requests.get(url, params=params)
-            if res.status_code != 200:
-                print(f"❌ Error en media {media_id}: {res.status_code} {res.text}")
-                continue
+            try:
+                time.sleep(0.5)  # Espera entre peticiones para evitar saturar la API
+                res = requests.get(url, params=params)
+                if res.status_code != 200:
+                    print(f"❌ Error en media {media_id}: {res.status_code} {res.text}")
+                    continue
 
-            insights = res.json().get("data", [])
-            for metric in insights:
-                media_rows.append({
-                    "media_id": media_id,
-                    "timestamp": item["timestamp"],
-                    "media_type": media_type,
-                    "permalink": item["permalink"],
-                    "metric": metric["name"],
-                    "value": metric["values"][0]["value"],
-                    "collected_at": datetime.now().isoformat()
-                })
+                insights = res.json().get("data", [])
+                for metric in insights:
+                    media_rows.append({
+                        "media_id": media_id,
+                        "timestamp": item["timestamp"],
+                        "media_type": media_type,
+                        "permalink": item["permalink"],
+                        "metric": metric["name"],
+                        "value": metric["values"][0]["value"],
+                        "collected_at": datetime.now().isoformat()
+                    })
+
+            except requests.exceptions.ConnectionError as e:
+                print(f"❌ Conexión abortada para media {media_id}: {e}")
+                continue
 
         save_media_insights(media_rows)
 
