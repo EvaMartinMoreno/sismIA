@@ -145,7 +145,7 @@ def run_combined_tracker():
         media = get_recent_media(limit=10)
         media_rows = []
 
-                for item in media:
+        for item in media:
             media_id = item["id"]
             media_type = item["media_type"]
 
