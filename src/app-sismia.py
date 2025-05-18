@@ -1,76 +1,74 @@
 import streamlit as st
 import pandas as pd
-import calendar
-from datetime import datetime, timedelta
+from datetime import datetime
 
-# ---------- FUNCIONES AUXILIARES ----------
-def cargar_datos():
-    df = pd.read_csv("data/proceed/carreras_unificadas.csv", parse_dates=["fecha_datetime"])
-    return df
+# Configuración de página
+st.set_page_config(page_title="SismIA Dashboard", layout="wide")
 
-def obtener_eventos_mes(df, year, month):
-    return df[(df["fecha_datetime"].dt.year == year) & (df["fecha_datetime"].dt.month == month)]
+# --- Header ---
+st.markdown("""
+    <div style='text-align: center; font-size: 36px; font-weight: bold;'>
+        Hola Eva :)<br>
+        <span style='font-size: 20px;'>Hoy es {}</span>
+    </div>
+""".format(datetime.now().strftime("%A, %d de %B de %Y")), unsafe_allow_html=True)
 
-def generar_tabla_calendario(df_mes, year, month):
-    cal = calendar.Calendar(firstweekday=0)
-    semanas = cal.monthdatescalendar(year, month)
+# --- Tabs estilo menú horizontal ---
+tabs = st.tabs(["🏃 Calendario carreras", "📅 Próximo evento", "⭐ Cuentas fieles", "📢 Recomendador de post", "📊 Análisis externos"])
 
-    tabla = ""  # Usamos HTML dentro del markdown
-    tabla += "<table style='width: 100%; border-collapse: collapse;'>"
-    tabla += "<tr>" + "".join(f"<th style='border: 1px solid #ccc; padding: 6px;'>{dia}</th>" for dia in ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]) + "</tr>"
+# --- Columna Izquierda y Derecha: se muestran en todas las pestañas ---
+col1, main, col2 = st.columns([1.5, 4, 1.5], gap="large")
 
-    for semana in semanas:
-        tabla += "<tr>"
-        for dia in semana:
-            if dia.month != month:
-                tabla += "<td style='border: 1px solid #ccc; background-color: #f0f0f0; padding: 6px; vertical-align: top;'></td>"
-                continue
-            eventos = df_mes[df_mes["fecha_datetime"].dt.date == dia]
-            eventos_html = "".join(f"<li style='font-size: 0.75rem;'>{row['nombre_evento'][:25]}</li>" for _, row in eventos.iterrows())
-            tabla += f"<td style='border: 1px solid #ccc; padding: 6px; vertical-align: top;'><strong>{dia.day}</strong><ul>{eventos_html}</ul></td>"
-        tabla += "</tr>"
-    tabla += "</table>"
-    return tabla
-
-# ---------- INTERFAZ STREAMLIT ----------
-st.set_page_config(page_title="Calendario de Carreras", layout="wide")
-st.title("🏃‍♀️ Calendario de Carreras")
-
-# Estado para mes y año si no existe aún
-if "mes_actual" not in st.session_state:
-    hoy = datetime.today()
-    st.session_state.mes_actual = hoy.month
-    st.session_state.año_actual = hoy.year
-
-# Controles para cambiar de mes
-col1, col2, col3 = st.columns([1, 2, 1])
+# --- Columna Izquierda ---
 with col1:
-    if st.button("⬅️ Mes anterior"):
-        st.session_state.mes_actual -= 1
-        if st.session_state.mes_actual < 1:
-            st.session_state.mes_actual = 12
-            st.session_state.año_actual -= 1
+    st.subheader("Próximo evento")
+    st.markdown("**Running Sisterhood**")
+    st.markdown("👥 58 apuntadas")
+    st.markdown("💰 145€ recaudados")
+    st.markdown("📅 Faltan 12 días")
 
-with col3:
-    if st.button("Mes siguiente ➡️"):
-        st.session_state.mes_actual += 1
-        if st.session_state.mes_actual > 12:
-            st.session_state.mes_actual = 1
-            st.session_state.año_actual += 1
+    st.subheader("Cuentas más fieles")
+    st.markdown("1. @laura_runner")
+    st.markdown("2. @cris.fit")
+    st.markdown("3. @marta.trail")
 
-mes = st.session_state.mes_actual
-año = st.session_state.año_actual
+    st.subheader("Cuentas menos fieles")
+    st.markdown("1. @cami.runner")
+    st.markdown("2. @ines_slow")
+    st.markdown("3. @lucia.never")
 
-st.subheader(f"📅 {calendar.month_name[mes]} {año}")
+# --- Contenido central según la pestaña seleccionada ---
+with tabs[0]:
+    with main:
+        st.subheader("Calendario carreras")
+        st.markdown("(aquí va el calendario interactivo)")
 
-# Carga de datos
-df = cargar_datos()
-df_mes = obtener_eventos_mes(df, año, mes)
+with tabs[1]:
+    with main:
+        st.subheader("Próximo evento")
+        st.markdown("(detalle del próximo evento con mapa y stats)")
 
-# Calendario HTML
-calendario_html = generar_tabla_calendario(df_mes, año, mes)
-st.markdown(calendario_html, unsafe_allow_html=True)
+with tabs[2]:
+    with main:
+        st.subheader("Cuentas fieles")
+        st.markdown("(ranking de cuentas por participación y fidelidad)")
 
-# Mostrar eventos detallados opcionalmente
-with st.expander("📋 Ver lista completa de carreras del mes"):
-    st.dataframe(df_mes[["fecha_datetime", "nombre_evento", "localidad", "tipo", "distancia_km", "fuente"]].sort_values("fecha_datetime"))
+with tabs[3]:
+    with main:
+        st.subheader("Recomendador de post")
+        st.markdown("(ideas de contenido a publicar según tendencias)")
+
+with tabs[4]:
+    with main:
+        st.subheader("Análisis externos")
+        st.markdown("(comparativa con otras cuentas y hashtags)")
+
+# --- Columna Derecha ---
+with col2:
+    st.subheader("Instagram")
+    st.metric("Seguidores", "1.245")
+    st.metric("Nuevos esta semana", "+54")
+
+    st.subheader("Tendencias de la semana")
+    st.markdown("**Búsquedas**: #trailrunning, #fuerzafemenina")
+    st.markdown("**Posts destacados**: @run_chicas, @mujeresenmovimiento")

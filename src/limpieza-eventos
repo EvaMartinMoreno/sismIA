@@ -1,0 +1,79 @@
+import pandas as pd
+import os
+from glob import glob
+import re
+
+def extraer_fecha_evento(nombre_archivo):
+    """
+    Extrae la fecha del evento desde el nombre del archivo, usando expresiones en castellano o catalán.
+    """
+    nombre_base = os.path.basename(nombre_archivo).lower()
+    match = re.search(r'(\d{1,2})[- ]*de[- ]*(\w+)[- ]*del[- ]*(\d{4})', nombre_base)
+    if match:
+        dia, mes_texto, anio = match.groups()
+        # Diccionario de meses en castellano y catalán
+        meses = {
+            'enero': '01', 'febrero': '02', 'marzo': '03', 'abril': '04',
+            'mayo': '05', 'junio': '06', 'julio': '07', 'agosto': '08',
+            'septiembre': '09', 'setembre': '09', 'octubre': '10', 'noviembre': '11', 'diciembre': '12',
+            'gener': '01', 'febrer': '02', 'març': '03', 'abril': '04',
+            'maig': '05', 'juny': '06', 'juliol': '07', 'agost': '08',
+            'setembre': '09', 'octubre': '10', 'novembre': '11', 'desembre': '12'
+        }
+        mes = meses.get(mes_texto.strip(), "01")
+        return f"{anio}-{mes.zfill(2)}-{dia.zfill(2)}"
+    return None
+
+def limpiar_evento(df, nombre_archivo):
+    # Limpia y renombra columnas
+    df.columns = [col.strip().lower().replace('"', '').replace("﻿", "") for col in df.columns]
+
+    # Nombre del evento y fecha del evento
+    nombre_evento = os.path.basename(nombre_archivo).split("__")[0].replace("-", " ").capitalize()
+    fecha_evento = extraer_fecha_evento(nombre_archivo)
+
+    # Nombre completo
+    if "name" in df.columns:
+        df["nombre_completo"] = df["name"]
+
+    # Fecha de inscripción: detecta cualquier columna con 'fecha'
+    fecha_cols = [col for col in df.columns if "fecha" in col]
+    if fecha_cols:
+        df["fecha_inscripcion"] = pd.to_datetime(df[fecha_cols[0]], errors="coerce", dayfirst=True)
+
+    # Añadir columnas fijas
+    df["evento"] = nombre_evento
+    df["fecha_evento"] = fecha_evento
+
+    columnas_deseadas = ["nombre_completo", "email", "has_paid", "price_paid", "attendance_status", "ticket", "fecha_inscripcion", "fecha_evento", "evento"]
+    columnas_presentes = [col for col in columnas_deseadas if col in df.columns]
+
+    return df[columnas_presentes]
+
+def limpiar_todos_los_eventos(carpeta_entrada, salida):
+    archivos = glob(os.path.join(carpeta_entrada, "*.csv"))
+    eventos = []
+
+    for archivo in archivos:
+        try:
+            df = pd.read_csv(archivo, sep=None, engine="python")
+            df_limpio = limpiar_evento(df, archivo)
+            eventos.append(df_limpio)
+        except Exception as e:
+            print(f"⚠️ Error al procesar {archivo}: {e}")
+
+    if eventos:
+        df_eventos = pd.concat(eventos, ignore_index=True)
+        os.makedirs(os.path.dirname(salida), exist_ok=True)
+        df_eventos.to_csv(salida, index=False)
+        print(f"✅ Archivo limpio guardado en: {salida}")
+        return df_eventos
+    else:
+        print("❌ No se encontraron archivos válidos.")
+        return pd.DataFrame()
+
+# Ejecutar
+if __name__ == "__main__":
+    carpeta_raw = "data/raw"
+    archivo_salida = "data/clean/events_athletiks.csv"
+    limpiar_todos_los_eventos(carpeta_raw, archivo_salida)
