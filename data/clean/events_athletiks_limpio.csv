@@ -1,0 +1,995 @@
+user_id,nombre_completo,email,has_paid,price_paid,asistencias,coste_evento,beneficio_evento,fecha_evento,evento,ubicacion
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Afterwork Run By Dash And Stars,Girona
+G2,JOANA MARIA SOCIAS,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G3,ANGELA R,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G4,NORA JANE,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G5,ANA MARQUEZ,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G6,ANGELA JIMENEZ,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G7,GLORIA ROCA RAMON,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G8,PATRI GS,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G9,MARIA FLORENCIA CADENA,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G10,PAOLA GONZALVEZ,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G11,PAULA RIOS,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G12,MACARENA,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G13,SARA MONTES,,False,15.0,0,0.0,15.0,,Afterwork Run By Dash And Stars,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-09,Dash And Stars Run,Girona
+G14,ARANTXA BANAL,arantxabanal@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G15,ASTRID CALVERA GISPERT,acalverag@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G16,LAURA ALONSO,lalons301@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G17,PAULA MAS,manjonmaspaula@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G18,CRISTINA S.,cristinasurioldiaz@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G19,MARINA FABRI SUREDA,marinafabri6@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G20,ALBA MAYOL,albamayolb@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G21,MIREIA BIROSTA,mireiabirosta@yahoo.es,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G22,LAURA BERBEGAL BOLSAS,lauberbe98@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G23,SOFIA SCIUTTO,sofisciutto@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G24,BLANCA GARCIA,socblanca@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G25,CRISTINA CAMACHO,criiscamacho4@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G26,RAQUEL SALIDO,rspladevall6@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G27,MIREIA GALIA,mireiagaliapla@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G28,MIREIA CAIROL,mireiacairol@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G29,MARIA RIBARY,maria.d.ribary@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G30,TEIA MIRALLES,t.miralles2001@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G31,JULIA MIRALLES,juliam10febrer@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G32,ANA VILCHEZ,anavilchez1997@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G33,MARIONA GM,meri.grn@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G34,ANUK GARCIA PESERY,anukgarcia1998@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G35,NATALIA PUIG CASANOVAS,natapuigcasanovas@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G36,MARIA MARISCOT,mariamariscot@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G37,MARIA RUSTEY,merirustey@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G38,AINHOA JIMENEZ CAMPOS,ainhoajimenez99@gmail.com,False,15.0,0,0.0,15.0,2025-02-09,Dash And Stars Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G39,ANA ALMER,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G43,BEGONA DE LA ROCHA MUR,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G44,SONIA SAMPER PLANA,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G45,SONIA CALVO COLOME,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G46,ANNA BUSQUETS,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2024-05-01,Dimecres Morning Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G51,BERTA HARO MAJO,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G54,JULIA AMETLLER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G55,ZOE A,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G56,MONICA FELIPO,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G57,ALEXA ESPINOZA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G58,JUDIT MUNOZ NOVELLAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G59,MARIA TERRICABRAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G61,MARIA SOLER COLL,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G63,LAIA PUJOLRAS,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G64,ALBA MAYOL,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G66,CLAUDIA DEVIA DOMINGUEZ,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G67,EMMA GAMELL,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G68,JANA CAULA,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G57,ALEXA ESPINOZA,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,2024-07-03,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G71,MARTA RUBI,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G72,RAQUEL SURROCA I RAMOS,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G73,JULIA BIBOLAS AGUILA,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G63,LAIA PUJOLRAS,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-09-04,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G74,ASTRID CALVERA GISPERT,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G75,PAULA GUTIERREZ ESTEVEZ,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G77,ANNA CUNE MIRALLES,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G80,NATALIA KOVALCHUK,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G81,JESSICA SANCHEZ GONZALEZ,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G82,MIREIA FONT BOU,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G83,MONICA PALA CREUS,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G84,ANNY LIMA,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G86,CLAUDIA BANCELLS LARA,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G87,MARIA RIBARY,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-02-05,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G93,CARME SUREDA,,False,0.0,0,0.0,0.0,2024-06-05,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G81,JESSICA SANCHEZ GONZALEZ,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G96,ANDREA COBOS,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G74,ASTRID CALVERA GISPERT,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G97,MARINA DUSET,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-01-05,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-11-06,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G71,MARTA RUBI,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G98,LEO BERMEJO,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G99,CRISTINA RONCERO PEREZ,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G100,CAROLINE DE BOSSART,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G101,SILVIA PAU,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G102,BLANCA GARCIA,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G103,LAURA ORTEGA GABALDON,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G87,MARIA RIBARY,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G104,LAURA RIBERA,,False,0.0,0,0.0,0.0,2025-01-08,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G105,JULIA RUHI BARNES,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G106,QUERALT FARRERAS,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G107,PAULA ROSA QUINONES,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G108,S**,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G109,NORA MUNOZ GRAU,,False,0.0,0,0.0,0.0,2024-05-08,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G86,CLAUDIA BANCELLS LARA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G97,MARINA DUSET,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G110,ANA MIR SERRA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G111,ANNA HERNANDEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G83,MONICA PALA CREUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G112,MARIA CATEURA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G113,REBECCA MCPHERSON,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G58,JUDIT MUNOZ NOVELLAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G59,MARIA TERRICABRAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G45,SONIA CALVO COLOME,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G61,MARIA SOLER COLL,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G114,MARIA RUSTEY,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G116,MARIA TOLEDO ORTIZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G117,MARTA BLASCO,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G118,YASMINA TARRES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G119,SILVIA PUXEU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G120,AURA VILADELBOSCH PALOL,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G121,MIREIA MASFERRER FONT,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-07-10,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-07-10,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,2024-07-10,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,2024-07-10,Els Dimecres Amb Sisterhood,Girona
+G57,ALEXA ESPINOZA,,False,0.0,0,0.0,0.0,2024-07-10,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G122,ARIADNA SERRAT,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G75,PAULA GUTIERREZ ESTEVEZ,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G96,ANDREA COBOS,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G77,ANNA CUNE MIRALLES,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G123,MIREIA PLANAS FONT,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,2025-02-12,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-12,Els Dimecres Amb Sisterhood,Girona
+G110,ANA MIR SERRA,,False,0.0,0,0.0,0.0,2024-06-12,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,2024-06-12,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G74,ASTRID CALVERA GISPERT,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G111,ANNA HERNANDEZ,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G124,AINA CESTER RIBE,,False,0.0,0,0.0,0.0,2025-01-12,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G116,MARIA TOLEDO ORTIZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G125,IRIS HARO CAMPS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G126,ONA FEBRER GALMES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G121,MIREIA MASFERRER FONT,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-11-13,Els Dimecres Amb Sisterhood,Girona
+G127,BEATRICE PETRESCU,,False,0.0,0,0.0,0.0,2024-11-13,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G128,ANNA CASTILLA ARNAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G129,JOANA PRADELL,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G130,CANDELA EZPELETA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G131,MARTA GARCIA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G132,GEMMA GG,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G133,MARINA ESTANYOL COSTA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G134,ELENA SANTOS GONZALEZ,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G104,LAURA RIBERA,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G55,ZOE A,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G135,SANDRA PLAZA ARMENGOL,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G67,EMMA GAMELL,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G136,JUDIT MOTA,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,2025-01-15,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-15,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-05-15,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,2024-05-15,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G96,ANDREA COBOS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G137,ALENA SEREDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G138,IRENE BOU RAMOS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G139,LAIA COLACO RAHOLA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G140,BERTA VILASECA FROU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-07-17,Els Dimecres Amb Sisterhood,Girona
+G141,ELISENDA SILVA RUSCALLEDA,,False,0.0,0,0.0,0.0,2024-07-17,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,2024-07-17,Els Dimecres Amb Sisterhood,Girona
+G142,CLARA,,False,0.0,0,0.0,0.0,2024-07-17,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-09-18,Els Dimecres Amb Sisterhood,Girona
+G143,MARTINA JANE,,False,0.0,0,0.0,0.0,2024-09-18,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,2024-09-18,Els Dimecres Amb Sisterhood,Girona
+G144,MARTA PORTELL,,False,0.0,0,0.0,0.0,2024-09-18,Els Dimecres Amb Sisterhood,Girona
+G145,CLAUDIA GUIDA MARTINEZ,,False,0.0,0,0.0,0.0,2024-09-18,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G75,PAULA GUTIERREZ ESTEVEZ,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G87,MARIA RIBARY,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G134,ELENA SANTOS GONZALEZ,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G64,ALBA MAYOL,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G146,MIREIA BIROSTA SEGURA,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G122,ARIADNA SERRAT,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,2025-02-19,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G113,REBECCA MCPHERSON,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G147,PAULAA GARCIA I FERNANDEZ,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G67,EMMA GAMELL,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G148,ZOE ARGELAGUET,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G133,MARINA ESTANYOL COSTA,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G149,AIDA MARISCH,,False,0.0,0,0.0,0.0,2024-06-19,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-19,Els Dimecres Amb Sisterhood,Girona
+G58,JUDIT MUNOZ NOVELLAS,,False,0.0,0,0.0,0.0,2025-01-19,Els Dimecres Amb Sisterhood,Girona
+G96,ANDREA COBOS,,False,0.0,0,0.0,0.0,2025-01-19,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,2025-01-19,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G116,MARIA TOLEDO ORTIZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G139,LAIA COLACO RAHOLA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-11-20,Els Dimecres Amb Sisterhood,Girona
+G127,BEATRICE PETRESCU,,False,0.0,0,0.0,0.0,2024-11-20,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,2024-11-20,Els Dimecres Amb Sisterhood,Girona
+G141,ELISENDA SILVA RUSCALLEDA,,False,0.0,0,0.0,0.0,2024-11-20,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-11-20,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G125,IRIS HARO CAMPS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G64,ALBA MAYOL,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G99,CRISTINA RONCERO PEREZ,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G135,SANDRA PLAZA ARMENGOL,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G77,ANNA CUNE MIRALLES,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G134,ELENA SANTOS GONZALEZ,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G55,ZOE A,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G83,MONICA PALA CREUS,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G75,PAULA GUTIERREZ ESTEVEZ,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G150,MAR RIPOLL PALMES,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G98,LEO BERMEJO,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G104,LAURA RIBERA,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G151,MARIA MARISCOT,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G152,LAURA VALL-LLOSERA NONELL,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G71,MARTA RUBI,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G102,BLANCA GARCIA,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G82,MIREIA FONT BOU,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G87,MARIA RIBARY,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G136,JUDIT MOTA,,False,0.0,0,0.0,0.0,2025-01-22,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G153,RAQUEL CAMA PUIG,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G154,ANNA CUFI JOU,,False,0.0,0,0.0,0.0,2024-05-22,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G58,JUDIT MUNOZ NOVELLAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G155,LYNE BLANCO-GONZALES,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G154,ANNA CUFI JOU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G156,SARAH BOUKHEDIMI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G59,MARIA TERRICABRAS,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G157,EVA DIAZ BALBAS,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G158,IRIA CALVO FERREIRO,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G60,MIRIAM,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G112,MARIA CATEURA,,False,0.0,0,0.0,0.0,2024-09-25,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G159,RITA PLANAS,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G82,MIREIA FONT BOU,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G74,ASTRID CALVERA GISPERT,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G134,ELENA SANTOS GONZALEZ,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-02-26,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-26,Els Dimecres Amb Sisterhood,Girona
+G113,REBECCA MCPHERSON,,False,0.0,0,0.0,0.0,2024-06-26,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,2024-06-26,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G160,JANA SEGUNDO,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G161,JORDINA MALAGON TEIXIDOR,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G53,ISONA BELL-LLOCH,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G162,CLAUDIA VILOSA MARUNY,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-01-26,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-11-27,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,2024-11-27,Els Dimecres Amb Sisterhood,Girona
+G163,BLANCA GARCIA GARCIA,,False,0.0,0,0.0,0.0,2024-11-27,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G125,IRIS HARO CAMPS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G115,CARME PONS ARANDA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G164,PAULA GOMEZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G151,MARIA MARISCOT,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G88,CRISTINA S.,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G52,ANDREA GONZALEZ DONATE,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G58,JUDIT MUNOZ NOVELLAS,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G83,MONICA PALA CREUS,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G134,ELENA SANTOS GONZALEZ,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G74,ASTRID CALVERA GISPERT,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G98,LEO BERMEJO,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G56,MONICA FELIPO,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G77,ANNA CUNE MIRALLES,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G165,JULIA COLOM BOSCH,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G166,AROA RIZOS TORRES,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G85,CLARA AF,,False,0.0,0,0.0,0.0,2025-01-29,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G94,MIREIA,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G167,IRYNA ZAKHARETS,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G168,SARA PAULI,,False,0.0,0,0.0,0.0,2024-05-29,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G95,LAURA GARCIA RIBAS,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G97,MARINA DUSET,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G169,NAZARET ALVAREZ,,False,0.0,0,0.0,0.0,,Els Dimecres Amb Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G170,INMA SEMPERE PEREZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G9,MARIA FLORENCIA CADENA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G2,JOANA MARIA SOCIAS,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G173,LAURA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G175,REBECA NAVARRO ALVAREZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G177,ANA VEGARA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G4,NORA JANE,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G180,ANGELA SANCHEZ,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G11,PAULA RIOS,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G182,ESTEFANIA LEON LOPEZ,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G183,YANITH,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G84,ANNY LIMA,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G177,ANA VEGARA,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-02-06,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G173,LAURA,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+E1,INMA MUNOZ DONAT,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G177,ANA VEGARA,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G4,NORA JANE,,False,0.0,0,0.0,0.0,2025-01-06,Los Jueves Con Sh Elche,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G9,MARIA FLORENCIA CADENA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G184,MIRIAM RAMIREZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G7,GLORIA ROCA RAMON,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G175,REBECA NAVARRO ALVAREZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G185,YAIZA PATERNA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G84,ANNY LIMA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G11,PAULA RIOS,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G182,ESTEFANIA LEON LOPEZ,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G177,ANA VEGARA,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-02-13,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G2,JOANA MARIA SOCIAS,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G173,LAURA,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G185,YAIZA PATERNA,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+E1,INMA MUNOZ DONAT,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-01-13,Los Jueves Con Sh Elche,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G187,CLAUDIA LORCA,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G188,EVA SANCHEZ GOMEZ,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G189,SANDRA MOLINA MARTINEZ,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G11,PAULA RIOS,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G4,NORA JANE,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G190,SILVIA LOPEZ MONZO,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G2,JOANA MARIA SOCIAS,,False,0.0,0,0.0,0.0,2025-02-20,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G173,LAURA,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G2,JOANA MARIA SOCIAS,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+E2,MONICA DE LOS ANGELES BARRERA,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G4,NORA JANE,,False,0.0,0,0.0,0.0,2025-01-20,Los Jueves Con Sh Elche,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G182,ESTEFANIA LEON LOPEZ,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G191,ANNA ANDREU MONTORO,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G185,YAIZA PATERNA,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G192,PAULA TERCERO,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G4,NORA JANE,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G193,MINERVA JIMENEZ FERRIZ,,False,0.0,0,0.0,0.0,2025-01-23,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G194,ANDREA CUADRADO,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+E2,MONICA DE LOS ANGELES BARRERA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G10,PAOLA GONZALVEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G189,SANDRA MOLINA MARTINEZ,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G195,ANA LOBATO GUARACA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G185,YAIZA PATERNA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G196,LOUBNA,,False,0.0,0,0.0,0.0,,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G189,SANDRA MOLINA MARTINEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G2,JOANA MARIA SOCIAS,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G197,NICOLE SANCHEZ MORALES,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G172,VICTORIA SANCHEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G182,ESTEFANIA LEON LOPEZ,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-02-27,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G173,LAURA,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G5,ANA MARQUEZ,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G175,REBECA NAVARRO ALVAREZ,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G185,YAIZA PATERNA,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G9,MARIA FLORENCIA CADENA,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+E2,MONICA DE LOS ANGELES BARRERA,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G7,GLORIA ROCA RAMON,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G174,GEMMA SORIANO MARTINEZ,,False,0.0,0,0.0,0.0,2025-01-27,Los Jueves Con Sh Elche,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G198,MAYURY ARTEAGA,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G190,SILVIA LOPEZ MONZO,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G179,ANDREA DE LA LLAVE,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G176,MIRIAN MARTINEZ JUAN,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G182,ESTEFANIA LEON LOPEZ,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G186,LAURA RODRIGUEZ,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G171,LORENA VIZCAINO,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G181,MAR CHELI,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G178,MAJESUS GUERRERO CAMPOS,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G199,ANA RIQUELME CORTES,,False,0.0,0,0.0,0.0,2025-01-30,Los Jueves Con Sh Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-12,New Year Runbreakfast,Girona
+G200,MAYURY ARTEAGA,mayuryarteaga@gmail.com,False,7.0,0,0.0,7.0,2025-01-12,New Year Runbreakfast,Girona
+G201,CRISTINA ENRIQUE,crisenrique56@gmail.com,False,7.0,0,0.0,7.0,2025-01-12,New Year Runbreakfast,Girona
+G202,YAIZA PATERNA,yaizapm1@hotmail.com,False,7.0,0,0.0,7.0,2025-01-12,New Year Runbreakfast,Girona
+G203,VICTORIA SANCHEZ,sanchezvic20@gmail.com,False,7.0,0,0.0,7.0,2025-01-12,New Year Runbreakfast,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-07-21,Planazo Pre Vacances,Girona
+G204,MARIA FORT,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G78,AINA PONS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G89,SANDRA SOLE,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G90,ANA VILCHEZ,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G205,MARINA FABRI,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G40,ELIA RIGAU,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G206,SARA CRIADO GONZALEZ,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G92,MAR VERGES,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G207,LIDIA RIERA PERICOT,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G60,MIRIAM,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G208,IRENE OLIVERAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G209,ARI JUBI,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G153,RAQUEL CAMA PUIG,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G210,LAURA SOLER,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G211,CARLA PAGES MAY,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G212,GEMMA BOIX,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G64,ALBA MAYOL,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G213,ESTHER BOIX,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G214,EVA GUIBAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G215,LAURA VERGES SOLER,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G216,CLAUDIA FEIXAS MIR,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G217,JULIA PUIG,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G107,PAULA ROSA QUINONES,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G105,JULIA RUHI BARNES,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G79,PAULA MAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G218,NATALIA PUIG CASANOVAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G91,LAIA CASADELLA BANUS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G76,ANAIS LPZ,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G219,MIREIA PLANAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G220,LAURA ALONSO,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G221,LAIA PEIRO,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G222,MARINA CASTELLANOS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G43,BEGONA DE LA ROCHA MUR,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G223,LAURA BELLMAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G224,MARINA CARRERAS,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G225,MAIRI WARD,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G226,ERICA VAN RAFELGHEM,,False,10.0,0,0.0,10.0,2024-07-21,Planazo Pre Vacances,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G227,EVA MARTIN-MORENO,evarubio.9@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G228,ANA RIQUELME CORTES,anita_rc@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G229,MARTA CLEMENT ALONSO,martaclementalonso@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G230,LAURA RODRIGUEZ,laurarodrisanchez@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G231,VERONICA MARTINEZ,veronicamm2000@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G232,LAURA BLASCO NAVARRO,laurablasco04@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G233,MAR CHELI,marcheligracia@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G234,PAULA RODRIGUEZ,paularp1995@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G235,ESTEFANIA LEON LOPEZ,estefania.leon.lopez@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G236,ANA MARTINEZ,anamartne170795@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G237,CARMEN FRAILE,carmenchi0505@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G200,MAYURY ARTEAGA,mayuryarteaga@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G202,YAIZA PATERNA,yaizapm1@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G238,ANA MARQUEZ,anamarquezminguez6@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G239,NORA ZOUBAI JANE,norajaneee@hotmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G240,ALICIA SEMPERE PEREZ,alisemperez02@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G241,ANA GUILLO,anaguillo2003@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G242,YANIRA GARCIA RUIZ,yoyanira1@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G243,LUCIA CLEMENT,luciaclement2@gmail.com,False,7.0,0,0.0,7.0,2024-12-22,Pre Xmas Runbrunch Elche,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G244,CLARA BERENGUI GUELL,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G245,PAULA BIOSCA,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G246,RAQUEL MARTIN ORTEGA,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G247,LAURA MARTIN ORTEGA,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G129,JOANA PRADELL,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G108,S**,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G248,AINA PLA PUJOL,,False,0.0,0,0.0,0.0,2024-05-17,Primer Sisterhood Trail,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G249,LAURA ALBERT CARRASCO,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G207,LIDIA RIERA PERICOT,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G250,ANDREA MOLINERO,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G116,MARIA TOLEDO ORTIZ,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G46,ANNA BUSQUETS,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G112,MARIA CATEURA,,False,0.0,0,0.0,0.0,2024-07-05,Run Girobeer,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+E3,RUTH PUIG ARNAU,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G70,IRENE QUINTANA,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G210,LAURA SOLER,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G93,CARME SUREDA,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+E4,SILVIA VILASECA,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G131,MARTA GARCIA,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+E5,MARINA BANULS,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G129,JOANA PRADELL,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+E6,LAURA CAMOS BADIA,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+E7,MARIA DEL MAR MIS JOU,,False,0.0,0,0.0,0.0,,Run Pel Dia De La Dona,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G251,DANI VILA,dani.vilacamps@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G252,ANA GOMEZ,gcolom@hotmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G253,ROSER PAREDES,roserparedes@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G33,MARIONA GM,meri.grn@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G254,MARIONA COROMINAS,mcorominas7@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G255,ANNA RODADO,annarodadof@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G256,LAIA FABREGA,lfabrega82@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G257,ELISENDA CASACUBERTA,elisendacasacuberta@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G258,FEDERICO LOMBARDI,fedelombardi@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G14,ARANTXA BANAL,arantxabanal@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G259,MARC CESPEDES ESTEVE,marccespedes@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G260,POL COLL,pol.copu@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G19,MARINA FABRI SUREDA,marinafabri6@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G15,ASTRID CALVERA GISPERT,acalverag@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G261,SONIA SAMPER PLANA,soniasamper32@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G262,NURIA MESTRES,nuria.mestres.nm@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G263,JENINA GELI,jenipujol@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G264,DAVID SOTERAS,davidsoterasparis@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G265,MARINA BANULS,mbanyuls13@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G266,CLAUDIA PAGES HUGUES,cph91@outlook.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G267,NICOLAU REGAS,nikuregas@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G268,DESI OLLER LLOVERAS,desioller2003@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G269,GEMMA PEDROS,gemmapedros99@gmail.com,False,15.0,0,0.0,15.0,2025-05-09,Rundeo By Primetime I Sisterhood,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Runlearn,Girona
+G270,NORA JANE,norajaneee@hotmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G271,LUCIA ESPINOSA,luciaexpamar@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G272,MONICA ZARAGOZA FERRER,monicazf748@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G273,ANDREA CUADRADO,anncu9@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G274,CONCHI,conchilin.cb@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G275,ANA VEGARA,anaveg280@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G230,LAURA RODRIGUEZ,laurarodrisanchez@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G276,MABEL MARTINEZ GARCIA,mabel.infoacn@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G277,ALI CANDELA,aliciacandela1@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G238,ANA MARQUEZ,anamarquezminguez6@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G278,ANGELA R,angyy_91@hotmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G200,MAYURY ARTEAGA,mayuryarteaga@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G279,AINHOA MARIN,ainhoamarn@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G280,REBECA NAVARRO ALVAREZ,rebeca.navarro.alv@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G281,ALBA,albarosan14@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G282,ANDREA DE LA LLAVE,andreadelallave2608@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G283,LORENA VIZCAINO,lorenavizcaino34@gmail.com,False,15.0,0,0.0,15.0,,Runlearn,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-09,Runtrust,Elche
+G238,ANA MARQUEZ,anamarquezminguez6@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E8,MAJESUS GUERRERO CAMPOS,m.j.guerrerocampos@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E9,ANGELA JIMENEZ,angela.jimenezguirau@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+G200,MAYURY ARTEAGA,mayuryarteaga@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+G203,VICTORIA SANCHEZ,sanchezvic20@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E10,ANGELA SANCHEZ,angelasanchezfernandez91@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E11,MIRIAN MARTINEZ JUAN,mimimar1503@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E12,MARIA FLORENCIA CADENA,mariaflorenciacadena20@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+G202,YAIZA PATERNA,yaizapm1@hotmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+G282,ANDREA DE LA LLAVE,andreadelallave2608@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+E13,INMA MUNOZ DONAT,inmamunozdonat18@gmail.com,False,9.0,0,0.0,9.0,2025-01-09,Runtrust,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Sisterhood Codepilates,Girona
+G129,JOANA PRADELL,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G60,MIRIAM,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G284,SARA NORUEGA,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G214,EVA GUIBAS,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G149,AIDA MARISCH,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G285,CLARA VINAS TORNE,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G215,LAURA VERGES SOLER,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G54,JULIA AMETLLER,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G42,LAURA AGUSTI,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G286,ALEXANDRA CRUANAS VERDAGUER,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G287,ALBA JUANOLA VERDAGUER,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G288,ELENA GOU,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G289,NEREA M. LINDEZ,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G290,EUGENIA PEYRECAVE,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G291,MAR AGUILERA,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G218,NATALIA PUIG CASANOVAS,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G63,LAIA PUJOLRAS,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G292,INFO DANIEL,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G293,ELISENDA DEL VALLE,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G294,MARINA GENESTAR,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G295,PAULA GIRONES,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G296,MARIA MACARENA AGUILERA GOMEZ,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G297,CARLA ROIG,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G298,ROSA GAIRIN,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G299,MERI C.,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G300,RAQUEL BAT-LLOSERA,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G110,ANA MIR SERRA,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G301,MERITXELL CALDUCH MULA,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G302,RAQUEL CARBAJO,,False,15.0,0,0.0,15.0,,Sisterhood Codepilates,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2024-06-14,Sisterhood Trail,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G303,MARTA RABASSEDAS AYMERICH,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G116,MARIA TOLEDO ORTIZ,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+E6,LAURA CAMOS BADIA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G304,MAARTA14@HOTMAIL.COM,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G305,MARTA COS OLIVERAS,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G306,ANDREA FDEZ,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G222,MARINA CASTELLANOS,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G42,LAURA AGUSTI,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G44,SONIA SAMPER PLANA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G307,CRISTINA SANCHEZ SERRANO,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G130,CANDELA EZPELETA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G128,ANNA CASTILLA ARNAU,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G308,MAR LINARES AGUILA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G309,MARIA TORRES,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G310,BERTA COMA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G65,SOFIA SCIUTTO,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G311,MARIA COMA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G312,ANNA COMA RAMIO,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G215,LAURA VERGES SOLER,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G313,MARIA AGUSTI,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G314,GABI MARTINEAU,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G216,CLAUDIA FEIXAS MIR,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G315,MARIA OLTRA GUIRAL,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G110,ANA MIR SERRA,,False,0.0,0,0.0,0.0,2024-06-16,Sisterhood X Zel Hotels,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-12-15,Sisterhood Xmas Event,Girona
+G316,SILVIA VILASECA,silvia.vilaseca.18@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G33,MARIONA GM,meri.grn@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G32,ANA VILCHEZ,anavilchez1997@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G14,ARANTXA BANAL,arantxabanal@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G317,MARIA DEL MAR MIS JOU,marmisjou@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G318,EVA GROS MIS,evagsmis@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G319,AIDA L.,aidalopezdelcastillo@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G320,AINA PONS,ainaponsfrago@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G321,ANNA TORELLO RIUS,annatorello16@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G322,PAULA SIGUENZA GIRONES,paulasigir@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G323,ANE ESNAOLA,aneesnaola16@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G324,ESTEFANIA MONTPETIT GONZALEZ,estefaniaglezm@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G325,ANA MIR SERRA,anamir.s999@gmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G326,GEMMA ISUS OLIVE,gemma7spm@hotmail.com,False,32.0,0,0.0,32.0,2024-12-15,Sisterhood Xmas Event,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-05,Sunday Run,Girona
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,2024-05-05,Sunday Run,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,2024-05-05,Sunday Run,Girona
+G167,IRYNA ZAKHARETS,,False,0.0,0,0.0,0.0,2024-05-05,Sunday Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2025-01-09,Sunday Run,Elche
+E14,IRENE QUINTANA,irenequintanagispert@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G261,SONIA SAMPER PLANA,soniasamper32@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G20,ALBA MAYOL,albamayolb@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G19,MARINA FABRI SUREDA,marinafabri6@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E15,MARIA TOLEDO ORTIZ,mariatoledoortiz@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G16,LAURA ALONSO,lalons301@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E16,GEMMA GG,ggumbaugarriga@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G28,MIREIA CAIROL,mireiacairol@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G29,MARIA RIBARY,maria.d.ribary@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G32,ANA VILCHEZ,anavilchez1997@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G25,CRISTINA CAMACHO,criiscamacho4@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G14,ARANTXA BANAL,arantxabanal@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E17,MIREIA BIROSTA SEGURA,mireiabirosta@yahoo.es,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E18,JOANA PRADELL,joanapradell95@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G15,ASTRID CALVERA GISPERT,acalverag@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G35,NATALIA PUIG CASANOVAS,natapuigcasanovas@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E19,IRIS PIQUERAS,iris_piqueras@hotmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G265,MARINA BANULS,mbanyuls13@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E20,LEO BERMEJO,leo.lois.bermejo@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E21,PAULA JUANA,paulajute@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E22,ELISENDA FARRES,elifarrescid@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G256,LAIA FABREGA,lfabrega82@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E23,MONICA PALA CREUS,monicapala92@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E24,JUDIT MUNOZ,judit.munyoz@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G27,MIREIA GALIA,mireiagaliapla@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G38,AINHOA JIMENEZ CAMPOS,ainhoajimenez99@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E25,MARIONA MS,mollsanchezmariona@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E26,ANNA MARIA GELADA ROCA,agelada@xtec.cat,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E27,LAIA BUDO,laiabudo6@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E28,ONA FEBRER GALMES,febrergalmeso@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E29,GENESIS BRICENO,genesis_r@msn.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G18,CRISTINA S.,cristinasurioldiaz@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E30,JESSICA SANCHEZ GONZALEZ,jessicasangonzalez@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G33,MARIONA GM,meri.grn@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E31,LAURA ALBERT CARRASCO,lalbertc18@gmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+E32,SARA ROSINES,sararospa@hotmail.com,False,15.0,0,0.0,15.0,2025-01-09,Sunday Run,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G132,GEMMA GG,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G40,ELIA RIGAU,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+E7,MARIA DEL MAR MIS JOU,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G210,LAURA SOLER,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G327,LIDIA PEREZ,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G328,LAIA RIGAT,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G44,SONIA SAMPER PLANA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G110,ANA MIR SERRA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G329,FLORENCIA SILVA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G43,BEGONA DE LA ROCHA MUR,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G330,ELIA PUIG MASCORT,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G331,SARA JUAN,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G332,JUDIT TARRADAS AGUER,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G164,PAULA GOMEZ,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G69,LAURA BERBEGAL BOLSAS,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G329,FLORENCIA SILVA,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G205,MARINA FABRI,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G129,JOANA PRADELL,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+E5,MARINA BANULS,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G108,S**,,False,0.0,0,0.0,0.0,2024-05-19,Sunday Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G331,SARA JUAN,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G333,ARI MONTALS,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G92,MAR VERGES,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G43,BEGONA DE LA ROCHA MUR,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G89,SANDRA SOLE,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G154,ANNA CUFI JOU,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+E5,MARINA BANULS,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G120,AURA VILADELBOSCH PALOL,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G132,GEMMA GG,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G79,PAULA MAS,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G49,ISAVIN94,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G78,AINA PONS,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+E6,LAURA CAMOS BADIA,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G47,ANNA TORELLO RIUS,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+E33,EUGENIA,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G46,ANNA BUSQUETS,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+E34,MARTA GARCIA-PAREDES BORRELL,,False,0.0,0,0.0,0.0,,Sunday Run,Elche
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G334,CARLOTA DURAN,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G245,PAULA BIOSCA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+E6,LAURA CAMOS BADIA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G48,CRISTINA CAMACHO,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G78,AINA PONS,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G335,ADRIANA PUJOL,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G132,GEMMA GG,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G93,CARME SUREDA,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G303,MARTA RABASSEDAS AYMERICH,,False,0.0,0,0.0,0.0,,Sunday Run,Girona
+G1,SISTERHOOD RUNNING CLUB,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G76,ANAIS LPZ,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G336,MARINA FABRI SUREDA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G62,BLANCA BASTIT ALBAR,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+E4,SILVIA VILASECA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G50,LAURA RIERA VENTURA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G44,SONIA SAMPER PLANA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G41,CLAUDIA TARRADAS AGUER,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G91,LAIA CASADELLA BANUS,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G129,JOANA PRADELL,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G90,ANA VILCHEZ,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G167,IRYNA ZAKHARETS,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G46,ANNA BUSQUETS,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G108,S**,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G110,ANA MIR SERRA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G329,FLORENCIA SILVA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G222,MARINA CASTELLANOS,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G132,GEMMA GG,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G45,SONIA CALVO COLOME,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G223,LAURA BELLMAS,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G131,MARTA GARCIA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G337,JUDIT MUNOZ,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G338,ELNA NARBONA,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
+G207,LIDIA RIERA PERICOT,,False,0.0,0,0.0,0.0,2024-05-12,Sunday Run Emporda,Girona
