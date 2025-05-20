@@ -1,18 +1,113 @@
-body {
+/* === GENERAL === */
+html, body {
     background-color: #fbffe0;
-    font-family:'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    color: #4b286d;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+/* === HEADER / LOGOS === */
+#main-content > div:first-child > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+img.logo {
+    height: 80px;
+    object-fit: contain;
+    margin-right: 10px;
+}
+
+/* === BIENVENIDA / TITULAR CENTRAL === */
+.welcome-box {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1rem;
+}
+
+.welcome-box h1 {
     color: #a26ec6;
+    font-size: 32px;
+    margin-bottom: 0.5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family:'Segoe UI', sans-serif;
+.welcome-box p {
+    font-size: 18px;
+    color: #6c4887;
+}
+
+/* === COLUMNAS COMO TARJETAS === */
+div[data-testid="column"] > div {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin: 10px 0;
+    transition: transform 0.2s ease-in-out;
+}
+
+div[data-testid="column"] > div:hover {
+    transform: scale(1.01);
+}
+
+/* === METRICAS === */
+[data-testid="stMetricLabel"],
+[data-testid="stMetricDelta"],
+[data-testid="stMetricValue"] {
     color: #a26ec6;
+    font-size: 20px;
 }
 
-div[data-testid="stHeader"] {
-    background-color: #a26ec6
+/* === PESTAÑAS === */
+.css-1y4p8pa.e1akgbir3 {
+    color: #a26ec6 !important;
+    font-weight: bold;
 }
 
-.block-container {
-    padding-top: 2rem;
+.css-1k2i9uc.e1akgbir2 {
+    background-color: #fffdf4;
+}
+
+/* === BOTONES === */
+button[kind="primary"] {
+    background-color: #a26ec6;
+    color: white;
+    border-radius: 8px;
+}
+
+button[kind="primary"]:hover {
+    background-color: #8b5fbf;
+}
+
+/* === ENLACES === */
+a {
+    color: #a26ec6;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* === RESPONSIVE / MÓVIL === */
+@media (max-width: 768px) {
+    .welcome-box h1 {
+        font-size: 24px;
+    }
+
+    .welcome-box p {
+        font-size: 16px;
+    }
+
+    img.logo {
+        height: 60px;
+    }
 }
