@@ -114,3 +114,57 @@ if __name__ == "__main__":
     carpeta_raw = "data/raw"
     archivo_salida = "data/clean/events_athletiks_limpio.csv"
     limpiar_todos_los_eventos(carpeta_raw, archivo_salida)
+
+
+import pandas as pd
+from datetime import datetime
+from unidecode import unidecode
+
+# Cargar el dataframe limpio
+df = pd.read_csv("data/clean/events_athletiks_limpio.csv")
+
+# Eliminar registros internos de Sisterhood
+df = df[~df["nombre_completo"].str.lower().str.contains("sisterhood runningclub", na=False)]
+
+# --- 1. Detección de ubicación por idioma (si no existe o está mal)
+def detectar_ubicacion(evento):
+    evento = unidecode(str(evento).lower())
+    catalan = ['gener', 'febrer', 'març', 'abril', 'maig', 'juny', 'juliol', 'agost', 'setembre', 'octubre', 'novembre', 'desembre', 'dimecres']
+    return 'Girona' if any(palabra in evento for palabra in catalan) else 'Elche'
+
+df["ubicacion"] = df["evento"].apply(detectar_ubicacion)
+
+# --- 2. Contar número de asistencias por user_id
+df["asistencias"] = df.groupby("user_id")["user_id"].transform("count")
+
+# --- 3. Obtener próximo evento
+hoy = pd.Timestamp.today().normalize()
+df["fecha_evento"] = pd.to_datetime(df["fecha_evento"], errors="coerce")
+df_futuros = df[df["fecha_evento"] >= hoy].sort_values("fecha_evento")
+
+if not df_futuros.empty:
+    proximo_evento = df_futuros.iloc[0]["evento"]
+    fecha_evento = df_futuros.iloc[0]["fecha_evento"]
+    apuntadas = df_futuros[df_futuros["evento"] == proximo_evento].shape[0]
+    recaudado = df_futuros[df_futuros["evento"] == proximo_evento]["price_paid"].sum()
+    dias_restantes = (fecha_evento - hoy).days
+else:
+    proximo_evento, apuntadas, recaudado, dias_restantes = None, 0, 0.0, None
+
+# --- 4. Top 3 más fieles (mayores asistencias)
+top_fieles = df.groupby("user_id")["asistencias"].max().sort_values(ascending=False).head(3)
+
+# --- 5. Top 3 menos fieles (asistencias = 1 o menos)
+top_inactivas = df.groupby("user_id")["asistencias"].max().sort_values().head(3)
+
+# --- 6. Mostrar resumen en consola (puedes luego pasarlo a Streamlit)
+print(f"🏃 Próximo evento: {proximo_evento}")
+print(f"👥 {apuntadas} apuntadas")
+print(f"💰 {recaudado:.2f} € recaudados")
+print(f"📅 Faltan {dias_restantes} días\n")
+
+print("⭐ Cuentas más fieles:")
+print(top_fieles)
+
+print("\n😴 Cuentas menos fieles:")
+print(top_inactivas)
