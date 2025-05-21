@@ -3,6 +3,9 @@ from datetime import datetime
 from limpieza_eventos import cargar_y_procesar_eventos
 from instadata import cargar_métricas_instagram
 from limpieza_calendario import mostrar_calendario
+from instacharts import mostrar_evolucion_metricas, mostrar_interacciones_diarias, mostrar_top_engagement, mostrar_post_mas_viral
+from main_act import actualizar_todo
+from babel.dates import format_date
 import os
 import locale
 import pandas as pd
@@ -42,22 +45,29 @@ with open(style_path) as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 # === Cabecera ===
-locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
+try:
+    locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
+except:
+    locale.setlocale(locale.LC_TIME, "es_ES")
 
-st.markdown("""
-    <div style='text-align: center;'>
-        <img src='assets/logo_sismia.png' width='180' />
-    </div>
-""", unsafe_allow_html=True)
+logo_path = os.path.join(os.path.dirname(__file__), "assets", "logo_sismia.png")
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.image(logo_path, width=180)
+    st.markdown("<br>", unsafe_allow_html=True)
+    fecha_actual = format_date(datetime.now(), format='full', locale='es_ES')
+    st.markdown(f"""
+        <div style='text-align: center; margin-top: 10px;'>
+            <h2 style='color: #a26ec6;'>¡Bienvenida, Eva!</h2>
+            <p style='font-size: 18px; color: #4b286d;'>Hoy es {fecha_actual}</p>
+        </div>
+    """, unsafe_allow_html=True)
 
-st.markdown("<br>", unsafe_allow_html=True)
-
-st.markdown(f"""
-    <div style='text-align: center; margin-top: 10px;'>
-        <h2 style='color: #a26ec6;'>¡Bienvenida, Eva!</h2>
-        <p style='font-size: 18px; color: #4b286d;'>Hoy es {datetime.now().strftime('%A, %#d de %B de %Y')}</p>
-    </div>
-""", unsafe_allow_html=True)
+# === Botón de actualización ===
+st.markdown("---")
+if st.button("🔄 Actualizar todos los datos"):
+    actualizar_todo()
+    st.success("✅ Todos los datos han sido actualizados correctamente.")
 
 # === Cargar datos ===
 ruta_csv_eventos = os.path.join(os.path.dirname(__file__), "..", "data", "clean", "events_athletiks_limpio.csv")
@@ -69,7 +79,7 @@ df_eventos = data_eventos["df"]
 df_carreras = pd.read_csv(ruta_csv_carreras)
 
 # === TABS ===
-tabs = st.tabs(["🏃 Calendario carreras", "🗓️ Próximo evento", "⭐ Cuentas fieles", "📢 Recomendador de post", "📊 Análisis externos"])
+tabs = st.tabs(["🏃 Calendario carreras", "🗓️ Próximo evento", "⭐ Cuentas fieles", "📢 Recomendador de post", "📊 Análisis externos", "📈 Instagram insights"])
 
 # === COLUMNAS métricas ===
 col1, main, col2 = st.columns([1.5, 4, 1.5], gap="large")
@@ -116,6 +126,15 @@ with tabs[4]:
     with main:
         st.subheader("Análisis externos")
         st.markdown("(comparativa con otras cuentas y hashtags)")
+
+with tabs[5]:
+    with main:
+        st.subheader("Instagram insights")
+        mostrar_evolucion_metricas()
+        mostrar_interacciones_diarias()
+        mostrar_top_engagement()
+        mostrar_post_mas_viral()
+
 
 with col2:
     insta = cargar_métricas_instagram()
