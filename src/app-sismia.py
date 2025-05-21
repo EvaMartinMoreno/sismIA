@@ -3,7 +3,7 @@ from datetime import datetime
 from limpieza_eventos import cargar_y_procesar_eventos
 from instadata import cargar_métricas_instagram
 from limpieza_calendario import mostrar_calendario
-from instacharts import mostrar_evolucion_metricas, mostrar_interacciones_diarias, mostrar_top_engagement, mostrar_post_mas_viral
+import instacharts
 from main_act import actualizar_todo
 from babel.dates import format_date
 import os
@@ -134,7 +134,8 @@ with tabs[5]:
         mostrar_interacciones_diarias()
         mostrar_top_engagement()
         mostrar_post_mas_viral()
-
+        mostrar_mapa_calor_engagement()
+        mostrar_tipo_post_efectivo()
 
 with col2:
     insta = cargar_métricas_instagram()
