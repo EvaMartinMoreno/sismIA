@@ -824,3 +824,7 @@ timestamp,metric,dimension,value
 2025-05-21T17:44:37.561386,profile_views,total,110
 2025-05-21T17:44:37.561386,accounts_engaged,total,19
 2025-05-21T17:44:37.561386,total_interactions,total,5
+2025-05-23T09:16:23.208964,followers_count,total,2196
+2025-05-23T09:16:30.083641,profile_views,total,148
+2025-05-23T09:16:30.083641,accounts_engaged,total,15
+2025-05-23T09:16:30.083641,total_interactions,total,2
