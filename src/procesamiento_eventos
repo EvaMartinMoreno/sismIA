@@ -2,9 +2,9 @@ import os
 import pandas as pd
 import re
 from datetime import datetime
-import unidecode
+from unidecode import unidecode
 
-RAW_DIR = os.path.join("data", "raw", "athletiks")
+INPUT_PATH = os.path.join("data", "clean", "events_athletiks_unificado.csv")
 OUTPUT_PATH = os.path.join("data", "clean", "events_athletiks_limpio.csv")
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
@@ -15,9 +15,9 @@ MESES = {
     "juliol": 7, "agost": 8, "setembre": 9, "octubre": 10, "novembre": 11, "desembre": 12
 }
 
-def extraer_fecha(texto):
-    texto = texto.replace("-", " ").lower()
-    match = re.search(r"(\d{1,2})\s+de\s+(\w+)\s+del\s+(\d{4})", texto)
+def extraer_fecha(archivo):
+    archivo = archivo.lower().replace("-", " ").replace("_", " ")
+    match = re.search(r"(\d{1,2})\s+de\s+(\w+)\s+del\s+(\d{4})", archivo)
     if match:
         dia, mes, anio = match.groups()
         mes_num = MESES.get(mes, 0)
@@ -25,99 +25,49 @@ def extraer_fecha(texto):
             return datetime(int(anio), mes_num, int(dia))
     return pd.NaT
 
-def limpiar_nombre_evento(nombre):
-    nombre = nombre.replace(".csv", "").replace("-", " ").replace("_", " ")
-    nombre = re.split(r"\s\d{1,2}\s+de\s+\w+\s+del\s+\d{4}", nombre, flags=re.IGNORECASE)[0]
-    return nombre.strip().title()
+def limpiar_nombre_evento(archivo):
+    base = archivo.replace(".csv", "").replace("_", " ").replace("-", " ")
+    return re.split(r"\s+\d{1,2}\s+de\s+\w+\s+del\s+\d{4}", base, flags=re.IGNORECASE)[0].strip().title()
 
-def cargar_y_unificar_csvs():
-    all_data = []
+def limpiar_datos():
+    df = pd.read_csv(INPUT_PATH)
 
-    for comunidad in os.listdir(RAW_DIR):
-        carpeta = os.path.join(RAW_DIR, comunidad)
-        if not os.path.isdir(carpeta):
-            continue
+    # Renombrar columnas si existen
+    renames = {
+        "name": "ASISTENTE",
+        "has_paid": "PAGADO",
+        "price_paid": "PRECIO_PAGADO",
+        "attendance_status": "ASISTIO"
+    }
+    df.rename(columns={k: v for k, v in renames.items() if k in df.columns}, inplace=True)
 
-        for archivo in os.listdir(carpeta):
-            if archivo.endswith(".csv"):
-                path = os.path.join(carpeta, archivo)
-                try:
-                    df = pd.read_csv(path, sep=";", encoding="utf-8", engine="python", on_bad_lines="skip")
-                    if df.empty:
-                        continue
+    # Normalizar nombre asistente
+    df["ASISTENTE"] = df["ASISTENTE"].astype(str).str.strip().str.lower().apply(unidecode).str.upper()
 
-                    df.columns = [unidecode.unidecode(col.lower().strip()) for col in df.columns]
+    # Filtrar registros internos
+    df = df[~df["ASISTENTE"].isin(["SISTERHOOD RUNNING CLUB", "SISTERHOOD RC ELCHE"])]
 
-                    df.rename(columns={
-                        "name": "ASISTENTE",
-                        "has_paid": "PAGADO",
-                        "price_paid": "PRECIO_PAGADO",
-                        "attendance_status": "ASISTIO"
-                    }, inplace=True)
+    # Normalizar booleanos
+    df["PAGADO"] = df["PAGADO"].astype(str).str.lower().str.contains("true|si|sí|1", na=False)
+    df["ASISTIO"] = df["ASISTIO"].astype(str).str.lower().str.contains("attended|confirmada|asistido", na=False)
 
-                    df["COMUNIDAD"] = comunidad.upper()
-                    df["ARCHIVO"] = archivo
-                    df["EVENTO"] = limpiar_nombre_evento(archivo)
-                    df["FECHA_EVENTO"] = extraer_fecha(archivo)
+    # Precio pagado (en float)
+    df["PRECIO_PAGADO"] = pd.to_numeric(df.get("PRECIO_PAGADO", 0), errors="coerce").fillna(0)
 
-                    for col in ["ASISTENTE", "PAGADO", "ASISTIO", "PRECIO_PAGADO"]:
-                        if col not in df.columns:
-                            df[col] = None
+    # Extraer fecha y nombre evento
+    df["FECHA_EVENTO"] = df["ARCHIVO_ORIGEN"].apply(extraer_fecha)
+    df["EVENTO"] = df["ARCHIVO_ORIGEN"].apply(limpiar_nombre_evento)
 
-                    df["ASISTENTE"] = df["ASISTENTE"].astype(str).str.strip().str.lower().apply(unidecode.unidecode).str.upper()
-                    df = df[~df["ASISTENTE"].isin(["SISTERHOOD RC ELCHE", "SISTERHOOD RUNNING CLUB"])]
-
-                    df["PAGADO"] = df["PAGADO"].astype(str).str.lower().str.contains("true|si|sí|1", na=False)
-                    df["ASISTIO"] = df["ASISTIO"].astype(str).str.lower().str.contains("attended|confirmada|asistido", na=False)
-                    df["PRECIO_PAGADO"] = pd.to_numeric(df["PRECIO_PAGADO"], errors="coerce").fillna(0.0)
-
-                    df["COSTE_ESTIMADO"] = None
-                    all_data.append(df)
-
-                except Exception as e:
-                    print(f"❌ Error en {archivo}: {e}")
-
-    if not all_data:
-        print("⚠️ No hay datos válidos")
-        return pd.DataFrame()
-
-    df = pd.concat(all_data, ignore_index=True)
-    print(f"🔍 Precio total detectado: {df['PRECIO_PAGADO'].sum():.2f} €")
-
+    # Calcular número de asistencias por persona
     df["NUM_ASISTENCIAS"] = df.groupby("ASISTENTE")["EVENTO"].transform("count")
 
-    df_grouped = df.groupby(["EVENTO", "FECHA_EVENTO", "COMUNIDAD"], as_index=False).agg({
-        "PRECIO_PAGADO": "sum",
-        "COSTE_ESTIMADO": "first"
-    }).rename(columns={
-        "PRECIO_PAGADO": "INGRESO_EVENTO",
-        "COSTE_ESTIMADO": "COSTE_ESTIMADO_AGREGADO"
-    })
-
-    df_grouped["COMISION"] = df_grouped["INGRESO_EVENTO"] * 0.05
-    df_grouped["BENEFICIO_EVENTO"] = (
-        df_grouped["INGRESO_EVENTO"] - df_grouped["COMISION"] - df_grouped["COSTE_ESTIMADO_AGREGADO"].fillna(0)
-    )
-
-    df_final = df.merge(df_grouped, on=["EVENTO", "FECHA_EVENTO", "COMUNIDAD"], how="left")
-
-    df_final.rename(columns={"COSTE_ESTIMADO_AGREGADO": "COSTE_ESTIMADO"}, inplace=True)
-
+    # Guardar CSV limpio
     columnas_finales = [
-        "EVENTO", "FECHA_EVENTO", "COMUNIDAD", "ASISTENTE", "ASISTIO", "PAGADO",
-        "PRECIO_PAGADO", "COSTE_ESTIMADO", "INGRESO_EVENTO", "COMISION",
-        "BENEFICIO_EVENTO", "NUM_ASISTENCIAS"
+        "EVENTO", "FECHA_EVENTO", "COMUNIDAD", "ASISTENTE",
+        "ASISTIO", "PAGADO", "PRECIO_PAGADO", "NUM_ASISTENCIAS"
     ]
-
-    # Seguridad: aseguramos que todas existan antes de guardar
-    for col in columnas_finales:
-        if col not in df_final.columns:
-            df_final[col] = None
-
-    df_final = df_final[columnas_finales]
-    df_final.to_csv(OUTPUT_PATH, index=False)
-    print(f"✅ Datos limpios y calculados guardados en: {OUTPUT_PATH}")
-    return df_final
+    df[columnas_finales].to_csv(OUTPUT_PATH, index=False)
+    print(f"✅ Datos limpios guardados en: {OUTPUT_PATH}")
 
 if __name__ == "__main__":
-    cargar_y_unificar_csvs()
+    limpiar_datos()
