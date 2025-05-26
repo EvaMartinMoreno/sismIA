@@ -1,0 +1,72 @@
+import os
+import pandas as pd
+import re
+from datetime import datetime
+
+RAW_DIR = os.path.join("data", "raw", "athletiks")
+OUTPUT_PATH = os.path.join("data", "clean", "events_athletiks_limpio.csv")
+os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
+
+# Mapeo de meses en castellano y catalán
+MESES = {
+    "enero": 1, "febrero": 2, "marzo": 3, "abril": 4, "mayo": 5, "junio": 6,
+    "julio": 7, "agosto": 8, "septiembre": 9, "octubre": 10, "noviembre": 11, "diciembre": 12,
+    "gener": 1, "febrer": 2, "març": 3, "abril": 4, "maig": 5, "juny": 6,
+    "juliol": 7, "agost": 8, "setembre": 9, "octubre": 10, "novembre": 11, "desembre": 12
+}
+
+def extraer_fecha_desde_nombre(nombre_archivo):
+    texto = nombre_archivo.replace("-", " ").lower()
+    match = re.search(r"(\\d{1,2})\\s+de\\s+(\\w+)\\s+del\\s+(\\d{4})", texto)
+    if match:
+        dia, mes, anio = match.groups()
+        mes_num = MESES.get(mes, 0)
+        if mes_num:
+            return datetime(int(anio), mes_num, int(dia))
+    return pd.NaT
+
+def cargar_y_unificar_csvs():
+    all_data = []
+
+    for comunidad in os.listdir(RAW_DIR):
+        carpeta = os.path.join(RAW_DIR, comunidad)
+        if not os.path.isdir(carpeta):
+            continue
+
+        for archivo in os.listdir(carpeta):
+            if archivo.endswith(".csv"):
+                path = os.path.join(carpeta, archivo)
+                try:
+                    df = pd.read_csv(path)
+                    df["comunidad"] = comunidad.upper()
+                    df["nombre_archivo"] = archivo
+
+                    # Extraer nombre limpio del evento
+                    nombre_evento = archivo.replace(".csv", "")
+                    nombre_evento = re.sub(r"(\\d{4}|\\d{2})[-_]", "", nombre_evento)
+                    nombre_evento = re.sub(r"[_-]", " ", nombre_evento).strip().title()
+
+                    df["evento"] = nombre_evento
+                    df["fecha_evento"] = extraer_fecha_desde_nombre(archivo)
+
+                    # Añadir campo de coste vacío para edición posterior
+                    df["coste_estimado"] = None
+
+                    all_data.append(df)
+                except Exception as e:
+                    print(f"❌ Error cargando {archivo}: {e}")
+
+    if not all_data:
+        print("⚠️ No se encontraron archivos válidos.")
+        return pd.DataFrame()
+
+    df_final = pd.concat(all_data, ignore_index=True)
+    return df_final
+
+if __name__ == "__main__":
+    df = cargar_y_unificar_csvs()
+    if not df.empty:
+        df.to_csv(OUTPUT_PATH, index=False)
+        print(f"✅ Datos unificados guardados en: {OUTPUT_PATH}")
+    else:
+        print("❌ No se generó ningún CSV limpio.")

@@ -1,10 +1,6 @@
 import streamlit as st
 from datetime import datetime
-from limpieza_eventos import cargar_y_procesar_eventos
-from instadata import cargar_métricas_instagram
-from limpieza_calendario import mostrar_calendario
-import instacharts as ic
-from main_act import actualizar_todo
+from actualizar_datos import actualizar_datos_girona, actualizar_datos_elche
 from babel.dates import format_date
 import os
 import locale
@@ -64,22 +60,29 @@ with col2:
     """, unsafe_allow_html=True)
 
 # === Botón de actualización ===
-st.markdown("---")
-if st.button("🔄 Actualizar todos los datos"):
-    actualizar_todo()
-    st.success("✅ Todos los datos han sido actualizados correctamente.")
+from actualizar_datos import actualizar_datos_girona, actualizar_datos_elche
+if st.button("🔄 Actualizar datos de Girona"):
+    if actualizar_datos_girona():
+        st.success("✅ Girona actualizado correctamente")
+    else:
+        st.error("❌ Error al actualizar Girona")
+
+if st.button("🔄 Actualizar datos de Elche"):
+    if actualizar_datos_elche():
+        st.success("✅ Elche actualizado correctamente")
+    else:
+        st.error("❌ Error al actualizar Elche")
 
 # === Cargar datos ===
-ruta_csv_eventos = os.path.join(os.path.dirname(__file__), "..", "data", "clean", "events_athletiks_limpio.csv")
-ruta_csv_carreras = os.path.join(os.path.dirname(__file__), "..", "data", "processed", "carreras_unificadas.csv")
 
-data_eventos = cargar_y_procesar_eventos(ruta_csv_eventos)
-df_eventos = data_eventos["df"]
 
-df_carreras = pd.read_csv(ruta_csv_carreras)
+
+
+
+
 
 # === TABS ===
-tabs = st.tabs(["🏃 Calendario carreras", "🗓️ Próximo evento", "⭐ Cuentas fieles", "📢 Recomendador de post", "📊 Análisis externos", "📈 Instagram insights"])
+tabs = st.tabs(["🗓️ Próximo evento", "⭐ Cuentas fieles"])
 
 # === COLUMNAS métricas ===
 col1, main, col2 = st.columns([1.5, 4, 1.5], gap="large")
