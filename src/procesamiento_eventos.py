@@ -72,9 +72,17 @@ def extraer_fecha(nombre_archivo: str) -> pd.Timestamp:
     return pd.NaT
 
 def limpiar_nombre_evento(nombre_archivo: str) -> str:
-    nombre_archivo = nombre_archivo.lower().replace(".csv", "").replace("_", " ").replace("-", " ")
-    partes = re.split(r"\s+\d{1,2}\s+de\s+\w+\s+del\s+\d{4}", nombre_archivo, flags=re.IGNORECASE)
-    return partes[0].strip().title() if partes else nombre_archivo.title()
+    # Eliminar extensión, guiones y underscores
+    nombre = nombre_archivo.lower().replace(".csv", "").replace("_", " ").replace("-", " ")
+
+    # Eliminar hashes al final (códigos tipo "a1ca86", "75b84a", etc.)
+    nombre = re.sub(r"\b[a-f0-9]{5,}\b$", "", nombre)
+
+    # Eliminar cualquier fecha en formato "dd mes año" (con o sin 'de' y 'del')
+    nombre = re.sub(r"\d{1,2}\s*(?:de)?\s*\w+\s*(?:de|del)?\s*\d{4}", "", nombre)
+
+    # Quitar espacios extra y poner en formato título
+    return nombre.strip().title()
 
 def cargar_y_unificar_csvs_athletiks() -> pd.DataFrame:
     """
@@ -90,10 +98,11 @@ def cargar_y_unificar_csvs_athletiks() -> pd.DataFrame:
 
         for archivo in carpeta.glob("*.csv"):
             try:
-                df = pd.read_csv(archivo, sep=None, engine="python", on_bad_lines="skip")
+                # Leer con separador explícito
+                df = pd.read_csv(archivo, sep=";", engine="python", on_bad_lines="skip")
 
-                # Limpieza: eliminar BOM y comillas dobles de las cabeceras
-                df.columns = [col.encode('utf-8').decode('utf-8-sig').strip('"') for col in df.columns]
+                # Limpiar cabeceras de posibles comillas dobles o BOM
+                df.columns = [col.encode('utf-8').decode('utf-8-sig').strip().strip('"') for col in df.columns]
 
                 # Verificación de columnas mínimas necesarias
                 columnas_faltantes = columnas_requeridas - set(df.columns)
@@ -113,6 +122,20 @@ def cargar_y_unificar_csvs_athletiks() -> pd.DataFrame:
     df_girona = cargar_csvs_de("girona")
     df_elche = cargar_csvs_de("elche")
     df_total = pd.concat([df_girona, df_elche], ignore_index=True)
+
+    # Ver cuántas filas tiene cada uno
+    print(f"🔎 Filas GIRONA: {len(df_girona)}")
+    print(f"🔎 Filas ELCHE: {len(df_elche)}")
+    print(f"🧾 Total filas concatenadas: {len(df_total)}")
+
+    # Ver si hay valores nulos en columnas clave
+    print("🧼 Nulos por columna:")
+    print(df_total.isna().sum())
+
+    # Ver primeros archivos cargados
+    print("📂 Archivos cargados (primeros 5):")
+    print(df_total['ARCHIVO_ORIGEN'].drop_duplicates().head())
+
 
     if not df_total.empty and "COMUNIDAD" in df_total.columns:
         print("📦 CSVs cargados. Distribución por comunidad:")
@@ -188,6 +211,10 @@ def generar_dataset_predictivo():
         df_revision = pd.read_csv(REVISION_PATH)
         df_revision["FECHA_EVENTO"] = pd.to_datetime(df_revision["FECHA_EVENTO"], errors="coerce")
         df_revision["ASISTENCIA"] = df_revision["ASISTENCIA"].astype(bool)
+
+        # 🧹 Eliminar duplicados antes de hacer el merge
+        df_revision = df_revision.drop_duplicates(subset=["ASISTENTE", "NOMBRE_EVENTO", "FECHA_EVENTO", "ARCHIVO_ORIGEN"])
+
         df.drop("ASISTENCIA", axis=1, inplace=True)
         df = df.merge(df_revision, on=["ASISTENTE", "NOMBRE_EVENTO", "FECHA_EVENTO", "ARCHIVO_ORIGEN"], how="left")
 
@@ -230,6 +257,9 @@ def generar_dataset_predictivo():
         df_evento["COSTE_ESTIMADO"] = 0.0
 
     df_evento["BENEFICIO_ESTIMADO"] = df_evento["TOTAL_RECAUDADO"] - df_evento["COSTE_ESTIMADO"]
+
+    #  Eliminar duplicados del dataframe final de eventos
+    df_evento = df_evento.drop_duplicates()
 
     df_evento.to_csv(OUTPUT_PREDICTIVO, index=False)
     df_evento[df_evento["TIPO_EVENTO"] == "pago"].to_csv(OUTPUT_PREDICTIVO_PAGO, index=False)
