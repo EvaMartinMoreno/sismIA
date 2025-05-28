@@ -14,8 +14,6 @@ COSTES_PATH = BASE_DIR / "clean" / "costes_eventos.csv"
 OUTPUT_DIR = BASE_DIR / "clean"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_PREDICTIVO = OUTPUT_DIR / "dataset_modelo.csv"
-OUTPUT_PREDICTIVO_PAGO = OUTPUT_DIR / "dataset_modelo_pago.csv"
-OUTPUT_PREDICTIVO_GRATUITO = OUTPUT_DIR / "dataset_modelo_gratuito.csv"
 
 # =========================
 # 📆 Diccionario meses
@@ -183,12 +181,13 @@ def generar_dataset_predictivo():
     }, inplace=True)
 
     df["ASISTENTE"] = df["ASISTENTE"].astype(str).str.strip().str.lower().apply(unidecode).str.upper()
-    df["PAGO"] = df["PAGO"].astype(str).str.lower().str.contains("true|si|sí|1", na=False)
+    df["PAGO"] = df["PAGO"].astype(str).str.lower().str.contains("true|si|sí|1", na=False).astype(int)
     df["ASISTENCIA"] = df["ASISTENCIA"].str.strip().str.lower().map({
-        "attended": True,
-        "absent": False,
-        "pending": pd.NA
+    "attended": 1,
+    "absent": 0,
+    "pending": pd.NA
     })
+
     df["PRECIO_PAGADO"] = pd.to_numeric(df.get("PRECIO_PAGADO", 0), errors="coerce").fillna(0)
 
     df = df[~df["ASISTENTE"].isin(["SISTERHOOD RUNNING CLUB", "SISTERHOOD RC ELCHE"])]
@@ -210,7 +209,7 @@ def generar_dataset_predictivo():
     if REVISION_PATH.exists():
         df_revision = pd.read_csv(REVISION_PATH)
         df_revision["FECHA_EVENTO"] = pd.to_datetime(df_revision["FECHA_EVENTO"], errors="coerce")
-        df_revision["ASISTENCIA"] = df_revision["ASISTENCIA"].astype(bool)
+        df["ASISTENCIA"] = df["ASISTENCIA"].fillna(0).astype(int)
 
         # 🧹 Eliminar duplicados antes de hacer el merge
         df_revision = df_revision.drop_duplicates(subset=["ASISTENTE", "NOMBRE_EVENTO", "FECHA_EVENTO", "ARCHIVO_ORIGEN"])
@@ -221,12 +220,15 @@ def generar_dataset_predictivo():
     if df["ASISTENCIA"].isna().any():
         np.random.seed(42)
         mask = df["ASISTENCIA"].isna()
-        df.loc[mask, "ASISTENCIA"] = np.random.choice([True, False], size=mask.sum(), p=[0.85, 0.15])
+        df.loc[mask, "ASISTENCIA"] = np.random.choice([1, 0], size=mask.sum(), p=[0.85, 0.15])
 
     # 🔄 Eventos únicos antes de agrupar
     print("\n🔄 Eventos únicos antes de agrupar:", df["ARCHIVO_ORIGEN"].nunique())
     print("🎯 Algunos nombres de eventos antes del groupby:")
     print(df["NOMBRE_EVENTO"].drop_duplicates().sort_values().head(10).to_list())
+
+    df["ASISTENCIA"] = pd.to_numeric(df["ASISTENCIA"], errors="coerce").fillna(0).astype(int)
+    df["PAGO"] = pd.to_numeric(df["PAGO"], errors="coerce").fillna(0).astype(int)
 
     df_evento = df.groupby(
         ["NOMBRE_EVENTO", "FECHA_EVENTO", "COMUNIDAD", "DIA_SEMANA", "MES", "SEMANA"], as_index=False
@@ -262,13 +264,9 @@ def generar_dataset_predictivo():
     df_evento = df_evento.drop_duplicates()
 
     df_evento.to_csv(OUTPUT_PREDICTIVO, index=False)
-    df_evento[df_evento["TIPO_EVENTO"] == "pago"].to_csv(OUTPUT_PREDICTIVO_PAGO, index=False)
-    df_evento[df_evento["TIPO_EVENTO"] == "gratuito"].to_csv(OUTPUT_PREDICTIVO_GRATUITO, index=False)
 
     print("✅ Archivos generados:")
     print(f" - General:   {OUTPUT_PREDICTIVO}")
-    print(f" - Pago:      {OUTPUT_PREDICTIVO_PAGO}")
-    print(f" - Gratuito:  {OUTPUT_PREDICTIVO_GRATUITO}")
 
 # =========================
 # 🚀 Ejecutar
