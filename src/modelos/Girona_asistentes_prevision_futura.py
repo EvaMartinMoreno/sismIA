@@ -24,5 +24,5 @@ X_futuro = X_futuro.reindex(columns=X_train_columns, fill_value=0)
 df_futuro["PREDICCION_ASISTENCIA"] = modelo.predict(X_futuro)
 
 # === 💾 Exportar resultados
-df_futuro[["FECHA_EVENTO", "NOMBRE_EVENTO", "PREDICCION_ASISTENCIA"]].to_csv("stats//datasets/predicciones_futuras.csv", index=False)
-print("✅ Predicciones guardadas en stats/datasets/predicciones_futuras.csv")
+df_futuro[["FECHA_EVENTO", "NOMBRE_EVENTO", "PREDICCION_ASISTENCIA"]].to_csv("stats//datasets/Girona_prediccion_asistentes_futuros.csv", index=False)
+print("✅ Predicciones guardadas en stats//datasets/Girona_prediccion_asistentes_futuros.csv")

@@ -69,3 +69,16 @@ plt.xlabel("Error (real - predicción)")
 
 plt.tight_layout()
 plt.show()
+
+# === 📎 Mostrar coeficientes
+coeficientes = pd.Series(modelo.coef_, index=X.columns).sort_values(ascending=False)
+print("\n📌 Pesos de cada variable en la regresión:")
+print(coeficientes)
+
+# Visual opcional
+plt.figure(figsize=(10, 6))
+coeficientes.plot(kind="barh")
+plt.title("📉 Peso de cada variable en la predicción de asistencia")
+plt.xlabel("Impacto en asistentes")
+plt.tight_layout()
+plt.show()
