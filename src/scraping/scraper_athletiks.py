@@ -1,22 +1,12 @@
-import os
-import time
-import shutil
-from urllib.parse import urljoin, urlparse
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-
 def scrappear_eventos(usuario, password, comunidad, estado_scraping):
     from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.common.keys import Keys
     from selenium.webdriver.chrome.service import Service
     from webdriver_manager.chrome import ChromeDriverManager
-
     import time
     import shutil
+    import os
     from urllib.parse import urljoin, urlparse
 
     BASE_DIR = os.path.join("data", "raw", "athletiks", comunidad.upper())
