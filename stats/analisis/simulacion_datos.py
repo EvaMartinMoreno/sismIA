@@ -3,32 +3,14 @@ import numpy as np
 import random
 from datetime import datetime
 from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-# Semilla
+# === SEMILLA
 random.seed(42)
 np.random.seed(42)
 
-# === FUNCIONES DE CRECIMIENTO ===
-def calcular_crecimiento_generico(edad_meses):
-    return max(1, 1 + 0.25 + (edad_meses // 12) * 0.005)
-
-def calcular_crecimiento_con_ruido(edad_meses: int) -> int:
-    if edad_meses < 3:
-        pendiente = 1.1; intercepto = 18.0; ruido = 2.3
-    elif 3 <= edad_meses < 6:
-        pendiente = 1.3; intercepto = 17.5; ruido = 3.0
-    elif 10 <= edad_meses <= 11:
-        pendiente = 0.9; intercepto = 17.0; ruido = 3.0
-    elif 11 < edad_meses <= 13:
-        pendiente = 0.7; intercepto = 14.0; ruido = 3.5
-    else:
-        pendiente = 1.7; intercepto = 14.5; ruido = 5.5
-
-    valor_base = intercepto + pendiente * edad_meses
-    valor = np.random.normal(loc=valor_base, scale=ruido)
-    return max(5, int(round(valor)))
-
-# === TEMPORADA
+# === FUNCIONES DE APOYO
 def obtener_temporada(mes):
     if mes in [12, 1, 2]:
         return "invierno"
@@ -39,7 +21,33 @@ def obtener_temporada(mes):
     else:
         return "otoño"
 
-# === GENERADOR DE DATOS
+def generar_colaboracion():
+    return np.random.choice([1, 0], p=[0.1667, 0.8333])
+
+def generar_tipo_actividad():
+    return np.random.choice(["almuerzo", "ludico", "deportiva"], p=[0.5, 0.3333, 0.1667])
+
+# === NUEVA FUNCIÓN DE CRECIMIENTO REALISTA
+def calcular_crecimiento_con_ruido_refinado(edad_meses: int, mes: int) -> int:
+    estacionalidad = {
+        1: -5, 2: -3, 3: 1, 4: 2, 5: 3, 6: 1,
+        7: -1, 8: -3, 9: 2, 10: 4, 11: 3, 12: -4
+    }
+
+    # V descendente entre edad 35-45 (~marzo 2024 - enero 2025) y rebote fuerte
+    if edad_meses < 35:
+        tendencia = 22 + edad_meses * 0.4
+    elif 35 <= edad_meses <= 45:
+        tendencia = 55 - (edad_meses - 35) * 4.5
+    else:
+        tendencia = 15 + (edad_meses - 45) * 5.2
+
+    ruido = np.random.normal(0, 4 if edad_meses > 45 else 2.5)
+    ajuste_estacional = estacionalidad.get(mes, 0)
+    total = tendencia + ajuste_estacional + ruido
+    return max(5, int(round(total)))
+
+# === GENERADOR DE DATOS SIMULADOS
 def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60,
                              eventos_pago_por_mes: int = 1, eventos_gratuito_por_mes: int = 4) -> pd.DataFrame:
     eventos = []
@@ -59,8 +67,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
 
         # GRATUITOS
         for _ in range(eventos_gratuito_por_mes):
-            crecimiento = calcular_crecimiento_generico(edad_meses)
-            asistentes = int(np.random.normal(loc=20 * crecimiento, scale=3))
+            asistentes = int(np.random.normal(loc=20, scale=3))
             asistentes = max(1, asistentes)
             inscritas = asistentes + random.randint(1, 5)
             coste = round(random.uniform(50, 150), 2)
@@ -86,20 +93,14 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "COSTE_ESTIMADO": coste,
                 "BENEFICIO_ESTIMADO": beneficio,
                 "PRECIO_MEDIO": 0.0,
-                "COLABORACION": 0,
-                "TIPO_ACTIVIDAD": "deportiva"
+                "COLABORACION": generar_colaboracion(),
+                "TIPO_ACTIVIDAD": generar_tipo_actividad()
             })
             contador_eventos += 1
 
         # DE PAGO
         for _ in range(eventos_pago_por_mes):
-            if comunidad.upper() == "GIRONA":
-                asistentes = calcular_crecimiento_con_ruido(edad_meses)
-            else:
-                crecimiento = calcular_crecimiento_generico(edad_meses)
-                asistentes = int(np.random.normal(loc=40 * crecimiento, scale=5))
-
-            asistentes = max(5, asistentes)
+            asistentes = calcular_crecimiento_con_ruido_refinado(edad_meses, mes)
             inscritas = asistentes + random.randint(2, 8)
             precio = round(random.uniform(10, 20), 2)
             ingresos = asistentes * precio
@@ -126,18 +127,49 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "COSTE_ESTIMADO": coste,
                 "BENEFICIO_ESTIMADO": beneficio,
                 "PRECIO_MEDIO": precio,
-                "COLABORACION": 0,
-                "TIPO_ACTIVIDAD": "deportiva"
+                "COLABORACION": generar_colaboracion(),
+                "TIPO_ACTIVIDAD": generar_tipo_actividad()
             })
             contador_eventos += 1
 
     return pd.DataFrame(eventos)
 
-# === GENERACIÓN FINAL
+# === GENERACIÓN Y GUARDADO
 df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
-
 output_path = Path("stats") / "datasets" / "simulacion_datos_girona.csv"
 output_path.parent.mkdir(parents=True, exist_ok=True)
 df_simulado.to_csv(output_path, index=False)
 print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
 print(f"📍 Guardado en: {output_path}")
+
+# === VISUALIZACIÓN COMPARATIVA POR EVENTO
+df_real = pd.read_csv("data/clean/dataset_modelo.csv", parse_dates=["FECHA_EVENTO"])
+df_real = df_real[(df_real["COMUNIDAD"] == "GIRONA") & (df_real["TIPO_EVENTO"] == "pago")]
+
+# Eliminar outliers en ambos
+lim_sup_sim = df_simulado["NUM_ASISTENCIAS"].quantile(0.95)
+lim_sup_real = df_real["NUM_ASISTENCIAS"].quantile(0.95)
+
+df_sim = df_simulado[(df_simulado["TIPO_EVENTO"] == "pago") & (df_simulado["NUM_ASISTENCIAS"] < lim_sup_sim)].copy()
+df_real = df_real[df_real["NUM_ASISTENCIAS"] < lim_sup_real].copy()
+
+df_sim["TIPO"] = "simulado"
+df_real["TIPO"] = "real"
+
+df_plot = pd.concat([df_sim, df_real], ignore_index=True)
+
+# Pintamos puntos por separado para evitar líneas feas
+plt.figure(figsize=(12, 6))
+sns.scatterplot(data=df_sim, x="FECHA_EVENTO", y="NUM_ASISTENCIAS", label="simulado", color="royalblue", s=50)
+sns.scatterplot(data=df_real, x="FECHA_EVENTO", y="NUM_ASISTENCIAS", label="real", color="orangered", s=50)
+
+# Opcional: línea de tendencia sólo para lo simulado (porque es regular)
+sns.lineplot(data=df_sim, x="FECHA_EVENTO", y="NUM_ASISTENCIAS", label="Tendencia simulada", color="royalblue", lw=1.5)
+
+plt.title("📍 Asistentes por evento en Girona (simulado vs real)")
+plt.xlabel("Fecha del evento")
+plt.ylabel("Número de asistentes por evento")
+plt.xticks(rotation=45)
+plt.legend()
+plt.tight_layout()
+plt.show()

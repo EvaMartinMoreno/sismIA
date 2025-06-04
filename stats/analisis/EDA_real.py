@@ -194,3 +194,18 @@ else:
     plt.legend()
     plt.tight_layout()
     plt.show()
+
+# === 🔍 Distribución colaboración y tipos de actividad en eventos de pago de GIRONA ===
+df_girona_pago = df[(df["COMUNIDAD"].str.upper() == "GIRONA") & (df["TIPO_EVENTO"] == "pago")]
+
+# Porcentaje de colaboración
+porcentaje_colaboracion = df_girona_pago["COLABORACION"].value_counts(normalize=True) * 100
+print("\n📊 Porcentaje de eventos con/sin colaboración (GIRONA - Pago):")
+print(porcentaje_colaboracion.rename({0: "Sin colaboración", 1: "Con colaboración"}).round(2))
+
+# Distribución de tipo de actividad
+df_girona_pago["TIPO_ACTIVIDAD"] = df_girona_pago["TIPO_ACTIVIDAD"].astype(str).str.strip().str.lower()
+distribucion_actividad = df_girona_pago["TIPO_ACTIVIDAD"].value_counts(normalize=True) * 100
+print("\n📊 Distribución de tipos de actividad (GIRONA - Pago):")
+print(distribucion_actividad.round(2))
+
