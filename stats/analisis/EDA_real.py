@@ -13,7 +13,7 @@ sns.set_theme(style="whitegrid")
 plt.rcParams["figure.figsize"] = (10, 6)
 
 # === CARGA DE DATOS ===
-ruta_csv = Path(__file__).parent / "dataset_modelo.csv"
+ruta_csv = Path("data/clean/dataset_modelo.csv")
 df = pd.read_csv(ruta_csv)
 df["FECHA_EVENTO"] = pd.to_datetime(df["FECHA_EVENTO"], errors="coerce")
 

@@ -6,14 +6,13 @@ import locale
 import unicodedata
 from datetime import datetime
 
-
 # =========================
-# 📁 Rutas de entrada/salida
+# 📁 Rutas
 # =========================
-COSTES_PATH = os.path.join("data", "clean", "costes_eventos.csv")
+CRUDO_PATH = os.path.join("data", "clean", "eventos_crudos_unificados.csv")
 OUTPUT_EVENTOS = os.path.join("data", "clean", "datos_eventos.csv")
 OUTPUT_PERSONA = os.path.join("data", "clean", "datos_persona.csv")
-ACTUALIZAR_SCRIPT = os.path.join("src", "actualizar_datos.py")
+ACTUALIZAR_SCRIPT = os.path.join("src", "pipeline_app.py")
 
 # =========================
 # 🚀 Configuración general
@@ -21,28 +20,9 @@ ACTUALIZAR_SCRIPT = os.path.join("src", "actualizar_datos.py")
 st.set_page_config(page_title="SismIA - Gestión de Eventos", layout="wide")
 
 # =========================
-# 🔍 Carga de eventos y costes
-# =========================
-if os.path.exists(OUTPUT_EVENTOS):
-    df_eventos = pd.read_csv(OUTPUT_EVENTOS)
-    eventos_unicos = pd.DataFrame({"EVENTO": df_eventos["EVENTO"].unique()})
-else:
-    eventos_unicos = pd.DataFrame(columns=["EVENTO"])
-
-if os.path.exists(COSTES_PATH):
-    df_costes = pd.read_csv(COSTES_PATH)
-else:
-    df_costes = pd.DataFrame(columns=["EVENTO", "COSTE_ESTIMADO"])
-
-# Unificamos y detectamos eventos sin coste
-df_costes_full = eventos_unicos.merge(df_costes, on="EVENTO", how="left")
-faltan_costes = df_costes_full["COSTE_ESTIMADO"].isna().sum()
-
-# =========================
-# 🧠 CABECERA
+# 🧐 CABECERA
 # =========================
 
-# 📅 Configuración de idioma y fecha
 try:
     locale.setlocale(locale.LC_TIME, 'es_ES.UTF-8')  # Linux/Mac
 except:
@@ -52,20 +32,13 @@ except:
         pass
 
 fecha_actual = datetime.today().strftime('%A, %d de %B de %Y').capitalize()
-
-# 🔤 Limpieza de tildes y texto final
 fecha_limpia = unicodedata.normalize('NFKD', fecha_actual).encode('ASCII', 'ignore').decode('utf-8')
 texto_fecha = f"Hoy es {fecha_limpia}"
 
-# =========================
-# 🎨 Cabecera visual con logo centrado, título y fecha
-# =========================
-# Cabecera visual con logo centrado, título y fecha
-col1, col2, col3 = st.columns([1,2,1])
+col1, col2, col3 = st.columns([1, 2, 1])
 with col2:
     st.image("src/assets/logo_sismia.png", width=120)
 
-# Título y fecha centrados
 st.markdown(
     f"""
     <h1 style='text-align: center; color: #4B0082;'>💡 Bienvenida, Eva :)</h1>
@@ -75,7 +48,7 @@ st.markdown(
 )
 
 # =========================
-# 🔄 Actualización de datos
+# 🔄 Botón de actualización
 # =========================
 if st.button("🔄 Actualizar datos automáticamente"):
     with st.spinner("Ejecutando actualización..."):
@@ -87,22 +60,81 @@ if st.button("🔄 Actualizar datos automáticamente"):
             st.text(result.stderr)
 
 # =========================
-# 🔮 Simulador de eventos
+# 🧾 Introducción de costes
+# =========================
+st.markdown("---")
+st.subheader("📋 Introducir coste unitario por evento (solo eventos sin coste o con coste 0)")
+
+# Cargar datos crudos
+if os.path.exists(CRUDO_PATH):
+    df_eventos = pd.read_csv(CRUDO_PATH)
+else:
+    st.error("❌ No se encontró el archivo de datos crudos.")
+    st.stop()
+
+# Asegurar columna
+if "COSTE_UNITARIO" not in df_eventos.columns:
+    df_eventos["COSTE_UNITARIO"] = 0.0
+else:
+    df_eventos["COSTE_UNITARIO"] = pd.to_numeric(df_eventos["COSTE_UNITARIO"], errors="coerce").fillna(0.0)
+
+df_costes_full = df_eventos.groupby("NOMBRE_EVENTO", as_index=False)["COSTE_UNITARIO"].mean()
+
+eventos_pendientes = df_costes_full[
+    (df_costes_full["COSTE_UNITARIO"].isna()) | (df_costes_full["COSTE_UNITARIO"] == 0)
+].sort_values("NOMBRE_EVENTO")
+
+if eventos_pendientes.empty:
+    st.success("🎉 Todos los eventos tienen un coste por persona asignado.")
+else:
+    with st.form("formulario_costes_tabla"):
+        nuevas_filas = []
+        st.write("Introduce el coste unitario por evento:")
+
+        for i, row in eventos_pendientes.iterrows():
+            col1, col2 = st.columns([3, 2])
+            with col1:
+                st.text(row["NOMBRE_EVENTO"])
+            with col2:
+                nuevo_coste = st.number_input(
+                    "", key=f"coste_{i}", min_value=0.0, format="%.2f"
+                )
+                nuevas_filas.append((row["NOMBRE_EVENTO"], nuevo_coste))
+
+        submitted = st.form_submit_button("📏 Guardar todos los costes")
+
+        if submitted:
+            cambios = 0
+            for nombre_evento, nuevo_coste in nuevas_filas:
+                mask = (df_eventos["NOMBRE_EVENTO"] == nombre_evento) & (df_eventos["COSTE_UNITARIO"] != nuevo_coste)
+                if mask.any():
+                    df_eventos.loc[mask, "COSTE_UNITARIO"] = nuevo_coste
+                    cambios += 1
+
+            if cambios > 0:
+                df_eventos.to_csv(CRUDO_PATH, index=False)
+                st.success("✅ Costes unitarios actualizados correctamente.")
+                st.rerun()
+            else:
+                st.info("ℹ️ No se realizaron cambios.")
+
+# =========================
+# 🧩 Simulador de eventos (placeholder)
 # =========================
 st.markdown("<h2 style='text-align: center;'>¿Qué te apetece hacer hoy?</h2>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("⏳ Próximo evento:") #falta añadir el countdown de fecha
-    st.markdown("🎯 Evento: **--**") #titulo evento
-    st.markdown("📆 Fecha: **--/--/----**")
+    st.subheader("⏳ Próximo evento:")
+    st.markdown("🌟 Evento: **--**")
+    st.markdown("🗓️ Fecha: **--/--/----**")
     st.markdown("⏳ Faltan: **-- días**")
     st.markdown("👥 Inscritas: **--**")
     st.markdown("💸 Beneficio actual: **-- €**")
     st.markdown("💰 Llevamos: **-- € de beneficio**")
-with col2:
 
+with col2:
     st.subheader("📢 Te recomiendo que el próximo evento sea:")
     st.markdown("🗓️ Fecha sugerida: **--/--/----**")
     st.markdown("📍 Comunidad: **--**")

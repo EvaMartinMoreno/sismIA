@@ -6,8 +6,8 @@ from pathlib import Path
 import numpy as np
 
 # === CARGA DE DATOS ===
-archivo_simulado = Path("stats/eventos_simulados_girona.csv")
-archivo_real = Path("stats/dataset_modelo.csv")
+archivo_simulado = Path("stats/datasets/simulacion_datos_girona.csv")
+archivo_real = Path("data/clean/dataset_modelo.csv")
 
 df_sim = pd.read_csv(archivo_simulado, parse_dates=["FECHA_EVENTO"])
 df_real = pd.read_csv(archivo_real, parse_dates=["FECHA_EVENTO"])
