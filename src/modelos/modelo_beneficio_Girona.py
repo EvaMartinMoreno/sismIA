@@ -2,9 +2,9 @@
 import pandas as pd
 import numpy as np
 import joblib
-from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
@@ -16,6 +16,10 @@ MODEL_PATH = Path("src/models/modelo_beneficio_girona.pkl")
 # 📥 Cargar datos
 df_real = pd.read_csv(PATH_REAL, parse_dates=["FECHA_EVENTO"])
 df_sim = pd.read_csv(PATH_SIM, parse_dates=["FECHA_EVENTO"])
+
+# 🚨 Validación de costes
+if "COSTE_UNITARIO_VALIDADO" not in df_real.columns or not df_real["COSTE_UNITARIO_VALIDADO"].all():
+    raise ValueError("⛔ Hay eventos sin COSTE_UNITARIO validado. Revisa antes de entrenar.") 
 
 # 🧽 Filtrar Girona y eventos de pago
 df_real = df_real[(df_real["COMUNIDAD"].str.upper() == "GIRONA") & (df_real["TIPO_EVENTO"] == "pago")]

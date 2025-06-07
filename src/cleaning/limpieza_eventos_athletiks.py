@@ -19,15 +19,11 @@ def obtener_temporada(mes):
         return "otoño"
 
 def generar_dataset_modelo(input_path, output_path, tipos_path):
-    # === 📥 Cargar datos
     df_raw = pd.read_csv(input_path, parse_dates=["FECHA_EVENTO"])
-
-    # === 🧹 Limpieza de nulos
     df_raw["PAGO"] = pd.to_numeric(df_raw["PAGO"], errors="coerce").fillna(0).astype(int)
     df_raw["ASISTENCIA"] = np.nan
     df_raw["PRECIO_PAGADO"] = pd.to_numeric(df_raw["PRECIO_PAGADO"], errors="coerce").fillna(0)
 
-    # === 🎯 Lógica para asistencia
     np.random.seed(42)
     eventos_pago = df_raw[df_raw["PAGO"] == 1]["NOMBRE_EVENTO"].unique()
     for i, evento in enumerate(eventos_pago):
@@ -39,7 +35,7 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
             df_raw.loc[list(set(participantes) - set(no_asisten)), "ASISTENCIA"] = 1
             df_raw.loc[no_asisten, "ASISTENCIA"] = 0
         else:
-            df_raw.loc[participantes,"ASISTENCIA"] = 1
+            df_raw.loc[participantes, "ASISTENCIA"] = 1
 
     eventos_gratis = df_raw[df_raw["PAGO"] == 0]["NOMBRE_EVENTO"].unique()
     for evento in eventos_gratis:
@@ -53,7 +49,6 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
 
     df_raw["ASISTENCIA"] = df_raw["ASISTENCIA"].fillna(0).astype(int)
 
-    # === 🧾 Agrupación por evento
     df = df_raw.groupby(
         ["NOMBRE_EVENTO", "FECHA_EVENTO", "COMUNIDAD", "ARCHIVO_ORIGEN", "COSTE_UNITARIO"], as_index=False
     ).agg({
@@ -68,7 +63,6 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
         "PRECIO_PAGADO": "TOTAL_RECAUDADO"
     })
 
-    # === 📆 Variables temporales
     df["DIA_MES"] = df["FECHA_EVENTO"].dt.day
     df["SEMANA_MES"] = df["FECHA_EVENTO"].dt.isocalendar().week
     df["MES"] = df["FECHA_EVENTO"].dt.month
@@ -77,20 +71,17 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
     df["DIA_SEMANA_NUM"] = df["FECHA_EVENTO"].dt.dayofweek
     df["TEMPORADA"] = df["MES"].apply(obtener_temporada)
 
-    # === 💸 Precio medio, costes, beneficio
     df["PRECIO_MEDIO"] = np.where(df["NUM_PAGOS"] > 0, df["TOTAL_RECAUDADO"] / df["NUM_PAGOS"], 0)
-    df["COSTE_UNITARIO"] = pd.to_numeric(df["COSTE_UNITARIO"], errors="coerce")
+    df["COSTE_UNITARIO"] = pd.to_numeric(df["COSTE_UNITARIO"], errors="coerce")  # sin fillna(0)
+    df["COSTE_ESTIMADO"] = df["COSTE_UNITARIO"] * df["NUM_INSCRITAS"]
     df["BENEFICIO_ESTIMADO"] = df["TOTAL_RECAUDADO"] - df["COSTE_ESTIMADO"]
 
-    # === 🎯 Clasificación
     df["EVENTO_GRATUITO"] = np.where(df["PRECIO_MEDIO"] == 0, 1, 0)
     df["TIPO_EVENTO"] = np.where(df["EVENTO_GRATUITO"] == 1, "gratuito", "pago")
     df["COLABORACION"] = 0
 
-    # === 🔠 Limpieza nombre para merge
     df["EVENTO_LIMPIO"] = df["NOMBRE_EVENTO"].apply(limpiar_evento)
 
-    # === 📘 Cargar o crear archivo de tipos
     if tipos_path.exists():
         df_tipos = pd.read_csv(tipos_path)
         if "EVENTO_LIMPIO" not in df_tipos.columns:
@@ -107,7 +98,29 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
     df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].fillna("otro")
     df.drop(columns=["EVENTO_LIMPIO"], inplace=True)
 
-    # === 💾 Guardar
+        # === RECUPERAR VALIDACIONES PREVIAS SI EXISTEN ===
+    if output_path.exists():
+        df_anterior = pd.read_csv(output_path, parse_dates=["FECHA_EVENTO"])
+
+        # Normaliza fechas para asegurar coincidencias
+        df_anterior["FECHA_EVENTO"] = pd.to_datetime(df_anterior["FECHA_EVENTO"]).dt.normalize()
+        df["FECHA_EVENTO"] = pd.to_datetime(df["FECHA_EVENTO"]).dt.normalize()
+
+        # Clave única para emparejar eventos
+        df_anterior["CLAVE"] = df_anterior["NOMBRE_EVENTO"].str.strip().str.lower() + "_" + df_anterior["FECHA_EVENTO"].astype(str)
+        df["CLAVE"] = df["NOMBRE_EVENTO"].str.strip().str.lower() + "_" + df["FECHA_EVENTO"].astype(str)
+
+        # Merge validaciones
+        validaciones = df_anterior[["CLAVE", "COSTE_UNITARIO_VALIDADO"]].drop_duplicates()
+        df = df.merge(validaciones, on="CLAVE", how="left")
+
+        # Rellenar falsos si no hay validación previa
+        df["COSTE_UNITARIO_VALIDADO"] = df["COSTE_UNITARIO_VALIDADO"].fillna(False)
+        df.drop(columns=["CLAVE"], inplace=True)
+    else:
+        df["COSTE_UNITARIO_VALIDADO"] = False
+
+    # === GUARDADO ===
     df.to_csv(output_path, index=False)
     print(f"✅ Dataset generado correctamente con {len(df)} eventos.")
     print(f"📍 Guardado en: {output_path}")

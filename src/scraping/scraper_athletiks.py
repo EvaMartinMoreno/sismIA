@@ -1,4 +1,6 @@
-def scrappear_eventos(usuario, password, comunidad, estado_scraping):
+def scrappear_eventos(usuario, password, comunidad, estado_scraping=None):
+    if estado_scraping is None:
+        estado_scraping = {}
     from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.common.keys import Keys

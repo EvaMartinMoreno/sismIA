@@ -45,6 +45,15 @@ def calcular_crecimiento_con_ruido_refinado(edad_meses: int, mes: int) -> int:
     total = tendencia + ajuste_estacional + ruido
     return max(5, int(round(total)))
 
+def ajustar_fecha_a_findesemana(fecha_base: pd.Timestamp) -> pd.Timestamp:
+    """Ajusta la fecha al siguiente viernes/sábado/domingo con preferencia por sábado y domingo."""
+    fecha = fecha_base
+    while fecha.weekday() not in [4, 5, 6]:  # 4=viernes, 5=sábado, 6=domingo
+        fecha += pd.Timedelta(days=1)
+    if fecha.weekday() == 4 and random.random() < 0.5:
+        fecha += pd.Timedelta(days=random.choice([1, 2]))  # pásalo a sábado o domingo
+    return fecha
+
 def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60,
                              eventos_pago_por_mes: int = 1, eventos_gratuito_por_mes: int = 4) -> pd.DataFrame:
     eventos = []
@@ -57,9 +66,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
         edad_meses = max(0, (fecha_evento.year - inicio_dt.year) * 12 + (fecha_evento.month - inicio_dt.month))
         mes = fecha_evento.month
         semana = int(fecha_evento.strftime("%U"))
-        dia_semana = fecha_evento.strftime("%A")
         año = fecha_evento.year
-        dia_mes = fecha_evento.day
         temporada = obtener_temporada(mes)
 
         # Eventos gratuitos
@@ -71,9 +78,9 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "NOMBRE_EVENTO": f"Sisterhood Free {contador_eventos}",
                 "FECHA_EVENTO": fecha_evento,
                 "COMUNIDAD": comunidad,
-                "DIA_SEMANA": dia_semana,
+                "DIA_SEMANA": fecha_evento.strftime("%A"),
                 "DIA_SEMANA_NUM": fecha_evento.weekday(),
-                "DIA_MES": dia_mes,
+                "DIA_MES": fecha_evento.day,
                 "SEMANA_MES": semana,
                 "MES": mes,
                 "AÑO": año,
@@ -100,13 +107,16 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
             precio = round(random.uniform(10, 20), 2)
             ingresos = asistentes * precio
             coste = round(random.uniform(100, 250), 2)
+
+            # Ajustar la fecha al siguiente finde
+            fecha_evento_pago = ajustar_fecha_a_findesemana(fecha_evento)
             eventos.append({
                 "NOMBRE_EVENTO": f"Sisterhood Premium {contador_eventos}",
-                "FECHA_EVENTO": fecha_evento,
+                "FECHA_EVENTO": fecha_evento_pago,
                 "COMUNIDAD": comunidad,
-                "DIA_SEMANA": dia_semana,
-                "DIA_SEMANA_NUM": fecha_evento.weekday(),
-                "DIA_MES": dia_mes,
+                "DIA_SEMANA": fecha_evento_pago.strftime("%A"),
+                "DIA_SEMANA_NUM": fecha_evento_pago.weekday(),
+                "DIA_MES": fecha_evento_pago.day,
                 "SEMANA_MES": semana,
                 "MES": mes,
                 "AÑO": año,

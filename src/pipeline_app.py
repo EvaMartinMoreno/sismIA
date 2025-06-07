@@ -1,19 +1,41 @@
 # ========== 1. Scraping Web Athletiks ==========
+import json
+from pathlib import Path
+
+ESTADO_PATH = Path("data/raw/athletiks/estado_scraping.json")
+
+def cargar_estado():
+    if ESTADO_PATH.exists():
+        with open(ESTADO_PATH, "r") as f:
+            return json.load(f)
+    return {}
+
+def guardar_estado(estado):
+    with open(ESTADO_PATH, "w") as f:
+        json.dump(estado, f, indent=2)
+
 from scraping.scraper_athletiks import scrappear_eventos
 
 def actualizar_datos_girona():
-    return scrappear_eventos(
+    estado = cargar_estado()
+    estado_actualizado = scrappear_eventos(
         usuario="sisterhoodrunningclub@gmail.com",
         password="SHcarlota23",
-        comunidad="GIRONA"
+        comunidad="GIRONA",
+        estado_scraping=estado
     )
+    guardar_estado(estado_actualizado)
 
 def actualizar_datos_elche():
-    return scrappear_eventos(
+    estado = cargar_estado()
+    estado_actualizado = scrappear_eventos(
         usuario="evamartinmoreno9@gmail.com",
         password="SHeva2024",
-        comunidad="ELCHE"
+        comunidad="ELCHE",
+        estado_scraping=estado
     )
+    guardar_estado(estado_actualizado)
+
 
 # ========== 2. Limpieza y generación del dataset modelo ==========
 def ejecutar_limpieza():
@@ -50,8 +72,8 @@ def generar_predicciones():
     PATH_SIM = Path("stats/datasets/simulacion_datos_girona.csv")
     OUTPUT_ASISTENCIA = Path("stats/datasets/Girona_prediccion_asistentes_futuros.csv")
     OUTPUT_BENEFICIO = Path("stats/datasets/Girona_prediccion_beneficio_eventos_futuros.csv")
-    MODEL_ASISTENCIA = Path("src/models/modelo_lineal_unificado_girona.pkl")
-    MODEL_BENEFICIO = Path("src/models/modelo_beneficio_girona.pkl")
+    MODEL_ASISTENCIA = Path("src/models/modelo_asistencias_Girona.pkl")
+    MODEL_BENEFICIO = Path("src/models/modelo_beneficio_Girona.pkl")
 
     # === ✅ Verificar existencia de modelos
     if not MODEL_ASISTENCIA.exists():
@@ -145,3 +167,6 @@ def main():
     ejecutar_limpieza()
     generar_predicciones()
     sugerir_fecha_evento()
+
+if __name__ == "__main__":
+    main()

@@ -78,7 +78,7 @@ st.markdown(
 # =========================
 st.markdown("<h2 id='actualizacion'>🔄 Actualización de datos</h2>", unsafe_allow_html=True)
 
-if st.button("🔁 Ejecutar pipeline completo"):
+if st.button("🔁"):
     with st.spinner("Ejecutando actualización..."):
         result = subprocess.run(["python", ACTUALIZAR_SCRIPT], capture_output=True, text=True)
         if result.returncode == 0:
@@ -93,37 +93,54 @@ if st.button("🔁 Ejecutar pipeline completo"):
 # 💸 Costes unitarios
 # =========================
 st.markdown("---")
-st.markdown("<h2 id='costes'>📋 Introducción manual de costes unitarios</h2>", unsafe_allow_html=True)
+st.subheader("📋 Introducción manual de costes unitarios")
 
 if CRUDO_PATH.exists():
     df_eventos = pd.read_csv(CRUDO_PATH)
-    if "COSTE_UNITARIO" not in df_eventos.columns:
-        df_eventos["COSTE_UNITARIO"] = 0.0
 
-    df_costes = df_eventos.groupby("NOMBRE_EVENTO", as_index=False)["COSTE_UNITARIO"].mean()
-    pendientes = df_costes[df_costes["COSTE_UNITARIO"] == 0.0]
+    # Inicializa columnas si no existen
+    if "COSTE_UNITARIO" not in df_eventos.columns:
+        df_eventos["COSTE_UNITARIO"] = np.nan
+    if "COSTE_UNITARIO_VALIDADO" not in df_eventos.columns:
+        df_eventos["COSTE_UNITARIO_VALIDADO"] = False
+
+    # Agrupar y buscar los eventos que aún no han sido validados
+    df_costes = df_eventos.groupby(["NOMBRE_EVENTO"], as_index=False).agg({
+        "COSTE_UNITARIO": "first",
+        "COSTE_UNITARIO_VALIDADO": "first"
+    })
+
+    pendientes = df_costes[df_costes["COSTE_UNITARIO_VALIDADO"] == False].copy()
 
     if pendientes.empty:
-        st.success("🎉 Todos los eventos tienen un coste unitario asignado.")
+        st.success("🎉 Todos los eventos tienen un coste unitario asignado y validado.")
     else:
         with st.form("form_costes"):
             nuevas_filas = []
-            st.write("Introduce el coste unitario por evento:")
+            st.write("Introduce el coste unitario por evento y marca como validado:")
             for i, row in pendientes.iterrows():
-                col1, col2 = st.columns([3, 2])
+                col1, col2, col3 = st.columns([3, 2, 2])
                 col1.text(row["NOMBRE_EVENTO"])
-                nuevo_coste = col2.number_input("", key=f"coste_{i}", min_value=0.0, format="%.2f")
-                nuevas_filas.append((row["NOMBRE_EVENTO"], nuevo_coste))
+                coste_input = col2.number_input(
+                    "Coste €", 
+                    key=f"coste_{i}", 
+                    min_value=0.0, 
+                    value=0.0 if pd.isna(row["COSTE_UNITARIO"]) else float(row["COSTE_UNITARIO"]), 
+                    format="%.2f"
+                )
+                validado = col3.checkbox("✅ Validar", key=f"validado_{i}")
+                nuevas_filas.append((row["NOMBRE_EVENTO"], coste_input, validado))
 
             if st.form_submit_button("📏 Guardar costes"):
                 cambios = 0
-                for nombre_evento, nuevo_coste in nuevas_filas:
+                for nombre_evento, nuevo_coste, validado in nuevas_filas:
                     mask = (df_eventos["NOMBRE_EVENTO"] == nombre_evento)
                     df_eventos.loc[mask, "COSTE_UNITARIO"] = nuevo_coste
+                    df_eventos.loc[mask, "COSTE_UNITARIO_VALIDADO"] = validado
                     cambios += 1
                 if cambios > 0:
                     df_eventos.to_csv(CRUDO_PATH, index=False)
-                    st.success("✅ Costes actualizados.")
+                    st.success("✅ Costes actualizados y validados.")
                     st.rerun()
                 else:
                     st.info("ℹ️ No se realizaron cambios.")
@@ -140,7 +157,7 @@ col1, col2 = st.columns(2)
 
 # === 📍 Evento real
 with col1:
-    st.subheader("📢 Próximo evento real")
+    st.subheader("📢 Próximo evento")
     if REAL_PATH.exists():
         df_real = pd.read_csv(REAL_PATH, parse_dates=["FECHA_EVENTO"])
         df_real = df_real[
@@ -174,7 +191,7 @@ with col1:
 
 # === 📍 Evento simulado
 with col2:
-    st.subheader("📢 Próximo evento simulado")
+    st.subheader("📢 Simulación del próximo evento")
     if RESULTADOS_PATH.exists():
         df_sim = pd.read_csv(RESULTADOS_PATH, parse_dates=["FECHA_EVENTO"])
         df_sim = df_sim[df_sim["FECHA_EVENTO"] > pd.Timestamp.now()]
@@ -195,7 +212,7 @@ with col2:
                 else "N/A"
             )
 
-            st.markdown(f"🗓️ Fecha: **{fecha_sim}**")
+            st.markdown(f"🗓️ Te recomiendo la fecha: **{fecha_sim}**")
             st.markdown(f"📍 Comunidad: **{comunidad_sim}**")
             st.markdown(f"👥 Asistencia esperada: **{asistencia_sim}** personas")
             st.markdown(f"💰 Beneficio estimado: **{beneficio_sim} €**")
