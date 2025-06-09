@@ -64,7 +64,8 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
     })
 
     df["DIA_MES"] = df["FECHA_EVENTO"].dt.day
-    df["SEMANA_MES"] = df["FECHA_EVENTO"].dt.isocalendar().week
+    df["SEMANA_MES_AÑO"] = df["FECHA_EVENTO"].dt.isocalendar().week
+    df["SEMANA_DENTRO_DEL_MES"] = (df["FECHA_EVENTO"].dt.day - 1) // 7 + 1
     df["MES"] = df["FECHA_EVENTO"].dt.month
     df["DIA_SEMANA"] = df["FECHA_EVENTO"].dt.day_name()
     df["AÑO"] = df["FECHA_EVENTO"].dt.year
@@ -72,7 +73,7 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
     df["TEMPORADA"] = df["MES"].apply(obtener_temporada)
 
     df["PRECIO_MEDIO"] = np.where(df["NUM_PAGOS"] > 0, df["TOTAL_RECAUDADO"] / df["NUM_PAGOS"], 0)
-    df["COSTE_UNITARIO"] = pd.to_numeric(df["COSTE_UNITARIO"], errors="coerce")  # sin fillna(0)
+    df["COSTE_UNITARIO"] = pd.to_numeric(df["COSTE_UNITARIO"], errors="coerce")
     df["COSTE_ESTIMADO"] = df["COSTE_UNITARIO"] * df["NUM_INSCRITAS"]
     df["BENEFICIO_ESTIMADO"] = df["TOTAL_RECAUDADO"] - df["COSTE_ESTIMADO"]
 
@@ -98,29 +99,22 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
     df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].fillna("otro")
     df.drop(columns=["EVENTO_LIMPIO"], inplace=True)
 
-        # === RECUPERAR VALIDACIONES PREVIAS SI EXISTEN ===
+    # Recuperar validaciones previas si existen
     if output_path.exists():
         df_anterior = pd.read_csv(output_path, parse_dates=["FECHA_EVENTO"])
-
-        # Normaliza fechas para asegurar coincidencias
         df_anterior["FECHA_EVENTO"] = pd.to_datetime(df_anterior["FECHA_EVENTO"]).dt.normalize()
         df["FECHA_EVENTO"] = pd.to_datetime(df["FECHA_EVENTO"]).dt.normalize()
 
-        # Clave única para emparejar eventos
         df_anterior["CLAVE"] = df_anterior["NOMBRE_EVENTO"].str.strip().str.lower() + "_" + df_anterior["FECHA_EVENTO"].astype(str)
         df["CLAVE"] = df["NOMBRE_EVENTO"].str.strip().str.lower() + "_" + df["FECHA_EVENTO"].astype(str)
 
-        # Merge validaciones
         validaciones = df_anterior[["CLAVE", "COSTE_UNITARIO_VALIDADO"]].drop_duplicates()
         df = df.merge(validaciones, on="CLAVE", how="left")
-
-        # Rellenar falsos si no hay validación previa
         df["COSTE_UNITARIO_VALIDADO"] = df["COSTE_UNITARIO_VALIDADO"].fillna(False)
         df.drop(columns=["CLAVE"], inplace=True)
     else:
         df["COSTE_UNITARIO_VALIDADO"] = False
 
-    # === GUARDADO ===
     df.to_csv(output_path, index=False)
     print(f"✅ Dataset generado correctamente con {len(df)} eventos.")
     print(f"📍 Guardado en: {output_path}")

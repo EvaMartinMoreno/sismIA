@@ -6,9 +6,11 @@ import pandas as pd
 import os
 import subprocess
 import locale
+import sys
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
+from src.scaraping.scraper_athletiks import scrappear_eventos
 
 # =========================
 # 📁 Rutas
@@ -80,13 +82,21 @@ st.markdown("<h2 id='actualizacion'>🔄 Actualización de datos</h2>", unsafe_a
 
 if st.button("🔁"):
     with st.spinner("Ejecutando actualización..."):
-        result = subprocess.run(["python", ACTUALIZAR_SCRIPT], capture_output=True, text=True)
+       #result = subprocess.run([sys.executable, ACTUALIZAR_SCRIPT], capture_output=True, text=True)
+       result = scrappear_eventos(
+        usuario=USUARIO_GIRONA,
+        password=PASSWORD_GIRONA,
+        comunidad="GIRONA",
+        estado_scraping=estado,
+        status="dev"
+        )
+       st.write("funciono!")
         if result.returncode == 0:
-            st.success("✅ Datos actualizados correctamente.")
+            st.success("Datos actualizados correctamente.")
         else:
-            st.error("❌ Error al ejecutar el pipeline.")
+            st.error("Error al ejecutar el pipeline.")
 
-        st.markdown("### 📝 Log de ejecución")
+        st.markdown("### Log de ejecución")
         st.code(result.stdout + "\n" + result.stderr, language="bash")
 
 # =========================
@@ -140,12 +150,12 @@ if CRUDO_PATH.exists():
                     cambios += 1
                 if cambios > 0:
                     df_eventos.to_csv(CRUDO_PATH, index=False)
-                    st.success("✅ Costes actualizados y validados.")
+                    st.success("Costes actualizados y validados.")
                     st.rerun()
                 else:
-                    st.info("ℹ️ No se realizaron cambios.")
+                    st.info("No se realizaron cambios.")
 else:
-    st.error("❌ No se encontró el archivo de eventos.")
+    st.error(" No se encontró el archivo de eventos.")
 
 # =========================
 # 📊 Próximos eventos

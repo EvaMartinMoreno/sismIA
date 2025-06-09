@@ -1,5 +1,3 @@
-# src/simulacion/simular_eventos_girona.py
-
 import pandas as pd
 import numpy as np
 import random
@@ -11,6 +9,10 @@ import seaborn as sns
 # === SEMILLA PARA REPRODUCIBILIDAD
 random.seed(42)
 np.random.seed(42)
+
+# === DISTRIBUCIONES REALES DE EVENTOS DE PAGO EN GIRONA
+PESOS_DIA_SEMANA = {4: 0.16666666666666666, 6: 0.8333333333333334}  # viernes, domingo
+PESOS_SEMANA_MES = {1: 0.16666666666666666, 2: 0.5, 3: 0.3333333333333333}
 
 # === FUNCIONES DE APOYO
 def obtener_temporada(mes):
@@ -24,12 +26,12 @@ def obtener_temporada(mes):
         return "otoño"
 
 def generar_colaboracion():
-    return np.random.choice([1, 0], p=[0.1667, 0.8333])
+    return np.random.choice([1, 0], p=[0.2, 0.8])
 
 def generar_tipo_actividad():
-    return np.random.choice(["almuerzo", "ludico", "deportiva"], p=[0.5, 0.3333, 0.1667])
+    return np.random.choice(["almuerzo", "ludico", "deportiva"], p=[0.5, 0.3, 0.2])
 
-def calcular_crecimiento_con_ruido_refinado(edad_meses: int, mes: int) -> int:
+def calcular_crecimiento_con_ruido_refinado(edad_meses: int, mes: int, colaboracion: int) -> int:
     estacionalidad = {
         1: -5, 2: -3, 3: 1, 4: 2, 5: 3, 6: 1,
         7: -1, 8: -3, 9: 2, 10: 4, 11: 3, 12: -4
@@ -40,19 +42,20 @@ def calcular_crecimiento_con_ruido_refinado(edad_meses: int, mes: int) -> int:
         tendencia = 55 - (edad_meses - 35) * 4.5
     else:
         tendencia = 15 + (edad_meses - 45) * 5.2
-    ruido = np.random.normal(0, 4 if edad_meses > 45 else 2.5)
-    ajuste_estacional = estacionalidad.get(mes, 0)
-    total = tendencia + ajuste_estacional + ruido
-    return max(5, int(round(total)))
 
-def ajustar_fecha_a_findesemana(fecha_base: pd.Timestamp) -> pd.Timestamp:
-    """Ajusta la fecha al siguiente viernes/sábado/domingo con preferencia por sábado y domingo."""
-    fecha = fecha_base
-    while fecha.weekday() not in [4, 5, 6]:  # 4=viernes, 5=sábado, 6=domingo
-        fecha += pd.Timedelta(days=1)
-    if fecha.weekday() == 4 and random.random() < 0.5:
-        fecha += pd.Timedelta(days=random.choice([1, 2]))  # pásalo a sábado o domingo
-    return fecha
+    ajuste_estacional = estacionalidad.get(mes, 0)
+    ruido = np.random.normal(0, 3)
+    base = tendencia + ajuste_estacional + ruido
+
+    if colaboracion:
+        base *= 0.6  # menor asistencia por exclusividad
+
+    return max(5, int(round(base)))
+
+def ajustar_fecha_con_pesos(fecha_base: pd.Timestamp) -> pd.Timestamp:
+    dia_semana_num = np.random.choice(list(PESOS_DIA_SEMANA.keys()), p=list(PESOS_DIA_SEMANA.values()))
+    dias_hasta_dia = (dia_semana_num - fecha_base.weekday()) % 7
+    return fecha_base + pd.Timedelta(days=dias_hasta_dia)
 
 def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60,
                              eventos_pago_por_mes: int = 1, eventos_gratuito_por_mes: int = 4) -> pd.DataFrame:
@@ -62,18 +65,20 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
     inicio_global = datetime(2021, 1, 1)
 
     for mes_offset in range(meses_totales):
-        fecha_evento = inicio_global + pd.DateOffset(months=mes_offset)
-        edad_meses = max(0, (fecha_evento.year - inicio_dt.year) * 12 + (fecha_evento.month - inicio_dt.month))
-        mes = fecha_evento.month
-        semana = int(fecha_evento.strftime("%U"))
-        año = fecha_evento.year
+        fecha_mes = inicio_global + pd.DateOffset(months=mes_offset)
+        edad_meses = max(0, (fecha_mes.year - inicio_dt.year) * 12 + (fecha_mes.month - inicio_dt.month))
+        mes = fecha_mes.month
+        año = fecha_mes.year
         temporada = obtener_temporada(mes)
 
-        # Eventos gratuitos
         for _ in range(eventos_gratuito_por_mes):
             asistentes = max(1, int(np.random.normal(loc=20, scale=3)))
             inscritas = asistentes + random.randint(1, 5)
             coste = round(random.uniform(50, 150), 2)
+            dia_mes = random.randint(1, 28)
+            fecha_evento = pd.Timestamp(year=año, month=mes, day=dia_mes)
+            semana_dentro_mes = (fecha_evento.day - 1) // 7 + 1
+
             eventos.append({
                 "NOMBRE_EVENTO": f"Sisterhood Free {contador_eventos}",
                 "FECHA_EVENTO": fecha_evento,
@@ -81,7 +86,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "DIA_SEMANA": fecha_evento.strftime("%A"),
                 "DIA_SEMANA_NUM": fecha_evento.weekday(),
                 "DIA_MES": fecha_evento.day,
-                "SEMANA_MES": semana,
+                "SEMANA_DENTRO_DEL_MES": semana_dentro_mes,
                 "MES": mes,
                 "AÑO": año,
                 "TEMPORADA": temporada,
@@ -100,16 +105,19 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
             })
             contador_eventos += 1
 
-        # Eventos de pago
         for _ in range(eventos_pago_por_mes):
-            asistentes = calcular_crecimiento_con_ruido_refinado(edad_meses, mes)
+            colaboracion = generar_colaboracion()
+            precio = round(np.random.uniform(12, 18) if colaboracion else np.random.uniform(9, 14), 2)
+            asistentes = calcular_crecimiento_con_ruido_refinado(edad_meses, mes, colaboracion)
             inscritas = asistentes + random.randint(2, 8)
-            precio = round(random.uniform(10, 20), 2)
             ingresos = asistentes * precio
-            coste = round(random.uniform(100, 250), 2)
+            coste = round(np.random.uniform(130, 250) if colaboracion else np.random.uniform(80, 180), 2)
 
-            # Ajustar la fecha al siguiente finde
-            fecha_evento_pago = ajustar_fecha_a_findesemana(fecha_evento)
+            semana_simulada = np.random.choice(list(PESOS_SEMANA_MES.keys()), p=list(PESOS_SEMANA_MES.values()))
+            dia_base = 1 + (semana_simulada - 1) * 7
+            fecha_base = pd.Timestamp(year=año, month=mes, day=min(dia_base, 28))
+            fecha_evento_pago = ajustar_fecha_con_pesos(fecha_base)
+
             eventos.append({
                 "NOMBRE_EVENTO": f"Sisterhood Premium {contador_eventos}",
                 "FECHA_EVENTO": fecha_evento_pago,
@@ -117,7 +125,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "DIA_SEMANA": fecha_evento_pago.strftime("%A"),
                 "DIA_SEMANA_NUM": fecha_evento_pago.weekday(),
                 "DIA_MES": fecha_evento_pago.day,
-                "SEMANA_MES": semana,
+                "SEMANA_DENTRO_DEL_MES": semana_simulada,
                 "MES": mes,
                 "AÑO": año,
                 "TEMPORADA": temporada,
@@ -131,7 +139,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "COSTE_ESTIMADO": coste,
                 "BENEFICIO_ESTIMADO": ingresos - coste,
                 "PRECIO_MEDIO": precio,
-                "COLABORACION": generar_colaboracion(),
+                "COLABORACION": colaboracion,
                 "TIPO_ACTIVIDAD": generar_tipo_actividad()
             })
             contador_eventos += 1

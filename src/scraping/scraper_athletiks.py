@@ -1,15 +1,16 @@
-def scrappear_eventos(usuario, password, comunidad, estado_scraping=None):
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+import shutil
+import os
+from urllib.parse import urljoin, urlparse
+
+def scrappear_eventos(usuario, password, comunidad, estado_scraping=None, status="prod"):
     if estado_scraping is None:
         estado_scraping = {}
-    from selenium import webdriver
-    from selenium.webdriver.common.by import By
-    from selenium.webdriver.common.keys import Keys
-    from selenium.webdriver.chrome.service import Service
-    from webdriver_manager.chrome import ChromeDriverManager
-    import time
-    import shutil
-    import os
-    from urllib.parse import urljoin, urlparse
 
     BASE_DIR = os.path.join("data", "raw", "athletiks", comunidad.upper())
     DESCARGAS_DIR = os.path.join(os.path.expanduser("~"), "Downloads")
@@ -33,7 +34,7 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None):
     time.sleep(5)
 
     if "signin" in driver.current_url or "login" in driver.current_url:
-        print("❌ Error: Credenciales inválidas")
+        print("Error: Credenciales inválidas")
         driver.quit()
         return estado_scraping
 
@@ -41,18 +42,19 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None):
     time.sleep(5)
     event_articles = driver.find_elements(By.TAG_NAME, "article")
     total_eventos = len(event_articles)
-    print(f"🔵 [{comunidad}] Eventos encontrados: {total_eventos}")
-
+    print(f" [{comunidad}] Eventos encontrados: {total_eventos}")
+    if status=="dev":
+        total_eventos = 1
     for index in range(total_eventos):
         try:
-            print(f"\n➡️ Procesando evento {index + 1} de {total_eventos}...")
+            print(f"\n Procesando evento {index + 1} de {total_eventos}...")
 
             driver.get("https://athletiks.io/es/profile")
             time.sleep(4)
             event_articles = driver.find_elements(By.TAG_NAME, "article")
 
             if index >= len(event_articles):
-                print("⚠️ El índice ya no existe. Saltando evento.")
+                print("El índice ya no existe. Saltando evento.")
                 continue
 
             article = event_articles[index]
@@ -90,33 +92,33 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None):
             try:
                 download_button = driver.find_element(By.XPATH, "//button[.//span[contains(translate(text(),'ASISTENTES','asistentes'),'asistentes')]]")
                 download_button.click()
-                print("📥 Botón de descarga clicado")
+                print(" Botón de descarga clicado")
                 time.sleep(5)
             except Exception as e:
-                print(f"⚠️ No se pudo clicar botón de descarga. Error: {e}")
+                print(f" No se pudo clicar botón de descarga. Error: {e}")
                 continue
 
             # Mover archivo descargado
             try:
                 files = [f for f in os.listdir(DESCARGAS_DIR) if f.endswith(".csv")]
                 if not files:
-                    print("⚠️ No se encontró ningún CSV en la carpeta de descargas.")
+                    print(" No se encontró ningún CSV en la carpeta de descargas.")
                 else:
                     latest_file = max(
                         [os.path.join(DESCARGAS_DIR, f) for f in files],
                         key=os.path.getctime
                     )
                     shutil.move(latest_file, ruta_archivo)
-                    print(f"✅ CSV guardado como: {ruta_archivo}")
+                    print(f" CSV guardado como: {ruta_archivo}")
             except Exception as e:
-                print(f"❌ Error moviendo archivo: {e}")
+                print(f" Error moviendo archivo: {e}")
 
             # ✅ Actualizar estado
             estado_scraping[evento_id] = num_asistentes_actual
 
         except Exception as e:
-            print(f"❌ Error inesperado en evento {index + 1}: {e}")
+            print(f"Error inesperado en evento {index + 1}: {e}")
 
     driver.quit()
-    print(f"🏁 Scraping finalizado para {comunidad}.")
+    print(f"Scraping finalizado para {comunidad}.")
     return estado_scraping

@@ -1,7 +1,21 @@
 # ========== 1. Scraping Web Athletiks ==========
 import json
+import pandas as pd
+import joblib
+import os
 from pathlib import Path
+from cleaning.limpieza_eventos_athletiks import generar_dataset_modelo
+from scraping.scraper_athletiks import scrappear_eventos
+from pathlib import Path
+from datetime import timedelta
+from selenium import webdriver
+from dotenv import load_dotenv
 
+load_dotenv()
+USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
+PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
+USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
+PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
 ESTADO_PATH = Path("data/raw/athletiks/estado_scraping.json")
 
 def cargar_estado():
@@ -14,34 +28,30 @@ def guardar_estado(estado):
     with open(ESTADO_PATH, "w") as f:
         json.dump(estado, f, indent=2)
 
-from scraping.scraper_athletiks import scrappear_eventos
-
 def actualizar_datos_girona():
     estado = cargar_estado()
     estado_actualizado = scrappear_eventos(
-        usuario="sisterhoodrunningclub@gmail.com",
-        password="SHcarlota23",
+        usuario=USUARIO_GIRONA,
+        password=PASSWORD_GIRONA,
         comunidad="GIRONA",
-        estado_scraping=estado
+        estado_scraping=estado,
+        status="dev"
     )
     guardar_estado(estado_actualizado)
+
 
 def actualizar_datos_elche():
     estado = cargar_estado()
     estado_actualizado = scrappear_eventos(
-        usuario="evamartinmoreno9@gmail.com",
-        password="SHeva2024",
+        usuario=USUARIO_ELCHE,
+        password=PASSWORD_ELCHE,
         comunidad="ELCHE",
         estado_scraping=estado
     )
     guardar_estado(estado_actualizado)
 
-
 # ========== 2. Limpieza y generación del dataset modelo ==========
 def ejecutar_limpieza():
-    from cleaning.limpieza_eventos_athletiks import generar_dataset_modelo
-    from pathlib import Path
-    import pandas as pd
 
     input_path = Path("data/clean/eventos_crudos_unificados.csv")
     output_path = Path("data/clean/dataset_modelo.csv")
@@ -64,9 +74,6 @@ def ejecutar_limpieza():
 
 # ========== 3. Generación de datos simulados ==========
 def generar_predicciones():
-    import pandas as pd
-    import joblib
-    from pathlib import Path
 
     # === 📍 Rutas
     PATH_SIM = Path("stats/datasets/simulacion_datos_girona.csv")
@@ -128,9 +135,6 @@ def generar_predicciones():
 
 # ============= 4. Sugerencia de próximas fechas de eventos ==========
 def sugerir_fecha_evento():
-    import pandas as pd
-    from datetime import timedelta
-    from pathlib import Path
 
     PATH_EVENTOS = Path("data/clean/dataset_modelo.csv")
     PATH_FECHA_SUGERIDA = Path("stats/datasets/proxima_fecha_sugerida.csv")
