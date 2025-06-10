@@ -11,7 +11,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 # 📁 Rutas
 PATH_REAL = Path("data/clean/dataset_modelo.csv")
 PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
-MODEL_PATH = Path("models/reglineal_asistencias_girona.pkl")
+MODEL_PATH = Path("src/modelos/modelo_asistencias_girona.pkl")
+VERSION_PATH = Path("src/modelos/asistencias_version.txt")
 
 def entrenar_modelo_asistencias():
     # 📥 Cargar datos
@@ -40,6 +41,18 @@ def entrenar_modelo_asistencias():
     )
     df_combined = df_combined[filtro_outliers].copy()
 
+    # ✅ Validar si hay nuevos eventos
+    num_eventos_actual = df_combined.shape[0]
+    if VERSION_PATH.exists():
+        with open(VERSION_PATH, "r") as f:
+            num_eventos_previo = int(f.read().strip())
+    else:
+        num_eventos_previo = -1
+
+    if num_eventos_actual == num_eventos_previo:
+        print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
+        return
+
     # 🔢 Features y target
     features = [
         "COSTE_ESTIMADO", "PRECIO_MEDIO", "DIA_SEMANA_NUM", "MES",
@@ -65,6 +78,10 @@ def entrenar_modelo_asistencias():
     modelo.fit(X_train_scaled, y_train)
     joblib.dump(modelo, MODEL_PATH)
 
+    # Guardar nueva versión
+    with open(VERSION_PATH, "w") as f:
+        f.write(str(num_eventos_actual))
+
     # 📏 Métricas
     y_pred = modelo.predict(X_test_scaled)
     mae = mean_absolute_error(y_test, y_pred)
@@ -73,3 +90,6 @@ def entrenar_modelo_asistencias():
 
     print("✅ Modelo de asistencias entrenado y guardado")
     print(f"📊 MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")
+
+if __name__ == "__main__":
+    entrenar_modelo_asistencias()

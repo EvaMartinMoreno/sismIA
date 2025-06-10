@@ -95,8 +95,8 @@ def enriquecer_con_temperatura():
 # 4. Entrenamiento de modelos
 # ------------------------------------------------------------------------------
 def entrenar_modelos():
-    modelo_asistencias_girona.main()
-    modelo_beneficio_girona.main()
+    entrenar_modelo_asistencias()
+    entrenar_modelo_beneficio()
 
 # ------------------------------------------------------------------------------
 # 5. Generación de predicciones futuras

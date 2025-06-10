@@ -4,12 +4,14 @@ import numpy as np
 import joblib
 from pathlib import Path
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # 📁 Rutas
 PATH_REAL = Path("data/clean/dataset_modelo.csv")
 PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
-MODEL_PATH = Path("src/models/modelo_beneficio_girona.pkl")
+MODEL_PATH = Path("src/modelos/modelo_beneficio_girona.pkl")
+VERSION_PATH = Path("src/modelos/beneficio_version.txt")
 
 def entrenar_modelo_beneficio():
     # 📥 Cargar datos
@@ -31,26 +33,53 @@ def entrenar_modelo_beneficio():
     # 🔀 Unir
     df_total = pd.concat([df_real, df_sim], ignore_index=True)
 
+    # ✅ Validar si hay nuevos eventos
+    num_eventos_actual = df_total.shape[0]
+    if VERSION_PATH.exists():
+        with open(VERSION_PATH, "r") as f:
+            num_eventos_previo = int(f.read().strip())
+    else:
+        num_eventos_previo = -1
+
+    if num_eventos_actual == num_eventos_previo:
+        print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
+        return
+
     # 🔢 Features y target
     features = [
         "NUM_ASISTENCIAS", "COSTE_UNITARIO", "PRECIO_MEDIO",
-        "MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_MES",
+        "MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_DENTRO_DEL_MES",
         "TEMPORADA", "COLABORACION", "TIPO_ACTIVIDAD", "TEMPERATURA"
     ]
-    df_total = df_total.dropna(subset=["BENEFICIO_ESTIMADO"])
+
+    df_total = df_total.dropna(subset=features + ["BENEFICIO_ESTIMADO"])
+
     X = pd.get_dummies(df_total[features], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
     y = df_total["BENEFICIO_ESTIMADO"]
 
+    # ✂️ Split 80/20
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
     # 🤖 Entrenamiento
     modelo = LinearRegression()
-    modelo.fit(X, y)
+    modelo.fit(X_train, y_train)
+
+    # 💾 Guardar modelo
+    MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(modelo, MODEL_PATH)
 
-    # 📏 Métricas
-    y_pred = modelo.predict(X)
-    mae = mean_absolute_error(y, y_pred)
-    rmse = np.sqrt(mean_squared_error(y, y_pred))
-    r2 = r2_score(y, y_pred)
+    # Guardar nueva versión
+    with open(VERSION_PATH, "w") as f:
+        f.write(str(num_eventos_actual))
+
+    # 📏 Evaluación
+    y_pred = modelo.predict(X_test)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    r2 = r2_score(y_test, y_pred)
 
     print("✅ Modelo de beneficio entrenado y guardado")
     print(f"📊 MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")
+
+if __name__ == "__main__":
+    entrenar_modelo_beneficio()
