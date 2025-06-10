@@ -1,16 +1,21 @@
-# ========== 1. Scraping Web Athletiks ==========
+# 📦 Librerías
+import os
 import json
 import pandas as pd
-import joblib
-import os
 from pathlib import Path
+from dotenv import load_dotenv
 from cleaning.limpieza_eventos_athletiks import generar_dataset_modelo
 from scraping.scraper_athletiks import scrappear_eventos
-from pathlib import Path
+from scraping.scraper_temperatura import añadir_temperatura, punto_estacion
+import joblib
 from datetime import timedelta
 from selenium import webdriver
-from dotenv import load_dotenv
+from modelos.modelo_beneficio_Girona import entrenar_modelo_beneficio
+from modelos.modelo_asistencias_Girona import entrenar_modelo_asistencias
 
+# ------------------------------------------------------------------------------
+# 📁 Configuración
+# ------------------------------------------------------------------------------
 load_dotenv()
 USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
 PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
@@ -18,6 +23,9 @@ USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
 PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
 ESTADO_PATH = Path("data/raw/athletiks/estado_scraping.json")
 
+# ------------------------------------------------------------------------------
+# 1. Scraping
+# ------------------------------------------------------------------------------
 def cargar_estado():
     if ESTADO_PATH.exists():
         with open(ESTADO_PATH, "r") as f:
@@ -39,7 +47,6 @@ def actualizar_datos_girona():
     )
     guardar_estado(estado_actualizado)
 
-
 def actualizar_datos_elche():
     estado = cargar_estado()
     estado_actualizado = scrappear_eventos(
@@ -50,81 +57,86 @@ def actualizar_datos_elche():
     )
     guardar_estado(estado_actualizado)
 
-# ========== 2. Limpieza y generación del dataset modelo ==========
+# ------------------------------------------------------------------------------
+# 2. Limpieza de eventos
+# ------------------------------------------------------------------------------
 def ejecutar_limpieza():
-
-    input_path = Path("data/clean/eventos_crudos_unificados.csv")
+    input_path = Path("data/raw/athletiks/eventos_crudos_unificados.csv")
     output_path = Path("data/clean/dataset_modelo.csv")
-    tipos_path = Path("data/entrada/tipos_evento.csv")
+    tipos_path = Path("data/raw/selector/tipos_evento.csv")
 
     generar_dataset_modelo(input_path, output_path, tipos_path)
 
-    # 🚨 Verificar si hay eventos sin categorizar
     df = pd.read_csv(output_path)
     eventos_sin_tipo = df[df["TIPO_ACTIVIDAD"] == "otro"]["NOMBRE_EVENTO"].unique()
 
     if len(eventos_sin_tipo) > 0:
         print(f"⚠️ Hay {len(eventos_sin_tipo)} eventos sin categorizar.")
-        print("📝 Rellena el archivo 'data/entrada/tipos_evento.csv' para continuar.")
         df[["NOMBRE_EVENTO", "FECHA_EVENTO"]].to_csv("data/entrada/eventos_sin_tipo.csv", index=False)
         raise Exception("⛔ STOP: Hay eventos sin categorizar. Corrige antes de seguir.")
     else:
         print("✅ Todos los eventos están correctamente categorizados.")
 
+# ------------------------------------------------------------------------------
+# 3. Añadir variable TEMPERATURA a datasets
+# ------------------------------------------------------------------------------
+def enriquecer_con_temperatura():
+    from scraping.scraper_temperatura import REAL_PATH, SIM_PATH, REAL_OUTPUT, SIM_OUTPUT
+    df_real = pd.read_csv(REAL_PATH)
+    df_sim = pd.read_csv(SIM_PATH)
 
-# ========== 3. Generación de datos simulados ==========
+    df_real = añadir_temperatura(df_real, punto_estacion, "Reales")
+    df_sim = añadir_temperatura(df_sim, punto_estacion, "Simulados")
+
+    df_real.to_csv(REAL_OUTPUT, index=False)
+    df_sim.to_csv(SIM_OUTPUT, index=False)
+
+# ------------------------------------------------------------------------------
+# 4. Entrenamiento de modelos
+# ------------------------------------------------------------------------------
+def entrenar_modelos():
+    modelo_asistencias_girona.main()
+    modelo_beneficio_girona.main()
+
+# ------------------------------------------------------------------------------
+# 5. Generación de predicciones futuras
+# ------------------------------------------------------------------------------
 def generar_predicciones():
+    from pathlib import Path
+    import pandas as pd
 
-    # === 📍 Rutas
-    PATH_SIM = Path("stats/datasets/simulacion_datos_girona.csv")
+    PATH_SIM = Path("data/raw/simulacion_datos_girona.csv")
     OUTPUT_ASISTENCIA = Path("stats/datasets/Girona_prediccion_asistentes_futuros.csv")
     OUTPUT_BENEFICIO = Path("stats/datasets/Girona_prediccion_beneficio_eventos_futuros.csv")
-    MODEL_ASISTENCIA = Path("src/models/modelo_asistencias_Girona.pkl")
+    MODEL_ASISTENCIA = Path("models/reglineal_asistencias_girona.pkl")
     MODEL_BENEFICIO = Path("src/models/modelo_beneficio_Girona.pkl")
 
-    # === ✅ Verificar existencia de modelos
-    if not MODEL_ASISTENCIA.exists():
-        raise FileNotFoundError(f"⛔ Falta el modelo de asistencia: {MODEL_ASISTENCIA.resolve()}")
-    if not MODEL_BENEFICIO.exists():
-        raise FileNotFoundError(f"⛔ Falta el modelo de beneficio: {MODEL_BENEFICIO.resolve()}")
+    if not MODEL_ASISTENCIA.exists() or not MODEL_BENEFICIO.exists():
+        print("⚠️ No se encuentran modelos entrenados. Aborta generación de predicciones.")
+        return
 
-    # === 📥 Cargar datos simulados futuros
     df_sim = pd.read_csv(PATH_SIM, parse_dates=["FECHA_EVENTO"])
     hoy = pd.Timestamp.today().normalize()
     df_futuro = df_sim[(df_sim["TIPO_EVENTO"] == "pago") & (df_sim["FECHA_EVENTO"] >= hoy)].copy()
 
     if df_futuro.empty:
-        print("⚠️ No hay eventos futuros para predecir.")
+        print("No hay eventos futuros para predecir.")
         return
 
-    # === 🔮 Predicción Asistencia
-    print("▶️ Prediciendo asistencia futura...")
+    # === Asistencia
     modelo_asistencia = joblib.load(MODEL_ASISTENCIA)
-    features_asist = ["MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_MES", "TEMPORADA",
-                      "COSTE_UNITARIO", "PRECIO_MEDIO", "COLABORACION", "TIPO_ACTIVIDAD"]
-
-    X_asist = pd.get_dummies(df_futuro[features_asist], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-    X_asist = X_asist.reindex(columns=modelo_asistencia.feature_names_in_, fill_value=0)
-
+    features_asist = modelo_asistencia.feature_names_in_
+    X_asist = pd.get_dummies(df_futuro, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
+    X_asist = X_asist.reindex(columns=features_asist, fill_value=0)
     df_futuro["ASISTENCIA_PREVISTA"] = modelo_asistencia.predict(X_asist).round().astype(int)
 
-    # === 💾 Guardar predicciones de asistencia
-    df_futuro.to_csv(OUTPUT_ASISTENCIA, index=False)
-    print(f"✅ Predicción asistencia guardada en: {OUTPUT_ASISTENCIA.resolve()}")
-
-    # === 🔮 Predicción Beneficio
-    print("▶️ Prediciendo beneficio futuro...")
+    # === Beneficio
     modelo_beneficio = joblib.load(MODEL_BENEFICIO)
-    features_benef = ["ASISTENCIA_PREVISTA", "COSTE_UNITARIO", "PRECIO_MEDIO",
-                      "MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_MES",
-                      "TEMPORADA", "COLABORACION", "TIPO_ACTIVIDAD"]
-
-    X_benef = pd.get_dummies(df_futuro[features_benef], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-    X_benef = X_benef.reindex(columns=modelo_beneficio.feature_names_in_, fill_value=0)
-
+    features_benef = modelo_beneficio.feature_names_in_
+    X_benef = pd.get_dummies(df_futuro, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
+    X_benef = X_benef.reindex(columns=features_benef, fill_value=0)
     df_futuro["BENEFICIO_PREDICHO"] = modelo_beneficio.predict(X_benef).round(2)
 
-    # === 💾 Guardar predicciones finales (app las consume aquí)
     columnas_finales = [
         "NOMBRE_EVENTO", "FECHA_EVENTO", "COMUNIDAD", "TIPO_EVENTO", "TIPO_ACTIVIDAD",
         "COSTE_UNITARIO", "PRECIO_MEDIO", "COLABORACION",
@@ -133,22 +145,22 @@ def generar_predicciones():
     df_futuro[columnas_finales].to_csv(OUTPUT_BENEFICIO, index=False)
     print(f"✅ Predicción beneficio guardada en: {OUTPUT_BENEFICIO.resolve()}")
 
-# ============= 4. Sugerencia de próximas fechas de eventos ==========
+# ------------------------------------------------------------------------------
+# 6. Sugerencia de próxima fecha
+# ------------------------------------------------------------------------------
 def sugerir_fecha_evento():
-
     PATH_EVENTOS = Path("data/clean/dataset_modelo.csv")
     PATH_FECHA_SUGERIDA = Path("stats/datasets/proxima_fecha_sugerida.csv")
 
     def sugerir_proxima_fecha(ultima_fecha, fechas_existentes, dias_entre_eventos=30):
         fecha = ultima_fecha + timedelta(days=dias_entre_eventos)
-        while fecha.weekday() != 6:  # 6 = Domingo
+        while fecha.weekday() != 6:
             fecha += timedelta(days=1)
         fechas_existentes_set = set([f.date() for f in fechas_existentes])
         while fecha.date() in fechas_existentes_set:
             fecha += timedelta(weeks=1)
         return fecha
 
-    # === 📥 Cargar eventos reales (solo pagos de Girona)
     df = pd.read_csv(PATH_EVENTOS, parse_dates=["FECHA_EVENTO"])
     df = df[(df["COMUNIDAD"].str.upper() == "GIRONA") & (df["TIPO_EVENTO"] == "pago")]
 
@@ -160,17 +172,21 @@ def sugerir_fecha_evento():
     ultima_fecha = fechas[-1]
     sugerida = sugerir_proxima_fecha(ultima_fecha, fechas)
 
-    # === 💾 Guardar resultado
     Path(PATH_FECHA_SUGERIDA.parent).mkdir(parents=True, exist_ok=True)
     pd.DataFrame([{"FECHA_SUGERIDA": sugerida}]).to_csv(PATH_FECHA_SUGERIDA, index=False)
 
-# ========== 5. Pipeline principal ==========
+# ------------------------------------------------------------------------------
+# 🔁 MAIN PIPELINE
+# ------------------------------------------------------------------------------
 def main():
     actualizar_datos_girona()
     actualizar_datos_elche()
     ejecutar_limpieza()
+    enriquecer_con_temperatura()
+    entrenar_modelos()
     generar_predicciones()
     sugerir_fecha_evento()
+    print("✅ Pipeline ejecutado correctamente.")
 
 if __name__ == "__main__":
     main()

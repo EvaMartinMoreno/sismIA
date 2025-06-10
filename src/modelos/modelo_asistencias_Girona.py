@@ -4,83 +4,72 @@ import numpy as np
 import joblib
 from pathlib import Path
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
-import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # 📁 Rutas
 PATH_REAL = Path("data/clean/dataset_modelo.csv")
-PATH_SIM = Path("stats/datasets/simulacion_datos_girona.csv")
-MODEL_PATH = Path("src/models/prediccion_reglineal_asistencias_girona.pkl")
+PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
+MODEL_PATH = Path("models/reglineal_asistencias_girona.pkl")
 
-# 📥 Cargar y limpiar datos
-df_real = pd.read_csv(PATH_REAL, parse_dates=["FECHA_EVENTO"])
-df_sim = pd.read_csv(PATH_SIM, parse_dates=["FECHA_EVENTO"])
+def entrenar_modelo_asistencias():
+    # 📥 Cargar datos
+    df_real = pd.read_csv(PATH_REAL)
+    df_sim = pd.read_csv(PATH_SIM)
 
-# Filtrar solo eventos de pago en Girona
-df_real = df_real[(df_real["COMUNIDAD"].str.upper() == "GIRONA") & (df_real["TIPO_EVENTO"] == "pago")]
-df_sim = df_sim[(df_sim["COMUNIDAD"].str.upper() == "GIRONA") & (df_sim["TIPO_EVENTO"] == "pago")]
+    # Identificador de origen
+    df_real["ES_REAL"] = 1
+    df_sim["ES_REAL"] = 0
 
-# 🚨 Validación de costes solo para los filtrados
-if "COSTE_UNITARIO_VALIDADO" not in df_real.columns or not df_real["COSTE_UNITARIO_VALIDADO"].all():
-    # Mostrar eventos no validados después del filtro
-    eventos_no_validados = df_real[df_real["COSTE_UNITARIO_VALIDADO"] != True]
-    print("\n🔍 Eventos de pago en Girona SIN validación de coste:")
-    print(eventos_no_validados[["NOMBRE_EVENTO", "FECHA_EVENTO", "COSTE_UNITARIO", "COSTE_UNITARIO_VALIDADO"]])
-    print(f"\n❌ Hay {len(eventos_no_validados)} eventos sin validar.")
-    raise ValueError("⛔ Hay eventos sin COSTE_UNITARIO validado. Revisa antes de entrenar.")
+    # Unir y filtrar
+    df_combined = pd.concat([df_real, df_sim], ignore_index=True)
+    df_combined = df_combined[
+        (df_combined["TIPO_EVENTO"] == "pago") &
+        (df_combined["TEMPERATURA"].notnull())
+    ].copy()
 
-# 🔢 Features
-features = ["MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_MES", "TEMPORADA",
-            "COSTE_UNITARIO", "PRECIO_MEDIO", "COLABORACION", "TIPO_ACTIVIDAD"]
-X = pd.get_dummies(df_total[features], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-y = df_total["NUM_ASISTENCIAS"]
+    # 🧼 Normalizar texto y eliminar outliers
+    df_combined["TIPO_ACTIVIDAD"] = df_combined["TIPO_ACTIVIDAD"].str.strip().str.lower()
+    df_combined["TIPO_ACTIVIDAD"] = df_combined["TIPO_ACTIVIDAD"].replace({"ludica": "ludico"})
 
-# 🔍 Análisis exploratorio previo al entrenamiento
-print("\n📊 Análisis de correlaciones y relevancia de variables...")
+    filtro_outliers = (
+        (df_combined["COSTE_ESTIMADO"] <= 1000) &
+        (df_combined["BENEFICIO_ESTIMADO"] >= -1000) &
+        (df_combined["PRECIO_MEDIO"] <= 30)
+    )
+    df_combined = df_combined[filtro_outliers].copy()
 
-# Selección de variables numéricas originales (sin dummies)
-variables_interes = [
-    "NUM_ASISTENCIAS", "NUM_INSCRITAS", "NUM_PAGOS", "PRECIO_MEDIO",
-    "COSTE_UNITARIO", "BENEFICIO_ESTIMADO", "INGRESO_POR_ASISTENTE",
-    "DIA_MES", "SEMANA_MES", "MES", "DIA_SEMANA_NUM", "COLABORACION"
-]
+    # 🔢 Features y target
+    features = [
+        "COSTE_ESTIMADO", "PRECIO_MEDIO", "DIA_SEMANA_NUM", "MES",
+        "SEMANA_DENTRO_DEL_MES", "COLABORACION", "TEMPORADA",
+        "TIPO_ACTIVIDAD", "TEMPERATURA"
+    ]
+    target = "NUM_ASISTENCIAS"
 
-df_corr = df_total[variables_interes].dropna().copy()
+    df_model = df_combined[features + [target]].copy()
+    df_model = pd.get_dummies(df_model, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
 
-# Correlaciones
-plt.figure(figsize=(12, 8))
-sns.heatmap(df_corr.corr(), annot=True, cmap="coolwarm", fmt=".2f")
-plt.title("🔍 Matriz de correlaciones - Eventos de pago Girona")
-plt.tight_layout()
-plt.show()
+    X = df_model.drop(columns=[target])
+    y = df_model[target]
 
-# Importancia con regresión lineal
-X_corr = df_corr.drop(columns=["NUM_ASISTENCIAS"])
-y_corr = df_corr["NUM_ASISTENCIAS"]
+    # Split y escalado
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
 
-scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X_corr)
+    # 🤖 Entrenamiento
+    modelo = LinearRegression()
+    modelo.fit(X_train_scaled, y_train)
+    joblib.dump(modelo, MODEL_PATH)
 
-modelo_exploratorio = LinearRegression()
-modelo_exploratorio.fit(X_scaled, y_corr)
+    # 📏 Métricas
+    y_pred = modelo.predict(X_test_scaled)
+    mae = mean_absolute_error(y_test, y_pred)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+    r2 = r2_score(y_test, y_pred)
 
-importancia = pd.Series(modelo_exploratorio.coef_, index=X_corr.columns).sort_values(ascending=False)
-print("\n📈 Importancia de variables (modelo exploratorio):\n")
-print(importancia)
-
-# 🔮 Entrenamiento
-modelo = LinearRegression()
-modelo.fit(X, y)
-joblib.dump(modelo, MODEL_PATH)
-print(f"\n✅ Modelo guardado en: {MODEL_PATH.resolve()}")
-
-# 📊 Evaluación
-mae = mean_absolute_error(y, modelo.predict(X))
-rmse = np.sqrt(mean_squared_error(y, modelo.predict(X)))
-r2 = r2_score(y, modelo.predict(X))
-
-print(f"📊 MAE: {mae:.2f}")
-print(f"📊 RMSE: {rmse:.2f}")
-print(f"📊 R²: {r2:.2f}")
+    print("✅ Modelo de asistencias entrenado y guardado")
+    print(f"📊 MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")

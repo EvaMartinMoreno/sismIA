@@ -10,12 +10,12 @@ import sys
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
-from src.scaraping.scraper_athletiks import scrappear_eventos
+from src.scraping.scraper_athletiks import scrappear_eventos
 
 # =========================
 # 📁 Rutas
 # =========================
-CRUDO_PATH = Path("data/clean/eventos_crudos_unificados.csv")
+CRUDO_PATH = Path("data/raw/eventos_crudos_unificados.csv")
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
 RESULTADOS_PATH = Path("stats/datasets/Girona_prediccion_beneficio_eventos_futuros.csv")
 REAL_PATH = Path("data/clean/dataset_modelo.csv")
@@ -82,7 +82,8 @@ st.markdown("<h2 id='actualizacion'>🔄 Actualización de datos</h2>", unsafe_a
 
 if st.button("🔁"):
     with st.spinner("Ejecutando actualización..."):
-       #result = subprocess.run([sys.executable, ACTUALIZAR_SCRIPT], capture_output=True, text=True)
+        #import sys
+        #result = subprocess.run([sys.executable, "src/pipeline_app.py"], capture_output=True, text=True)
        result = scrappear_eventos(
         usuario=USUARIO_GIRONA,
         password=PASSWORD_GIRONA,

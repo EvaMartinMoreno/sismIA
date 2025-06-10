@@ -2,7 +2,7 @@ NOMBRE_EVENTO,FECHA_EVENTO,COMUNIDAD,COSTE_UNITARIO,NUM_INSCRITAS,NUM_PAGOS,NUM_
 Dash And Stars Run,2025-02-09,GIRONA,9.0,25,25,25,375.0,9,2,2,Sunday,2025,6,invierno,15.0,225.0,150.0,0,pago,0,almuerzo,1,6.1,,dash and stars run
 Planazo Pre Vacances,2024-07-21,GIRONA,5.0,38,38,38,380.0,21,3,7,Sunday,2024,6,verano,10.0,190.0,190.0,0,pago,0,almuerzo,1,22.1,,planazo pre vacances
 Sisterhood Codepilates,2024-10-06,GIRONA,12.0,29,29,28,435.0,6,1,10,Sunday,2024,6,otoño,15.0,348.0,87.0,0,pago,0,deportiva,1,18.4,,sisterhood codepilates
-Sunday Run,2025-03-09,GIRONA,0.0,36,36,33,540.0,9,2,3,Sunday,2025,6,primavera,15.0,0.0,540.0,0,pago,0,deportiva,1,11.7,35,sunday run
+Sunday Run,2025-03-09,GIRONA,0.0,36,36,33,540.0,9,2,3,Sunday,2025,6,primavera,15.0,0.0,540.0,0,pago,0,deportiva,1,11.7,35.0,sunday run
 Sisterhood Premium 5,2021-01-10,GIRONA,13.98692307692308,13,11,11,144.1,10,2,1,Sunday,2021,6,invierno,13.1,181.83,-37.73000000000002,0,pago,1,almuerzo,0,4.2,,sisterhood premium 5
 Sisterhood Premium 10,2021-02-07,GIRONA,5.0209090909090905,22,20,20,260.79999999999995,7,1,2,Sunday,2021,6,invierno,13.04,110.46,150.33999999999995,0,pago,0,almuerzo,0,7.2,,sisterhood premium 10
 Sisterhood Premium 15,2021-03-12,GIRONA,2.866129032258064,31,25,25,336.75,12,2,3,Friday,2021,4,primavera,13.47,88.85,247.9,0,pago,0,almuerzo,0,9.0,,sisterhood premium 15

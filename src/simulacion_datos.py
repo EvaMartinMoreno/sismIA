@@ -26,7 +26,7 @@ def obtener_temporada(mes):
         return "otoño"
 
 def generar_colaboracion():
-    return np.random.choice([1, 0], p=[0.2, 0.8])
+    return np.random.choice([1, 0], p=[0.3, 0.7])
 
 def generar_tipo_actividad():
     return np.random.choice(["almuerzo", "ludico", "deportiva"], p=[0.5, 0.3, 0.2])
@@ -96,12 +96,12 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
                 "TOTAL_RECAUDADO": 0.0,
                 "EVENTO_GRATUITO": 1,
                 "TIPO_EVENTO": "gratuito",
-                "COSTE_UNITARIO": coste / inscritas,
-                "COSTE_ESTIMADO": coste,
-                "BENEFICIO_ESTIMADO": -coste,
+                "COSTE_UNITARIO": 0,
+                "COSTE_ESTIMADO": 0,
+                "BENEFICIO_ESTIMADO": 0,
                 "PRECIO_MEDIO": 0.0,
-                "COLABORACION": generar_colaboracion(),
-                "TIPO_ACTIVIDAD": generar_tipo_actividad()
+                "COLABORACION": 0,
+                "TIPO_ACTIVIDAD": "only run"
             })
             contador_eventos += 1
 
@@ -149,7 +149,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
 # === EJECUCIÓN DIRECTA DEL SCRIPT
 if __name__ == "__main__":
     df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
-    output_path = Path("stats/datasets/simulacion_datos_girona.csv")
+    output_path = Path("data/raw/simulacion_datos_girona.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df_simulado.to_csv(output_path, index=False)
     print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")

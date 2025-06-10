@@ -121,7 +121,7 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
 
 if __name__ == "__main__":
     generar_dataset_modelo(
-        input_path=Path("data/clean/eventos_crudos_unificados.csv"),
+        input_path=Path("data/raw/eventos_crudos_unificados.csv"),
         output_path=Path("data/clean/dataset_modelo.csv"),
-        tipos_path=Path("data/entrada/tipos_evento.csv")
+        tipos_path=Path("data/raw/selector/tipos_evento.csv")
     )
