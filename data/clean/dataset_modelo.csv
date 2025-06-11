@@ -1,65 +1,96 @@
-NOMBRE_EVENTO,FECHA_EVENTO,COMUNIDAD,COSTE_UNITARIO,NUM_INSCRITAS,NUM_PAGOS,NUM_ASISTENCIAS,TOTAL_RECAUDADO,DIA_MES,SEMANA_DENTRO_DEL_MES,MES,DIA_SEMANA,AÑO,DIA_SEMANA_NUM,TEMPORADA,PRECIO_MEDIO,COSTE_ESTIMADO,BENEFICIO_ESTIMADO,EVENTO_GRATUITO,TIPO_EVENTO,COLABORACION,TIPO_ACTIVIDAD,ES_REAL,TEMPERATURA,DIF_DIAS_PUBLICACION,nombre_clean
-Dash And Stars Run,2025-02-09,GIRONA,9.0,25,25,25,375.0,9,2,2,Sunday,2025,6,invierno,15.0,225.0,150.0,0,pago,0,almuerzo,1,6.1,,dash and stars run
-Planazo Pre Vacances,2024-07-21,GIRONA,5.0,38,38,38,380.0,21,3,7,Sunday,2024,6,verano,10.0,190.0,190.0,0,pago,0,almuerzo,1,22.1,,planazo pre vacances
-Sisterhood Codepilates,2024-10-06,GIRONA,12.0,29,29,28,435.0,6,1,10,Sunday,2024,6,otoño,15.0,348.0,87.0,0,pago,0,deportiva,1,18.4,,sisterhood codepilates
-Sunday Run,2025-03-09,GIRONA,0.0,36,36,33,540.0,9,2,3,Sunday,2025,6,primavera,15.0,0.0,540.0,0,pago,0,deportiva,1,11.7,35.0,sunday run
-Sisterhood Premium 5,2021-01-10,GIRONA,13.98692307692308,13,11,11,144.1,10,2,1,Sunday,2021,6,invierno,13.1,181.83,-37.73000000000002,0,pago,1,almuerzo,0,4.2,,sisterhood premium 5
-Sisterhood Premium 10,2021-02-07,GIRONA,5.0209090909090905,22,20,20,260.79999999999995,7,1,2,Sunday,2021,6,invierno,13.04,110.46,150.33999999999995,0,pago,0,almuerzo,0,7.2,,sisterhood premium 10
-Sisterhood Premium 15,2021-03-12,GIRONA,2.866129032258064,31,25,25,336.75,12,2,3,Friday,2021,4,primavera,13.47,88.85,247.9,0,pago,0,almuerzo,0,9.0,,sisterhood premium 15
-Sisterhood Premium 20,2021-04-04,GIRONA,4.9103125,32,26,26,328.90000000000003,4,1,4,Sunday,2021,6,primavera,12.65,157.13,171.77000000000004,0,pago,0,almuerzo,0,12.7,,sisterhood premium 20
-Sisterhood Premium 25,2021-05-14,GIRONA,4.561034482758621,29,25,25,295.25,14,2,5,Friday,2021,4,primavera,11.81,132.27,162.98,0,pago,0,almuerzo,0,13.4,,sisterhood premium 25
-Sisterhood Premium 30,2021-06-13,GIRONA,6.168076923076924,26,21,21,280.56,13,2,6,Sunday,2021,6,verano,13.36,160.37,120.19,0,pago,0,ludico,0,25.6,,sisterhood premium 30
-Sisterhood Premium 35,2021-07-18,GIRONA,3.878666666666666,30,27,27,286.73999999999995,18,3,7,Sunday,2021,6,verano,10.62,116.36,170.37999999999994,0,pago,0,almuerzo,0,24.3,,sisterhood premium 35
-Sisterhood Premium 40,2021-08-15,GIRONA,5.461052631578948,19,15,15,192.15,15,3,8,Sunday,2021,6,verano,12.81,103.76,88.39,0,pago,0,ludico,0,27.7,,sisterhood premium 40
-Sisterhood Premium 45,2021-09-05,GIRONA,6.2025,28,21,21,207.27,5,1,9,Sunday,2021,6,otoño,9.87,173.67,33.599999999999994,0,pago,0,almuerzo,0,23.8,,sisterhood premium 45
-Sisterhood Premium 50,2021-10-17,GIRONA,5.623666666666667,30,28,28,377.72,17,3,10,Sunday,2021,6,otoño,13.49,168.71,209.01,0,pago,0,almuerzo,0,15.2,,sisterhood premium 50
-Sisterhood Premium 55,2021-11-14,GIRONA,2.6285294117647062,34,27,27,357.75,14,2,11,Sunday,2021,6,otoño,13.25,89.37,268.38,0,pago,0,almuerzo,0,11.7,,sisterhood premium 55
-Sisterhood Premium 60,2021-12-19,GIRONA,7.567391304347827,23,15,15,148.35000000000002,19,3,12,Sunday,2021,6,invierno,9.89,174.05,-25.69999999999999,0,pago,0,almuerzo,0,6.2,,sisterhood premium 60
-Sisterhood Premium 65,2022-01-16,GIRONA,6.7096,25,17,17,161.33,16,3,1,Sunday,2022,6,invierno,9.49,167.74,-6.409999999999997,0,pago,0,ludico,0,3.1,,sisterhood premium 65
-Sisterhood Premium 70,2022-02-06,GIRONA,4.053793103448276,29,22,22,235.18,6,1,2,Sunday,2022,6,invierno,10.69,117.56,117.61999999999998,0,pago,0,almuerzo,0,8.3,,sisterhood premium 70
-Sisterhood Premium 75,2022-03-13,GIRONA,4.468666666666667,30,23,23,216.89,13,2,3,Sunday,2022,6,primavera,9.43,134.06,82.82999999999998,0,pago,0,deportiva,0,11.9,,sisterhood premium 75
-Sisterhood Premium 80,2022-04-17,GIRONA,10.883888888888889,18,16,16,216.0,17,3,4,Sunday,2022,6,primavera,13.5,195.91,20.090000000000003,0,pago,1,almuerzo,0,14.3,,sisterhood premium 80
-Sisterhood Premium 85,2022-05-01,GIRONA,8.592083333333333,24,18,18,262.8,1,1,5,Sunday,2022,6,primavera,14.6,206.21,56.59,0,pago,1,ludico,0,14.4,,sisterhood premium 85
-Sisterhood Premium 90,2022-06-12,GIRONA,6.005172413793104,29,25,25,293.25,12,2,6,Sunday,2022,6,verano,11.73,174.15,119.1,0,pago,0,deportiva,0,24.3,,sisterhood premium 90
-Sisterhood Premium 95,2022-07-17,GIRONA,7.048181818181818,22,19,19,247.38,17,3,7,Sunday,2022,6,verano,13.02,155.06,92.32,0,pago,0,almuerzo,0,28.8,,sisterhood premium 95
-Sisterhood Premium 100,2022-08-07,GIRONA,6.8216,25,19,19,171.95000000000002,7,1,8,Sunday,2022,6,verano,9.05,170.54,1.410000000000025,0,pago,0,deportiva,0,26.2,,sisterhood premium 100
-Sisterhood Premium 105,2022-09-02,GIRONA,9.561666666666667,18,16,16,244.8,2,1,9,Friday,2022,4,otoño,15.3,172.11,72.69,0,pago,1,ludico,0,22.0,,sisterhood premium 105
-Sisterhood Premium 110,2022-10-02,GIRONA,4.7052,25,22,22,280.94,2,1,10,Sunday,2022,6,otoño,12.77,117.63,163.31,0,pago,0,ludico,0,18.9,,sisterhood premium 110
-Sisterhood Premium 115,2022-11-13,GIRONA,2.730625,32,26,26,346.84,13,2,11,Sunday,2022,6,otoño,13.34,87.38,259.46,0,pago,0,ludico,0,14.2,,sisterhood premium 115
-Sisterhood Premium 120,2022-12-04,GIRONA,7.282631578947369,19,16,16,172.32,4,1,12,Sunday,2022,6,invierno,10.77,138.37,33.94999999999999,0,pago,0,deportiva,0,8.1,,sisterhood premium 120
-Sisterhood Premium 125,2023-01-15,GIRONA,11.799333333333331,15,12,12,156.60000000000002,15,3,1,Sunday,2023,6,invierno,13.05,176.99,-20.389999999999983,0,pago,0,almuerzo,0,9.0,,sisterhood premium 125
-Sisterhood Premium 130,2023-02-10,GIRONA,5.6724,25,19,19,234.84,10,2,2,Friday,2023,4,invierno,12.36,141.81,93.02999999999996,0,pago,0,ludico,0,5.1,,sisterhood premium 130
-Sisterhood Premium 135,2023-03-12,GIRONA,3.506470588235294,34,26,26,261.56,12,2,3,Sunday,2023,6,primavera,10.06,119.22,142.34,0,pago,0,almuerzo,0,13.7,,sisterhood premium 135
-Sisterhood Premium 140,2023-04-14,GIRONA,4.623870967741936,31,24,24,255.36,14,2,4,Friday,2023,4,primavera,10.64,143.34,112.02,0,pago,0,almuerzo,0,10.8,,sisterhood premium 140
-Sisterhood Premium 145,2023-05-14,GIRONA,6.728695652173912,23,15,15,187.95,14,2,5,Sunday,2023,6,primavera,12.53,154.76,33.19,0,pago,1,ludico,0,15.6,,sisterhood premium 145
-Sisterhood Premium 150,2023-06-11,GIRONA,4.4321875,32,25,25,285.5,11,2,6,Sunday,2023,6,verano,11.42,141.83,143.67,0,pago,0,ludico,0,21.6,,sisterhood premium 150
-Sisterhood Premium 155,2023-07-14,GIRONA,5.126451612903225,31,26,26,276.64,14,2,7,Friday,2023,4,verano,10.64,158.92,117.72,0,pago,0,ludico,0,26.3,,sisterhood premium 155
-Sisterhood Premium 160,2023-08-13,GIRONA,3.654074074074074,27,21,21,205.8,13,2,8,Sunday,2023,6,verano,9.8,98.66,107.14,0,pago,0,deportiva,0,25.6,,sisterhood premium 160
-Sisterhood Premium 165,2023-09-10,GIRONA,3.745666666666666,30,22,22,228.8,10,2,9,Sunday,2023,6,otoño,10.4,112.37,116.43,0,pago,0,almuerzo,0,21.9,,sisterhood premium 165
-Sisterhood Premium 170,2023-10-15,GIRONA,3.515333333333333,30,25,25,326.25,15,3,10,Sunday,2023,6,otoño,13.05,105.46,220.79,0,pago,0,ludico,0,18.8,,sisterhood premium 170
-Sisterhood Premium 175,2023-11-03,GIRONA,3.3386666666666667,30,26,26,343.46000000000004,3,1,11,Friday,2023,4,otoño,13.21,100.16,243.30000000000004,0,pago,0,deportiva,0,13.2,,sisterhood premium 175
-Sisterhood Premium 180,2023-12-10,GIRONA,6.231052631578947,19,17,17,229.5,10,2,12,Sunday,2023,6,invierno,13.5,118.39,111.11,0,pago,0,ludico,0,9.4,,sisterhood premium 180
-Sisterhood Premium 185,2024-01-19,GIRONA,10.690625,16,11,11,169.62,19,3,1,Friday,2024,4,invierno,15.42,171.05,-1.4300000000000068,0,pago,1,deportiva,0,6.8,,sisterhood premium 185
-Sisterhood Premium 190,2024-02-11,GIRONA,8.69608695652174,23,15,15,261.75,11,2,2,Sunday,2024,6,invierno,17.45,200.01,61.74000000000001,0,pago,1,deportiva,0,8.6,,sisterhood premium 190
-Sisterhood Premium 195,2024-03-17,GIRONA,4.817777777777778,36,29,29,348.87,17,3,3,Sunday,2024,6,primavera,12.03,173.44,175.43,0,pago,0,almuerzo,0,14.1,,sisterhood premium 195
-Sisterhood Premium 200,2024-04-14,GIRONA,5.913461538461538,26,20,20,214.6,14,2,4,Sunday,2024,6,primavera,10.73,153.75,60.85000000000002,0,pago,0,almuerzo,0,18.0,,sisterhood premium 200
-Sisterhood Premium 205,2024-05-19,GIRONA,5.112962962962963,27,21,21,304.29,19,3,5,Sunday,2024,6,primavera,14.49,138.05,166.24,0,pago,1,deportiva,0,15.8,,sisterhood premium 205
-Sisterhood Premium 210,2024-06-16,GIRONA,9.3364,25,17,17,222.53,16,3,6,Sunday,2024,6,verano,13.09,233.41,-10.879999999999995,0,pago,1,almuerzo,0,18.9,,sisterhood premium 210
-Sisterhood Premium 215,2024-07-21,GIRONA,4.910645161290322,31,23,23,234.37,21,3,7,Sunday,2024,6,verano,10.19,152.23,82.13999999999999,0,pago,0,almuerzo,0,22.1,,sisterhood premium 215
-Sisterhood Premium 220,2024-08-11,GIRONA,4.606086956521739,23,18,18,192.78000000000003,11,2,8,Sunday,2024,6,verano,10.71,105.94,86.84000000000003,0,pago,0,almuerzo,0,26.7,,sisterhood premium 220
-Sisterhood Premium 225,2024-09-13,GIRONA,4.343939393939394,33,28,28,255.08,13,2,9,Friday,2024,4,otoño,9.11,143.35,111.73,0,pago,0,deportiva,0,13.7,,sisterhood premium 225
-Sisterhood Premium 230,2024-10-20,GIRONA,3.3460714285714284,28,24,24,217.2,20,3,10,Sunday,2024,6,otoño,9.05,93.69,123.51000000000002,0,pago,0,ludico,0,16.4,,sisterhood premium 230
-Sisterhood Premium 235,2024-11-10,GIRONA,4.603030303030304,33,26,26,284.7,10,2,11,Sunday,2024,6,otoño,10.95,151.9,132.79999999999998,0,pago,0,almuerzo,0,15.3,,sisterhood premium 235
-Sisterhood Premium 240,2024-12-08,GIRONA,10.869,20,13,13,161.85,8,2,12,Sunday,2024,6,invierno,12.45,217.38,-55.53,0,pago,1,almuerzo,0,7.7,,sisterhood premium 240
-Sisterhood Premium 245,2025-01-12,GIRONA,11.3395,20,14,14,213.5,12,2,1,Sunday,2025,6,invierno,15.25,226.79,-13.289999999999992,0,pago,1,deportiva,0,5.3,,sisterhood premium 245
-Sisterhood Premium 250,2025-02-16,GIRONA,5.19375,32,27,27,306.98999999999995,16,3,2,Sunday,2025,6,invierno,11.37,166.2,140.78999999999996,0,pago,0,deportiva,0,9.9,,sisterhood premium 250
-Sisterhood Premium 255,2025-03-02,GIRONA,3.228125,32,29,29,351.77000000000004,2,1,3,Sunday,2025,6,primavera,12.13,103.3,248.47000000000003,0,pago,0,almuerzo,0,9.8,,sisterhood premium 255
-Sisterhood Premium 260,2025-04-13,GIRONA,2.9605128205128204,39,34,34,324.70000000000005,13,2,4,Sunday,2025,6,primavera,9.55,115.46,209.24000000000007,0,pago,0,almuerzo,0,15.6,,sisterhood premium 260
-Sisterhood Premium 265,2025-05-11,GIRONA,4.022,35,32,32,325.12,11,2,5,Sunday,2025,6,primavera,10.16,140.77,184.35,0,pago,0,almuerzo,0,17.2,,sisterhood premium 265
-Sisterhood Premium 270,2025-06-08,GIRONA,2.925142857142857,35,28,28,283.36,8,2,6,Sunday,2025,6,verano,10.12,102.38,180.98,0,pago,0,ludico,0,22.1,,sisterhood premium 270
-Sisterhood Premium 275,2025-07-13,GIRONA,5.693793103448276,29,27,27,309.96000000000004,13,2,7,Sunday,2025,6,verano,11.48,165.12,144.84000000000003,0,pago,0,ludico,0,,,sisterhood premium 275
-Sisterhood Premium 280,2025-08-17,GIRONA,2.662777777777778,36,28,28,357.28,17,3,8,Sunday,2025,6,verano,12.76,95.86,261.42,0,pago,0,almuerzo,0,,,sisterhood premium 280
-Sisterhood Premium 285,2025-09-07,GIRONA,3.853170731707317,41,34,34,350.20000000000005,7,1,9,Sunday,2025,6,otoño,10.3,157.98,192.22000000000008,0,pago,0,ludico,0,,,sisterhood premium 285
-Sisterhood Premium 290,2025-10-19,GIRONA,2.2255263157894736,38,31,31,375.1,19,3,10,Sunday,2025,6,otoño,12.1,84.57,290.53,0,pago,0,deportiva,0,,,sisterhood premium 290
-Sisterhood Premium 295,2025-11-14,GIRONA,3.73425,40,35,35,394.1,14,2,11,Friday,2025,4,otoño,11.26,149.37,244.73,0,pago,0,ludico,0,,,sisterhood premium 295
-Sisterhood Premium 300,2025-12-14,GIRONA,4.5365625,32,28,28,256.48,14,2,12,Sunday,2025,6,invierno,9.16,145.17,111.31000000000004,0,pago,0,almuerzo,0,,,sisterhood premium 300
+NOMBRE_EVENTO,FECHA_EVENTO,COMUNIDAD,ARCHIVO_ORIGEN,COSTE_UNITARIO,NUM_INSCRITAS,NUM_PAGOS,NUM_ASISTENCIAS,TOTAL_RECAUDADO,DIA_MES,SEMANA_MES_AÑO,SEMANA_DENTRO_DEL_MES,MES,DIA_SEMANA,AÑO,DIA_SEMANA_NUM,TEMPORADA,PRECIO_MEDIO,COSTE_ESTIMADO,BENEFICIO_ESTIMADO,EVENTO_GRATUITO,TIPO_EVENTO,COLABORACION,TIPO_ACTIVIDAD,COSTE_UNITARIO_VALIDADO,TEMPERATURA
+Afterwork Run By Dash And Stars,2025-04-17,ELCHE,afterwork-run-by-dash-and-stars-17-dabril-del-2025-a1ca86.csv,7.0,12,12,11,180.0,17,16,3,4,Thursday,2025,3,primavera,15.0,84.0,96.0,0,pago,1,almuerzo,True,10.9
+Dash And Stars Run,2025-02-09,GIRONA,dash-and-stars-run-09-de-febrer-del-2025-2ec664.csv,9.0,25,25,25,375.0,9,6,2,2,Sunday,2025,6,invierno,15.0,225.0,150.0,0,pago,1,almuerzo,True,6.1
+Dimecres Morning Run  Cet,2024-05-01,GIRONA,dimecres-morning-run-01-de-maig-del-2024-cet.csv,0.0,12,0,11,0.0,1,18,1,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,14.3
+Els Dimecres Amb Sisterhood,2024-02-14,GIRONA,els-dimecres-amb-sisterhood-14-de-febrer-de-2024.csv,0.0,9,0,9,0.0,14,7,2,2,Wednesday,2024,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,10.7
+Els Dimecres Amb Sisterhood,2024-02-21,GIRONA,els-dimecres-amb-sisterhood-21-de-febrer-de-2024.csv,0.0,11,0,9,0.0,21,8,3,2,Wednesday,2024,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,9.8
+Els Dimecres Amb Sisterhood,2024-02-28,GIRONA,els-dimecres-amb-sisterhood-28-de-febrer-de-2024.csv,0.0,7,0,6,0.0,28,9,4,2,Wednesday,2024,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,12.2
+Els Dimecres Amb Sisterhood,2024-03-13,GIRONA,els-dimecres-amb-sisterhood-13-de-marc-de-2024.csv,0.0,13,0,12,0.0,13,11,2,3,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.2
+Els Dimecres Amb Sisterhood,2024-03-20,GIRONA,els-dimecres-amb-sisterhood-20-de-marc-de-2024.csv,0.0,9,0,8,0.0,20,12,3,3,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,13.1
+Els Dimecres Amb Sisterhood,2024-03-27,GIRONA,els-dimecres-amb-sisterhood-27-de-marc-de-2024.csv,0.0,4,0,4,0.0,27,13,4,3,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.7
+Els Dimecres Amb Sisterhood,2024-04-10,GIRONA,els-dimecres-amb-sisterhood-10-dabril-de-2024.csv,0.0,14,0,12,0.0,10,15,2,4,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.8
+Els Dimecres Amb Sisterhood,2024-04-17,GIRONA,els-dimecres-amb-sisterhood-17-dabril-de-2024.csv,0.0,11,0,9,0.0,17,16,3,4,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.5
+Els Dimecres Amb Sisterhood,2024-04-24,GIRONA,els-dimecres-amb-sisterhood-24-dabril-de-2024.csv,0.0,12,0,12,0.0,24,17,4,4,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,9.3
+Els Dimecres Amb Sisterhood,2024-05-08,GIRONA,els-dimecres-amb-sisterhood-08-de-maig-del-2024.csv,0.0,7,0,7,0.0,8,19,2,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,16.1
+Els Dimecres Amb Sisterhood,2024-05-15,GIRONA,els-dimecres-amb-sisterhood-15-de-maig-del-2024.csv,0.0,2,0,2,0.0,15,20,3,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,13.6
+Els Dimecres Amb Sisterhood,2024-05-22,GIRONA,els-dimecres-amb-sisterhood-22-de-maig-del-2024.csv,0.0,9,0,8,0.0,22,21,4,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,14.8
+Els Dimecres Amb Sisterhood,2024-05-29,GIRONA,els-dimecres-amb-sisterhood-29-de-maig-del-2024.csv,0.0,5,0,5,0.0,29,22,5,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,19.7
+Els Dimecres Amb Sisterhood,2024-06-05,GIRONA,els-dimecres-amb-sisterhood-05-de-juny-del-2024.csv,0.0,9,0,7,0.0,5,23,1,6,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,20.6
+Els Dimecres Amb Sisterhood,2024-06-12,GIRONA,els-dimecres-amb-sisterhood-12-de-juny-del-2024.csv,0.0,2,0,2,0.0,12,24,2,6,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,15.1
+Els Dimecres Amb Sisterhood,2024-06-19,GIRONA,els-dimecres-amb-sisterhood-19-de-juny-del-2024.csv,0.0,12,0,11,0.0,19,25,3,6,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,21.2
+Els Dimecres Amb Sisterhood,2024-06-26,GIRONA,els-dimecres-amb-sisterhood-26-de-juny-del-2024.csv,0.0,2,0,1,0.0,26,26,4,6,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,23.1
+Els Dimecres Amb Sisterhood,2024-07-03,GIRONA,els-dimecres-amb-sisterhood-03-de-juliol-del-2024.csv,0.0,10,0,10,0.0,3,27,1,7,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,21.3
+Els Dimecres Amb Sisterhood,2024-07-10,GIRONA,els-dimecres-amb-sisterhood-10-de-juliol-del-2024.csv,0.0,4,0,4,0.0,10,28,2,7,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,25.0
+Els Dimecres Amb Sisterhood,2024-07-17,GIRONA,els-dimecres-amb-sisterhood-17-de-juliol-del-2024.csv,0.0,3,0,2,0.0,17,29,3,7,Wednesday,2024,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,24.3
+Els Dimecres Amb Sisterhood,2024-09-04,GIRONA,els-dimecres-amb-sisterhood-04-de-setembre-del-2024-c3e331.csv,0.0,6,0,6,0.0,4,36,1,9,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,19.3
+Els Dimecres Amb Sisterhood,2024-09-18,GIRONA,els-dimecres-amb-sisterhood-18-de-setembre-del-2024-792cb8.csv,0.0,4,0,4,0.0,18,38,3,9,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,18.3
+Els Dimecres Amb Sisterhood,2024-09-25,GIRONA,els-dimecres-amb-sisterhood-25-de-setembre-del-2024-f9642f.csv,0.0,7,0,7,0.0,25,39,4,9,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,19.6
+Els Dimecres Amb Sisterhood,2024-10-02,GIRONA,els-dimecres-amb-sisterhood-02-doctubre-del-2024-8fbb3d.csv,0.0,10,0,7,0.0,2,40,1,10,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,18.0
+Els Dimecres Amb Sisterhood,2024-10-09,GIRONA,els-dimecres-amb-sisterhood-09-doctubre-del-2024-d3b933.csv,0.0,12,0,11,0.0,9,41,2,10,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,21.6
+Els Dimecres Amb Sisterhood,2024-10-16,GIRONA,els-dimecres-amb-sisterhood-16-doctubre-del-2024-359dc2.csv,0.0,1,0,1,0.0,16,42,3,10,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,20.5
+Els Dimecres Amb Sisterhood,2024-10-23,GIRONA,els-dimecres-amb-sisterhood-23-doctubre-del-2024-b0a3fb.csv,0.0,1,0,1,0.0,23,43,4,10,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,17.3
+Els Dimecres Amb Sisterhood,2024-10-30,GIRONA,els-dimecres-amb-sisterhood-30-doctubre-del-2024-0c36cb.csv,0.0,2,0,2,0.0,30,44,5,10,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,17.8
+Els Dimecres Amb Sisterhood,2024-11-13,GIRONA,els-dimecres-amb-sisterhood-13-de-novembre-del-2024-2246e5.csv,0.0,1,0,1,0.0,13,46,2,11,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,11.6
+Els Dimecres Amb Sisterhood,2024-11-20,GIRONA,els-dimecres-amb-sisterhood-20-de-novembre-del-2024-fefa7b.csv,0.0,4,0,4,0.0,20,47,3,11,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,13.2
+Els Dimecres Amb Sisterhood,2024-11-27,GIRONA,els-dimecres-amb-sisterhood-27-de-novembre-del-2024-5fdd61.csv,0.0,2,0,2,0.0,27,48,4,11,Wednesday,2024,2,otoño,0.0,0.0,0.0,1,gratuito,0,only run,True,10.5
+Els Dimecres Amb Sisterhood,2025-01-08,GIRONA,els-dimecres-amb-sisterhood-08-de-gener-del-2025-7f2650.csv,0.0,16,0,13,0.0,8,2,2,1,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,11.3
+Els Dimecres Amb Sisterhood,2025-01-15,GIRONA,els-dimecres-amb-sisterhood-15-de-gener-del-2025-6a2c06.csv,0.0,12,0,11,0.0,15,3,3,1,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,2.8
+Els Dimecres Amb Sisterhood,2025-01-22,GIRONA,els-dimecres-amb-sisterhood-22-de-gener-del-2025-6ffc5f.csv,0.0,25,0,23,0.0,22,4,4,1,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,13.3
+Els Dimecres Amb Sisterhood,2025-01-29,GIRONA,els-dimecres-amb-sisterhood-29-de-gener-del-2025-43c563.csv,0.0,15,0,15,0.0,29,5,5,1,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,9.1
+Els Dimecres Amb Sisterhood,2025-02-05,GIRONA,els-dimecres-amb-sisterhood-05-de-febrer-del-2025-7671eb.csv,0.0,18,0,17,0.0,5,6,1,2,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,7.2
+Els Dimecres Amb Sisterhood,2025-02-12,GIRONA,els-dimecres-amb-sisterhood-12-de-febrer-del-2025-561820.csv,0.0,10,0,10,0.0,12,7,2,2,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,10.2
+Els Dimecres Amb Sisterhood,2025-02-19,GIRONA,els-dimecres-amb-sisterhood-19-de-febrer-del-2025-ef10be.csv,0.0,11,0,11,0.0,19,8,3,2,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,11.4
+Els Dimecres Amb Sisterhood,2025-02-26,GIRONA,els-dimecres-amb-sisterhood-26-de-febrer-del-2025-cc3fcf.csv,0.0,9,0,6,0.0,26,9,4,2,Wednesday,2025,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,7.4
+Els Dimecres Amb Sisterhood,2025-03-05,GIRONA,els-dimecres-amb-sisterhood-05-de-marc-del-2025-31343e.csv,0.0,11,0,9,0.0,5,10,1,3,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,9.9
+Els Dimecres Amb Sisterhood,2025-03-12,GIRONA,els-dimecres-amb-sisterhood-12-de-marc-del-2025-4ab5c0.csv,0.0,6,0,4,0.0,12,11,2,3,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,9.8
+Els Dimecres Amb Sisterhood,2025-03-19,GIRONA,els-dimecres-amb-sisterhood-19-de-marc-del-2025-63a0a9.csv,0.0,3,0,3,0.0,19,12,3,3,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.7
+Els Dimecres Amb Sisterhood,2025-03-26,GIRONA,els-dimecres-amb-sisterhood-26-de-marc-del-2025-6fc02d.csv,0.0,10,0,9,0.0,26,13,4,3,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,11.7
+Els Dimecres Amb Sisterhood,2025-04-02,GIRONA,els-dimecres-amb-sisterhood-02-dabril-del-2025-75b84a.csv,0.0,5,0,4,0.0,2,14,1,4,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.8
+Els Dimecres Amb Sisterhood,2025-04-09,GIRONA,els-dimecres-amb-sisterhood-09-dabril-del-2025-2d6384.csv,0.0,12,0,12,0.0,9,15,2,4,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,14.6
+Els Dimecres Amb Sisterhood,2025-04-16,GIRONA,els-dimecres-amb-sisterhood-16-dabril-del-2025-be0c36.csv,0.0,4,0,3,0.0,16,16,3,4,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.8
+Els Dimecres Amb Sisterhood,2025-04-30,GIRONA,els-dimecres-amb-sisterhood-30-dabril-del-2025-dd88be.csv,0.0,3,0,3,0.0,30,18,5,4,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,16.2
+Els Dimecres Amb Sisterhood,2025-05-07,GIRONA,els-dimecres-amb-sisterhood-07-de-maig-del-2025-3c87be.csv,0.0,5,0,1,0.0,7,19,1,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.3
+Els Dimecres Amb Sisterhood,2025-05-14,GIRONA,els-dimecres-amb-sisterhood-14-de-maig-del-2025-bde3fe.csv,0.0,6,0,6,0.0,14,20,2,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.6
+Els Dimecres Amb Sisterhood,2025-05-21,GIRONA,els-dimecres-amb-sisterhood-21-de-maig-del-2025-e1848c.csv,0.0,12,0,12,0.0,21,21,3,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,18.2
+Els Dimecres Amb Sisterhood,2025-05-28,GIRONA,els-dimecres-amb-sisterhood-28-de-maig-del-2025-405910.csv,0.0,9,0,8,0.0,28,22,4,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,22.0
+Els Dimecres Amb Sisterhood,2025-06-04,GIRONA,els-dimecres-amb-sisterhood-04-de-juny-del-2025-581db2.csv,0.0,5,0,5,0.0,4,23,1,6,Wednesday,2025,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,21.7
+Lace Up Run,2025-05-22,ELCHE,lace-up-run-22-de-maig-del-2025-d2eb29.csv,0.0,29,0,27,0.0,22,21,4,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,1,charla,True,17.1
+Los Jueves Con Sh Elche,2025-01-23,ELCHE,los-jueves-con-sh-elche-23-de-gener-del-2025-551e6b.csv,0.0,10,0,10,0.0,23,4,4,1,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,13.0
+Los Jueves Con Sh Elche,2025-01-30,ELCHE,los-jueves-con-sh-elche-30-de-gener-del-2025-b66f8b.csv,0.0,10,0,10,0.0,30,5,5,1,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,10.9
+Los Jueves Con Sh Elche,2025-02-06,ELCHE,los-jueves-con-sh-elche-06-de-febrer-del-2025-cf139a.csv,0.0,11,0,11,0.0,6,6,1,2,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,6.0
+Los Jueves Con Sh Elche,2025-02-13,ELCHE,los-jueves-con-sh-elche-13-de-febrer-del-2025-a74613.csv,0.0,12,0,11,0.0,13,7,2,2,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,12.2
+Los Jueves Con Sh Elche,2025-02-20,ELCHE,los-jueves-con-sh-elche-20-de-febrer-del-2025-99908a.csv,0.0,13,0,12,0.0,20,8,3,2,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,12.2
+Los Jueves Con Sh Elche,2025-02-27,ELCHE,los-jueves-con-sh-elche-27-de-febrer-del-2025-7c70e9.csv,0.0,11,0,9,0.0,27,9,4,2,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,7.2
+Los Jueves Con Sh Elche,2025-03-06,ELCHE,los-jueves-con-sh-elche-06-de-marc-del-2025-432204.csv,0.0,10,0,8,0.0,6,10,1,3,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.6
+Los Jueves Con Sh Elche,2025-03-13,ELCHE,los-jueves-con-sh-elche-13-de-marc-del-2025-dd2845.csv,0.0,11,0,9,0.0,13,11,2,3,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,6.9
+Los Jueves Con Sh Elche,2025-03-20,ELCHE,los-jueves-con-sh-elche-20-de-marc-del-2025-ada6f3.csv,0.0,9,0,8,0.0,20,12,3,3,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,11.6
+Los Jueves Con Sh Elche,2025-03-27,ELCHE,los-jueves-con-sh-elche-27-de-marc-del-2025-834306.csv,0.0,12,0,11,0.0,27,13,4,3,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,10.5
+Los Jueves Con Sh Elche,2025-04-03,ELCHE,los-jueves-con-sh-elche-03-dabril-del-2025-ae05d9.csv,0.0,14,0,13,0.0,3,14,1,4,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,13.3
+Los Jueves Con Sh Elche,2025-04-10,ELCHE,los-jueves-con-sh-elche-10-dabril-del-2025-1800c7.csv,0.0,10,0,8,0.0,10,15,2,4,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,16.0
+Los Jueves Con Sh Elche,2025-04-24,ELCHE,los-jueves-con-sh-elche-24-dabril-del-2025-e0d544.csv,0.0,8,0,7,0.0,24,17,4,4,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.2
+Los Jueves De Sisterhood Elche,2025-05-01,ELCHE,los-jueves-de-sisterhood-elche-01-de-maig-del-2025-34359c.csv,0.0,9,0,8,0.0,1,18,1,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,16.3
+Los Jueves De Sisterhood Elche,2025-05-08,ELCHE,los-jueves-de-sisterhood-elche-08-de-maig-del-2025-e411c6.csv,0.0,11,0,10,0.0,8,19,2,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,13.1
+Los Jueves De Sisterhood Elche,2025-05-15,ELCHE,los-jueves-de-sisterhood-elche-15-de-maig-del-2025-56002a.csv,0.0,12,0,11,0.0,15,20,3,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,17.3
+Los Jueves De Sisterhood Elche,2025-05-29,ELCHE,los-jueves-de-sisterhood-elche-29-de-maig-del-2025-cae2d9.csv,0.0,12,0,11,0.0,29,22,5,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,22.9
+New Year Runbreakfast,2025-01-12,ELCHE,new-year-runbreakfast-12-de-gener-del-2025-994f68.csv,6.0,4,4,2,28.0,12,2,2,1,Sunday,2025,6,invierno,7.0,24.0,4.0,0,pago,0,almuerzo,True,5.3
+Planazo Pre Vacances,2024-07-21,GIRONA,planazo-pre-vacances-21-de-juliol-del-2024.csv,5.0,38,38,38,380.0,21,29,3,7,Sunday,2024,6,verano,10.0,190.0,190.0,0,pago,0,almuerzo,True,22.1
+Pre Xmas Runbrunch Elche,2024-12-22,ELCHE,pre-xmas-runbrunch-elche-22-de-desembre-del-2024-4a18fe.csv,10.0,19,19,18,133.0,22,51,4,12,Sunday,2024,6,invierno,7.0,190.0,-57.0,0,pago,0,almuerzo,True,6.7
+Primer Sisterhood Trail,2024-05-17,GIRONA,primer-sisterhood-trail-17-de-maig-del-2024.csv,0.0,8,0,7,0.0,17,20,3,5,Friday,2024,4,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.4
+Run Girobeer,2024-07-05,GIRONA,run-girobeer-05-de-juliol-del-2024.csv,0.0,13,0,12,0.0,5,27,1,7,Friday,2024,4,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,23.4
+Run Pel Dia De La Dona,2024-03-10,GIRONA,run-pel-dia-de-la-dona-10-de-marc-de-2024.csv,0.0,14,0,13,0.0,10,10,2,3,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,9.9
+Rundeo By Primetime I Sisterhood,2025-05-09,GIRONA,rundeo-by-primetime-i-sisterhood-09-de-maig-del-2025-7f5dbe.csv,10.0,64,64,64,960.0,9,19,2,5,Friday,2025,4,primavera,15.0,19200.0,-18240.0,0,pago,1,ludica,True,15.1
+Runlearn,2025-04-06,ELCHE,runlearn-06-dabril-del-2025-9691b4.csv,10.0,17,17,15,255.0,6,14,1,4,Sunday,2025,6,primavera,15.0,170.0,85.0,0,pago,1,charla,True,16.8
+Runtrust,2025-03-09,ELCHE,runtrust-09-de-marc-del-2025-eb00b7.csv,8.5,11,11,11,99.0,9,10,2,3,Sunday,2025,6,primavera,9.0,93.5,5.5,0,pago,0,almuerzo,True,11.7
+Sisterhood Codepilates,2024-10-06,GIRONA,sisterhood-codepilates-06-doctubre-del-2024-fc98d7.csv,12.0,29,29,28,435.0,6,40,1,10,Sunday,2024,6,otoño,15.0,348.0,87.0,0,pago,1,deportiva,True,18.4
+Sisterhood Trail,2024-06-14,GIRONA,sisterhood-trail-14-de-juny-del-2024.csv,0.0,5,0,4,0.0,14,24,2,6,Friday,2024,4,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,20.4
+Sisterhood X Zel Hotels,2024-06-16,GIRONA,sisterhood-x-zel-hotels-16-de-juny-del-2024.csv,0.0,28,0,26,0.0,16,24,3,6,Sunday,2024,6,verano,0.0,0.0,0.0,1,gratuito,1,deportiva,True,18.9
+Sisterhood Xmas Event,2024-12-15,GIRONA,sisterhood-xmas-event-15-de-desembre-del-2024-ebee63.csv,28.0,14,14,14,448.0,15,50,3,12,Sunday,2024,6,invierno,32.0,392.0,56.0,0,pago,0,ludica,True,7.3
+Sunday Run,2024-02-25,GIRONA,sunday-run-25-de-febrer-de-2024.csv,0.0,10,0,10,0.0,25,8,4,2,Sunday,2024,6,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,8.9
+Sunday Run,2024-03-24,GIRONA,sunday-run-24-de-marc-de-2024.csv,0.0,13,0,12,0.0,24,12,4,3,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.9
+Sunday Run,2024-04-14,GIRONA,sunday-run-14-dabril-de-2024.csv,0.0,18,0,16,0.0,14,15,2,4,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,18.0
+Sunday Run,2024-04-21,GIRONA,sunday-run-21-dabril-de-2024.csv,0.0,9,0,8,0.0,21,16,3,4,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.0
+Sunday Run,2024-05-05,GIRONA,sunday-run-05-de-maig-del-2024.csv,0.0,3,0,3,0.0,5,18,1,5,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,16.3
+Sunday Run,2024-05-19,GIRONA,sunday-run-19-de-maig-del-2024.csv,0.0,8,0,6,0.0,19,20,3,5,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.8
+Sunday Run,2025-03-09,GIRONA,sunday-run-09-de-marc-del-2025-a84283.csv,0.0,36,36,33,540.0,9,10,2,3,Sunday,2025,6,primavera,15.0,0.0,540.0,0,pago,0,only run,True,11.7
+Sunday Run Emporda,2024-05-12,GIRONA,sunday-run-emporda-12-de-maig-del-2024.csv,0.0,23,0,21,0.0,12,19,2,5,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,17.3
+Sunkissed Run By Dash And Stars,2025-06-08,ELCHE,sunkissed-run-by-dash-and-stars-08-de-juny-del-2025-449c86.csv,12.0,18,18,18,324.0,8,23,2,6,Sunday,2025,6,verano,18.0,216.0,108.0,0,pago,1,almuerzo,True,19.6

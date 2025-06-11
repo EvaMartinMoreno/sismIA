@@ -8,9 +8,7 @@ import shutil
 import os
 from urllib.parse import urljoin, urlparse
 
-def scrappear_eventos(usuario, password, comunidad, estado_scraping=None, status="prod"):
-    if estado_scraping is None:
-        estado_scraping = {}
+def scrappear_eventos(usuario, password, comunidad):
 
     BASE_DIR = os.path.join("data", "raw", "athletiks", comunidad.upper())
     DESCARGAS_DIR = os.path.join(os.path.expanduser("~"), "Downloads")
@@ -36,15 +34,12 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None, status
     if "signin" in driver.current_url or "login" in driver.current_url:
         print("Error: Credenciales inválidas")
         driver.quit()
-        return estado_scraping
 
     driver.get("https://athletiks.io/es/profile")
     time.sleep(5)
     event_articles = driver.find_elements(By.TAG_NAME, "article")
     total_eventos = len(event_articles)
     print(f" [{comunidad}] Eventos encontrados: {total_eventos}")
-    if status=="dev":
-        total_eventos = 1
     for index in range(total_eventos):
         try:
             print(f"\n Procesando evento {index + 1} de {total_eventos}...")
@@ -61,32 +56,19 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None, status
             driver.execute_script("arguments[0].scrollIntoView(true);", article)
             time.sleep(1)
             article.click()
-            time.sleep(4)
+            time.sleep(2)
 
             current_url = driver.current_url
             if not current_url.endswith("/"):
                 current_url += "/"
             attendees_url = urljoin(current_url, "attendees")
             driver.get(attendees_url)
-            time.sleep(4)
+            time.sleep(2)
 
             parsed_url = urlparse(attendees_url)
             slug = parsed_url.path.strip("/").split("/")[-2]
             nombre_archivo = f"{slug}.csv"
             ruta_archivo = os.path.join(BASE_DIR, nombre_archivo)
-
-            # 🧠 ID del evento (clave en el estado)
-            evento_id = f"{comunidad.upper()}::{slug}"
-
-            # 📊 Contar asistentes visibles sin descargar
-            asistentes_html = driver.find_elements(By.XPATH, "//tr[contains(@class, 'MuiTableRow-root')]")
-            num_asistentes_actual = len(asistentes_html)
-
-            # 📋 Comparar con el estado anterior
-            num_anterior = estado_scraping.get(evento_id, -1)
-            if num_anterior == num_asistentes_actual:
-                print(f"⏩ Evento sin cambios ({num_asistentes_actual} asistentes). Lo saltamos.")
-                continue
 
             # 💾 Hacer click y descargar
             try:
@@ -113,12 +95,8 @@ def scrappear_eventos(usuario, password, comunidad, estado_scraping=None, status
             except Exception as e:
                 print(f" Error moviendo archivo: {e}")
 
-            # ✅ Actualizar estado
-            estado_scraping[evento_id] = num_asistentes_actual
-
         except Exception as e:
             print(f"Error inesperado en evento {index + 1}: {e}")
 
     driver.quit()
     print(f"Scraping finalizado para {comunidad}.")
-    return estado_scraping

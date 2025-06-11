@@ -23,12 +23,21 @@ def entrenar_modelo_asistencias():
     df_real["ES_REAL"] = 1
     df_sim["ES_REAL"] = 0
 
-    # Unir y filtrar
+    # 👉 Filtrar reales (porque tienen COMUNIDAD)
+    df_real = df_real[
+        (df_real["COMUNIDAD"] == "GIRONA") &
+        (df_real["TIPO_EVENTO"] == "pago") &
+        (df_real["TEMPERATURA"].notnull())
+    ]
+
+    # 👉 Filtrar simulados (asumimos que todos son de Girona y de tipo pago)
+    df_sim = df_sim[
+        (df_sim["TIPO_EVENTO"] == "pago") &
+        (df_sim["TEMPERATURA"].notnull())
+    ]
+
+    # 👯 Unir ambos
     df_combined = pd.concat([df_real, df_sim], ignore_index=True)
-    df_combined = df_combined[
-        (df_combined["TIPO_EVENTO"] == "pago") &
-        (df_combined["TEMPERATURA"].notnull())
-    ].copy()
 
     # 🧼 Normalizar texto y eliminar outliers
     df_combined["TIPO_ACTIVIDAD"] = df_combined["TIPO_ACTIVIDAD"].str.strip().str.lower()
@@ -43,17 +52,17 @@ def entrenar_modelo_asistencias():
 
     # ✅ Validar si hay nuevos eventos
     num_eventos_actual = df_combined.shape[0]
-    if VERSION_PATH.exists():
-        with open(VERSION_PATH, "r") as f:
-            num_eventos_previo = int(f.read().strip())
-    else:
-        num_eventos_previo = -1
+    #if VERSION_PATH.exists():
+        #with open(VERSION_PATH, "r") as f:
+            #num_eventos_previo = int(f.read().strip())
+    #else:
+        #num_eventos_previo = -1
 
-    if num_eventos_actual == num_eventos_previo:
-        print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
-        return
+    #if num_eventos_actual == num_eventos_previo:
+        #print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
+        #return
 
-    # 🔢 Features y target
+    # Features y target
     features = [
         "COSTE_ESTIMADO", "PRECIO_MEDIO", "DIA_SEMANA_NUM", "MES",
         "SEMANA_DENTRO_DEL_MES", "COLABORACION", "TEMPORADA",
@@ -67,6 +76,9 @@ def entrenar_modelo_asistencias():
     X = df_model.drop(columns=[target])
     y = df_model[target]
 
+    # Guardar las columnas reales tras dummies
+    final_features = X.columns.tolist()  
+
     # Split y escalado
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     scaler = StandardScaler()
@@ -76,7 +88,9 @@ def entrenar_modelo_asistencias():
     # 🤖 Entrenamiento
     modelo = LinearRegression()
     modelo.fit(X_train_scaled, y_train)
-    joblib.dump(modelo, MODEL_PATH)
+
+    # Guardar modelo + features como tuple
+    joblib.dump((modelo, final_features), MODEL_PATH)  
 
     # Guardar nueva versión
     with open(VERSION_PATH, "w") as f:

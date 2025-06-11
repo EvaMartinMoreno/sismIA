@@ -11,14 +11,19 @@ import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
 from src.scraping.scraper_athletiks import scrappear_eventos
+from dotenv import load_dotenv
+load_dotenv()
 
 # =========================
 # 📁 Rutas
 # =========================
-CRUDO_PATH = Path("data/raw/eventos_crudos_unificados.csv")
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
-RESULTADOS_PATH = Path("stats/datasets/Girona_prediccion_beneficio_eventos_futuros.csv")
+RESULTADOS_PATH = Path ("data/predicciones/predicciones_futuras.csv")
 REAL_PATH = Path("data/clean/dataset_modelo.csv")
+USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
+PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
+USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
+PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
 
 # =========================
 # 🚀 Configuración general
@@ -78,85 +83,97 @@ st.markdown(
 # =========================
 # 🔄 Actualización de datos
 # =========================
-st.markdown("<h2 id='actualizacion'>🔄 Actualización de datos</h2>", unsafe_allow_html=True)
+st.markdown("<h2 id='actualizacion'>Actualización de datos</h2>", unsafe_allow_html=True)
 
 if st.button("🔁"):
     with st.spinner("Ejecutando actualización..."):
-        #import sys
         #result = subprocess.run([sys.executable, "src/pipeline_app.py"], capture_output=True, text=True)
-       result = scrappear_eventos(
+        result = scrappear_eventos(
         usuario=USUARIO_GIRONA,
         password=PASSWORD_GIRONA,
         comunidad="GIRONA",
-        estado_scraping=estado,
-        status="dev"
         )
-       st.write("funciono!")
-        if result.returncode == 0:
-            st.success("Datos actualizados correctamente.")
-        else:
-            st.error("Error al ejecutar el pipeline.")
-
-        st.markdown("### Log de ejecución")
-        st.code(result.stdout + "\n" + result.stderr, language="bash")
+        st.success(result or "Scraping completado.")
 
 # =========================
-# 💸 Costes unitarios
+# ✍️ Edición completa del evento
 # =========================
-st.markdown("---")
-st.subheader("📋 Introducción manual de costes unitarios")
+if REAL_PATH.exists():
+    df_eventos = pd.read_csv(REAL_PATH)
 
-if CRUDO_PATH.exists():
-    df_eventos = pd.read_csv(CRUDO_PATH)
+    # Inicializar columnas si faltan
+    for col in ["COSTE_UNITARIO", "COSTE_UNITARIO_VALIDADO", "COLABORACION", "TIPO_ACTIVIDAD", "INSTAGRAM_SHORTCODE"]:
+        if col not in df_eventos.columns:
+            if col == "COSTE_UNITARIO":
+                df_eventos[col] = np.nan
+            elif col == "COSTE_UNITARIO_VALIDADO":
+                df_eventos[col] = False
+            elif col == "COLABORACION":
+                df_eventos[col] = 0
+            elif col == "TIPO_ACTIVIDAD":
+                df_eventos[col] = "otro"
 
-    # Inicializa columnas si no existen
-    if "COSTE_UNITARIO" not in df_eventos.columns:
-        df_eventos["COSTE_UNITARIO"] = np.nan
-    if "COSTE_UNITARIO_VALIDADO" not in df_eventos.columns:
-        df_eventos["COSTE_UNITARIO_VALIDADO"] = False
-
-    # Agrupar y buscar los eventos que aún no han sido validados
-    df_costes = df_eventos.groupby(["NOMBRE_EVENTO"], as_index=False).agg({
+    # Agrupar eventos únicos
+    df_formulario = df_eventos.groupby("NOMBRE_EVENTO", as_index=False).agg({
         "COSTE_UNITARIO": "first",
-        "COSTE_UNITARIO_VALIDADO": "first"
+        "COSTE_UNITARIO_VALIDADO": "first",
+        "COLABORACION": "first",
+        "TIPO_ACTIVIDAD": "first",
     })
 
-    pendientes = df_costes[df_costes["COSTE_UNITARIO_VALIDADO"] == False].copy()
+    pendientes = df_formulario[df_formulario["COSTE_UNITARIO_VALIDADO"] == False].copy()
 
     if pendientes.empty:
-        st.success("🎉 Todos los eventos tienen un coste unitario asignado y validado.")
+        st.success("🎉 Todos los eventos están validados.")
     else:
-        with st.form("form_costes"):
+        with st.form("form_edicion_eventos"):
             nuevas_filas = []
-            st.write("Introduce el coste unitario por evento y marca como validado:")
+            st.write("Introduce los datos y valida cada evento:")
             for i, row in pendientes.iterrows():
-                col1, col2, col3 = st.columns([3, 2, 2])
-                col1.text(row["NOMBRE_EVENTO"])
-                coste_input = col2.number_input(
-                    "Coste €", 
+                st.markdown(f"#### 📌 {row['NOMBRE_EVENTO']}")
+                col1, col2, col3 = st.columns([2, 2, 2])
+                col4, col5 = st.columns([3, 1])
+
+                coste = col1.number_input(
+                    "Coste unitario (€)", 
                     key=f"coste_{i}", 
-                    min_value=0.0, 
-                    value=0.0 if pd.isna(row["COSTE_UNITARIO"]) else float(row["COSTE_UNITARIO"]), 
+                    value=0.0 if pd.isna(row["COSTE_UNITARIO"]) else float(row["COSTE_UNITARIO"]),
+                    min_value=0.0,
                     format="%.2f"
                 )
-                validado = col3.checkbox("✅ Validar", key=f"validado_{i}")
-                nuevas_filas.append((row["NOMBRE_EVENTO"], coste_input, validado))
 
-            if st.form_submit_button("📏 Guardar costes"):
+                colaboracion = col2.checkbox("¿Colaboración?", value=bool(row["COLABORACION"]), key=f"colab_{i}")
+
+                tipo = col3.selectbox(
+                    "Tipo de actividad", 
+                    options=["ludico", "only run", "desayuno", "deportivo"], 
+                    index=4 if row["TIPO_ACTIVIDAD"] not in ["competitiva", "ludico", "social", "formativo"] else
+                          ["competitiva", "ludico", "social", "formativo", "otro"].index(row["TIPO_ACTIVIDAD"]),
+                    key=f"tipo_{i}"
+                )
+                validar = col5.checkbox("✅ Validar", key=f"validar_{i}")
+
+                nuevas_filas.append((row["NOMBRE_EVENTO"], coste, colaboracion, tipo, validar))
+                st.markdown("---")
+
+            if st.form_submit_button("💾 Guardar cambios"):
                 cambios = 0
-                for nombre_evento, nuevo_coste, validado in nuevas_filas:
-                    mask = (df_eventos["NOMBRE_EVENTO"] == nombre_evento)
-                    df_eventos.loc[mask, "COSTE_UNITARIO"] = nuevo_coste
+                for nombre, coste, colab, tipo, validado in nuevas_filas:
+                    mask = df_eventos["NOMBRE_EVENTO"] == nombre
+                    df_eventos.loc[mask, "COSTE_UNITARIO"] = coste
+                    df_eventos.loc[mask, "COLABORACION"] = int(colab)
+                    df_eventos.loc[mask, "TIPO_ACTIVIDAD"] = tipo
                     df_eventos.loc[mask, "COSTE_UNITARIO_VALIDADO"] = validado
                     cambios += 1
+
                 if cambios > 0:
-                    df_eventos.to_csv(CRUDO_PATH, index=False)
-                    st.success("Costes actualizados y validados.")
+                    df_eventos.to_csv(REAL_PATH, index=False)
+                    st.success("✅ Cambios guardados correctamente.")
                     st.rerun()
                 else:
                     st.info("No se realizaron cambios.")
 else:
-    st.error(" No se encontró el archivo de eventos.")
+    st.error("❌ No se encuentra el archivo de eventos.")
 
 # =========================
 # 📊 Próximos eventos
@@ -209,11 +226,11 @@ with col2:
         if not df_sim.empty:
             proximo_sim = df_sim.sort_values("FECHA_EVENTO").iloc[0]
             fecha_sim = proximo_sim["FECHA_EVENTO"].strftime("%d/%m/%Y")
-            comunidad_sim = proximo_sim["COMUNIDAD"]
+            tipo_actividad_sim = proximo_sim["TIPO_ACTIVIDAD"]
 
             asistencia_sim = (
-                int(proximo_sim["ASISTENCIA_PREVISTA"])
-                if "ASISTENCIA_PREVISTA" in proximo_sim and pd.notna(proximo_sim["ASISTENCIA_PREVISTA"])
+                int(proximo_sim["ASISTENCIAS_PREDICHAS"])
+                if "ASISTENCIAS_PREDICHAS" in proximo_sim and pd.notna(proximo_sim["ASISTENCIAS_PREDICHAS"])
                 else "N/A"
             )
 
@@ -224,9 +241,10 @@ with col2:
             )
 
             st.markdown(f"🗓️ Te recomiendo la fecha: **{fecha_sim}**")
-            st.markdown(f"📍 Comunidad: **{comunidad_sim}**")
+            st.markdown(f"📍 Comunidad: **GIRONA**")
             st.markdown(f"👥 Asistencia esperada: **{asistencia_sim}** personas")
             st.markdown(f"💰 Beneficio estimado: **{beneficio_sim} €**")
+            st.markdown(f"Tipo de actividad: **{proximo_sim['TIPO_ACTIVIDAD']}**")
         else:
             st.info("No hay eventos futuros simulados.")
     else:

@@ -154,3 +154,11 @@ if __name__ == "__main__":
     df_simulado.to_csv(output_path, index=False)
     print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
     print(f"📍 Guardado en: {output_path.resolve()}")
+
+def simular_datos_Girona():
+    df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
+    output_path = Path("data/raw/simulacion_datos_girona.csv")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    df_simulado.to_csv(output_path, index=False)
+    print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
+    print(f"📍 Guardado en: {output_path.resolve()}")
