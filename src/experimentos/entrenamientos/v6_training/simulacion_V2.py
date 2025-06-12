@@ -57,12 +57,12 @@ def ajustar_fecha_con_pesos(fecha_base: pd.Timestamp) -> pd.Timestamp:
     dias_hasta_dia = (dia_semana_num - fecha_base.weekday()) % 7
     return fecha_base + pd.Timedelta(days=dias_hasta_dia)
 
-def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60,
+def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 61,
                              eventos_pago_por_mes: int = 1, eventos_gratuito_por_mes: int = 4) -> pd.DataFrame:
     eventos = []
     contador_eventos = 1
     inicio_dt = pd.Timestamp(inicio)
-    inicio_global = datetime(2021, 1, 1)
+    inicio_global = datetime(2018, 4, 1)
 
     for mes_offset in range(meses_totales):
         fecha_mes = inicio_global + pd.DateOffset(months=mes_offset)
@@ -148,17 +148,17 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
 
 # === EJECUCIÓN DIRECTA DEL SCRIPT
 if __name__ == "__main__":
-    df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
-    output_path = Path("data/raw/simulacion_datos_girona.csv")
+    df_simulado = generar_datos_simulados("GIRONA", "2018-04-01")
+    output_path = Path("data/raw/simulacion_datos_girona_v2.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df_simulado.to_csv(output_path, index=False)
-    print(f"Dataset simulado generado con {len(df_simulado)} eventos.")
-    print(f"Guardado en: {output_path.resolve()}")
+    print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
+    print(f"📍 Guardado en: {output_path.resolve()}")
 
 def simular_datos_Girona():
-    df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
-    output_path = Path("data/raw/simulacion_datos_girona.csv")
+    df_simulado = generar_datos_simulados("GIRONA", "2018-04-01")
+    output_path = Path("data/raw/simulacion_datos_girona_v2.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df_simulado.to_csv(output_path, index=False)
-    print(f"Dataset simulado generado con {len(df_simulado)} eventos.")
-    print(f"Guardado en: {output_path.resolve()}")
+    print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
+    print(f"📍 Guardado en: {output_path.resolve()}")

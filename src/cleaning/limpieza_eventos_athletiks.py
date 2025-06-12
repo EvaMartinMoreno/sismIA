@@ -92,8 +92,8 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
         df_tipos["TIPO_ACTIVIDAD"] = "otro"
         df_tipos = df_tipos.rename(columns={"NOMBRE_EVENTO": "EVENTO"})
         df_tipos.to_csv(tipos_path, index=False)
-        print(f"📄 Archivo creado automáticamente: {tipos_path.resolve()}")
-        print("✍️ Rellena manualmente la columna 'TIPO_ACTIVIDAD' con: almuerzo, charla, deportiva, ludica, only run, otro")
+        print(f"Archivo creado automáticamente: {tipos_path.resolve()}")
+        print("Rellena manualmente la columna 'TIPO_ACTIVIDAD' con: almuerzo, charla, deportiva, ludica, only run, otro")
 
     df = df.merge(df_tipos[["EVENTO_LIMPIO", "TIPO_ACTIVIDAD"]], on="EVENTO_LIMPIO", how="left")
     df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].fillna("otro")
@@ -116,8 +116,8 @@ def generar_dataset_modelo(input_path, output_path, tipos_path):
         df["COSTE_UNITARIO_VALIDADO"] = False
 
     df.to_csv(output_path, index=False)
-    print(f"✅ Dataset generado correctamente con {len(df)} eventos.")
-    print(f"📍 Guardado en: {output_path}")
+    print(f"Dataset generado correctamente con {len(df)} eventos.")
+    print(f"Guardado en: {output_path}")
 
 if __name__ == "__main__":
     generar_dataset_modelo(

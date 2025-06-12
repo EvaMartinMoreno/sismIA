@@ -28,9 +28,9 @@ def añadir_temperatura(df: pd.DataFrame, ciudad_point: Point, verbose: str) -> 
                 if not data.empty and "tavg" in data.columns:
                     df.at[idx, "TEMPERATURA"] = data["tavg"].values[0]
                 else:
-                    print(f"⚠️ No hay datos disponibles para {fecha.date()}")
+                    print(f" No hay datos disponibles para {fecha.date()}")
             except Exception as e:
-                print(f"❌ Error en {fecha.date()}: {e}")
+                print(f" Error en {fecha.date()}: {e}")
             time.sleep(1.2)
     return df
 
@@ -39,9 +39,9 @@ if __name__ == "__main__":
     df_real = pd.read_csv(REAL_PATH)
     df_real = añadir_temperatura(df_real, punto_estacion, "Reales")
     df_real.to_csv(REAL_OUTPUT, index=False)
-    print("✅ Dataset real actualizado con temperatura.")
+    print("Dataset real actualizado con temperatura.")
 
     df_sim = pd.read_csv(SIM_PATH)
     df_sim = añadir_temperatura(df_sim, punto_estacion, "Simulados")
     df_sim.to_csv(SIM_OUTPUT, index=False)
-    print("✅ Dataset simulado actualizado con temperatura.")
+    print(" Dataset simulado actualizado con temperatura.")

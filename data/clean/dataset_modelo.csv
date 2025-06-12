@@ -1,6 +1,6 @@
 NOMBRE_EVENTO,FECHA_EVENTO,COMUNIDAD,ARCHIVO_ORIGEN,COSTE_UNITARIO,NUM_INSCRITAS,NUM_PAGOS,NUM_ASISTENCIAS,TOTAL_RECAUDADO,DIA_MES,SEMANA_MES_AÑO,SEMANA_DENTRO_DEL_MES,MES,DIA_SEMANA,AÑO,DIA_SEMANA_NUM,TEMPORADA,PRECIO_MEDIO,COSTE_ESTIMADO,BENEFICIO_ESTIMADO,EVENTO_GRATUITO,TIPO_EVENTO,COLABORACION,TIPO_ACTIVIDAD,COSTE_UNITARIO_VALIDADO,TEMPERATURA
-Afterwork Run By Dash And Stars,2025-04-17,ELCHE,afterwork-run-by-dash-and-stars-17-dabril-del-2025-a1ca86.csv,7.0,12,12,11,180.0,17,16,3,4,Thursday,2025,3,primavera,15.0,84.0,96.0,0,pago,1,almuerzo,True,10.9
-Dash And Stars Run,2025-02-09,GIRONA,dash-and-stars-run-09-de-febrer-del-2025-2ec664.csv,9.0,25,25,25,375.0,9,6,2,2,Sunday,2025,6,invierno,15.0,225.0,150.0,0,pago,1,almuerzo,True,6.1
+Afterwork Run By Dash And Stars,2025-04-17,ELCHE,afterwork-run-by-dash-and-stars-17-dabril-del-2025-a1ca86.csv,7.0,12,12,11,180.0,17,16,3,4,Thursday,2025,3,primavera,15.0,84.0,96.0,0,pago,0,almuerzo,True,10.9
+Dash And Stars Run,2025-02-09,GIRONA,dash-and-stars-run-09-de-febrer-del-2025-2ec664.csv,9.0,25,25,25,375.0,9,6,2,2,Sunday,2025,6,invierno,15.0,225.0,150.0,0,pago,0,almuerzo,True,6.1
 Dimecres Morning Run  Cet,2024-05-01,GIRONA,dimecres-morning-run-01-de-maig-del-2024-cet.csv,0.0,12,0,11,0.0,1,18,1,5,Wednesday,2024,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,14.3
 Els Dimecres Amb Sisterhood,2024-02-14,GIRONA,els-dimecres-amb-sisterhood-14-de-febrer-de-2024.csv,0.0,9,0,9,0.0,14,7,2,2,Wednesday,2024,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,10.7
 Els Dimecres Amb Sisterhood,2024-02-21,GIRONA,els-dimecres-amb-sisterhood-21-de-febrer-de-2024.csv,0.0,11,0,9,0.0,21,8,3,2,Wednesday,2024,2,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,9.8
@@ -54,7 +54,7 @@ Els Dimecres Amb Sisterhood,2025-05-14,GIRONA,els-dimecres-amb-sisterhood-14-de-
 Els Dimecres Amb Sisterhood,2025-05-21,GIRONA,els-dimecres-amb-sisterhood-21-de-maig-del-2025-e1848c.csv,0.0,12,0,12,0.0,21,21,3,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,18.2
 Els Dimecres Amb Sisterhood,2025-05-28,GIRONA,els-dimecres-amb-sisterhood-28-de-maig-del-2025-405910.csv,0.0,9,0,8,0.0,28,22,4,5,Wednesday,2025,2,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,22.0
 Els Dimecres Amb Sisterhood,2025-06-04,GIRONA,els-dimecres-amb-sisterhood-04-de-juny-del-2025-581db2.csv,0.0,5,0,5,0.0,4,23,1,6,Wednesday,2025,2,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,21.7
-Lace Up Run,2025-05-22,ELCHE,lace-up-run-22-de-maig-del-2025-d2eb29.csv,0.0,29,0,27,0.0,22,21,4,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,1,charla,True,17.1
+Lace Up Run,2025-05-22,ELCHE,lace-up-run-22-de-maig-del-2025-d2eb29.csv,0.0,29,0,27,0.0,22,21,4,5,Thursday,2025,3,primavera,0.0,0.0,0.0,1,gratuito,0,charla,True,17.1
 Los Jueves Con Sh Elche,2025-01-23,ELCHE,los-jueves-con-sh-elche-23-de-gener-del-2025-551e6b.csv,0.0,10,0,10,0.0,23,4,4,1,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,13.0
 Los Jueves Con Sh Elche,2025-01-30,ELCHE,los-jueves-con-sh-elche-30-de-gener-del-2025-b66f8b.csv,0.0,10,0,10,0.0,30,5,5,1,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,10.9
 Los Jueves Con Sh Elche,2025-02-06,ELCHE,los-jueves-con-sh-elche-06-de-febrer-del-2025-cf139a.csv,0.0,11,0,11,0.0,6,6,1,2,Thursday,2025,3,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,6.0
@@ -78,12 +78,12 @@ Pre Xmas Runbrunch Elche,2024-12-22,ELCHE,pre-xmas-runbrunch-elche-22-de-desembr
 Primer Sisterhood Trail,2024-05-17,GIRONA,primer-sisterhood-trail-17-de-maig-del-2024.csv,0.0,8,0,7,0.0,17,20,3,5,Friday,2024,4,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.4
 Run Girobeer,2024-07-05,GIRONA,run-girobeer-05-de-juliol-del-2024.csv,0.0,13,0,12,0.0,5,27,1,7,Friday,2024,4,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,23.4
 Run Pel Dia De La Dona,2024-03-10,GIRONA,run-pel-dia-de-la-dona-10-de-marc-de-2024.csv,0.0,14,0,13,0.0,10,10,2,3,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,9.9
-Rundeo By Primetime I Sisterhood,2025-05-09,GIRONA,rundeo-by-primetime-i-sisterhood-09-de-maig-del-2025-7f5dbe.csv,10.0,64,64,64,960.0,9,19,2,5,Friday,2025,4,primavera,15.0,19200.0,-18240.0,0,pago,1,ludica,True,15.1
-Runlearn,2025-04-06,ELCHE,runlearn-06-dabril-del-2025-9691b4.csv,10.0,17,17,15,255.0,6,14,1,4,Sunday,2025,6,primavera,15.0,170.0,85.0,0,pago,1,charla,True,16.8
+Rundeo By Primetime I Sisterhood,2025-05-09,GIRONA,rundeo-by-primetime-i-sisterhood-09-de-maig-del-2025-7f5dbe.csv,300.0,64,64,64,960.0,9,19,2,5,Friday,2025,4,primavera,15.0,19200.0,-18240.0,0,pago,0,ludica,True,15.1
+Runlearn,2025-04-06,ELCHE,runlearn-06-dabril-del-2025-9691b4.csv,10.0,17,17,15,255.0,6,14,1,4,Sunday,2025,6,primavera,15.0,170.0,85.0,0,pago,0,charla,True,16.8
 Runtrust,2025-03-09,ELCHE,runtrust-09-de-marc-del-2025-eb00b7.csv,8.5,11,11,11,99.0,9,10,2,3,Sunday,2025,6,primavera,9.0,93.5,5.5,0,pago,0,almuerzo,True,11.7
-Sisterhood Codepilates,2024-10-06,GIRONA,sisterhood-codepilates-06-doctubre-del-2024-fc98d7.csv,12.0,29,29,28,435.0,6,40,1,10,Sunday,2024,6,otoño,15.0,348.0,87.0,0,pago,1,deportiva,True,18.4
+Sisterhood Codepilates,2024-10-06,GIRONA,sisterhood-codepilates-06-doctubre-del-2024-fc98d7.csv,12.0,29,29,28,435.0,6,40,1,10,Sunday,2024,6,otoño,15.0,348.0,87.0,0,pago,0,deportiva,True,18.4
 Sisterhood Trail,2024-06-14,GIRONA,sisterhood-trail-14-de-juny-del-2024.csv,0.0,5,0,4,0.0,14,24,2,6,Friday,2024,4,verano,0.0,0.0,0.0,1,gratuito,0,only run,True,20.4
-Sisterhood X Zel Hotels,2024-06-16,GIRONA,sisterhood-x-zel-hotels-16-de-juny-del-2024.csv,0.0,28,0,26,0.0,16,24,3,6,Sunday,2024,6,verano,0.0,0.0,0.0,1,gratuito,1,deportiva,True,18.9
+Sisterhood X Zel Hotels,2024-06-16,GIRONA,sisterhood-x-zel-hotels-16-de-juny-del-2024.csv,0.0,28,0,26,0.0,16,24,3,6,Sunday,2024,6,verano,0.0,0.0,0.0,1,gratuito,0,deportiva,True,18.9
 Sisterhood Xmas Event,2024-12-15,GIRONA,sisterhood-xmas-event-15-de-desembre-del-2024-ebee63.csv,28.0,14,14,14,448.0,15,50,3,12,Sunday,2024,6,invierno,32.0,392.0,56.0,0,pago,0,ludica,True,7.3
 Sunday Run,2024-02-25,GIRONA,sunday-run-25-de-febrer-de-2024.csv,0.0,10,0,10,0.0,25,8,4,2,Sunday,2024,6,invierno,0.0,0.0,0.0,1,gratuito,0,only run,True,8.9
 Sunday Run,2024-03-24,GIRONA,sunday-run-24-de-marc-de-2024.csv,0.0,13,0,12,0.0,24,12,4,3,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,12.9
@@ -93,4 +93,4 @@ Sunday Run,2024-05-05,GIRONA,sunday-run-05-de-maig-del-2024.csv,0.0,3,0,3,0.0,5,
 Sunday Run,2024-05-19,GIRONA,sunday-run-19-de-maig-del-2024.csv,0.0,8,0,6,0.0,19,20,3,5,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,15.8
 Sunday Run,2025-03-09,GIRONA,sunday-run-09-de-marc-del-2025-a84283.csv,0.0,36,36,33,540.0,9,10,2,3,Sunday,2025,6,primavera,15.0,0.0,540.0,0,pago,0,only run,True,11.7
 Sunday Run Emporda,2024-05-12,GIRONA,sunday-run-emporda-12-de-maig-del-2024.csv,0.0,23,0,21,0.0,12,19,2,5,Sunday,2024,6,primavera,0.0,0.0,0.0,1,gratuito,0,only run,True,17.3
-Sunkissed Run By Dash And Stars,2025-06-08,ELCHE,sunkissed-run-by-dash-and-stars-08-de-juny-del-2025-449c86.csv,12.0,18,18,18,324.0,8,23,2,6,Sunday,2025,6,verano,18.0,216.0,108.0,0,pago,1,almuerzo,True,19.6
+Sunkissed Run By Dash And Stars,2025-06-08,ELCHE,sunkissed-run-by-dash-and-stars-08-de-juny-del-2025-449c86.csv,12.0,18,18,18,324.0,8,23,2,6,Sunday,2025,6,verano,18.0,216.0,108.0,0,pago,0,almuerzo,True,20.8

@@ -10,7 +10,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # 📁 Rutas
 PATH_REAL = Path("data/clean/dataset_modelo.csv")
-PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
+PATH_SIM = Path("data/clean/simulacion_datos_girona_v2.csv")
 MODEL_PATH = Path("src/modelos/modelo_asistencias_girona.pkl")
 VERSION_PATH = Path("src/modelos/asistencias_version.txt")
 
@@ -36,7 +36,11 @@ def entrenar_modelo_asistencias():
         (df_sim["TEMPERATURA"].notnull())
     ]
 
-    # 👯 Unir ambos
+    # Eliminar eventos simulados que tengan la misma FECHA_EVENTO que los reales
+    fechas_reales = df_real["FECHA_EVENTO"].unique()
+    df_sim = df_sim[~df_sim["FECHA_EVENTO"].isin(fechas_reales)]
+
+    # Unir datos
     df_combined = pd.concat([df_real, df_sim], ignore_index=True)
 
     # 🧼 Normalizar texto y eliminar outliers
@@ -52,15 +56,15 @@ def entrenar_modelo_asistencias():
 
     # ✅ Validar si hay nuevos eventos
     num_eventos_actual = df_combined.shape[0]
-    if VERSION_PATH.exists():
-        with open(VERSION_PATH, "r") as f:
-            num_eventos_previo = int(f.read().strip())
-    else:
-        num_eventos_previo = -1
+    #if VERSION_PATH.exists():
+        #with open(VERSION_PATH, "r") as f:
+            #num_eventos_previo = int(f.read().strip())
+    #else:
+        #num_eventos_previo = -1
 
-    if num_eventos_actual == num_eventos_previo:
-        print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
-        return
+    #if num_eventos_actual == num_eventos_previo:
+        #print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
+        #return
 
     # Features y target
     features = [
@@ -102,8 +106,8 @@ def entrenar_modelo_asistencias():
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     r2 = r2_score(y_test, y_pred)
 
-    print("odelo de asistencias entrenado y guardado")
-    print(f"MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")
+    print("✅ Modelo de asistencias entrenado y guardado")
+    print(f"📊 MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")
 
 if __name__ == "__main__":
     entrenar_modelo_asistencias()

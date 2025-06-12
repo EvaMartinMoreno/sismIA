@@ -4,16 +4,16 @@ import json
 import pandas as pd
 from pathlib import Path
 from dotenv import load_dotenv
-from cleaning.limpieza_eventos_athletiks import generar_dataset_modelo
-from scraping.scraper_athletiks import scrappear_eventos
-from scraping.scraper_temperatura import añadir_temperatura, punto_estacion
+from src.cleaning.limpieza_eventos_athletiks import generar_dataset_modelo
+from src.scraping.scraper_athletiks import scrappear_eventos
+from src.scraping.scraper_temperatura import añadir_temperatura, punto_estacion
 import joblib
 from datetime import timedelta
 from selenium import webdriver
-from modelos.modelo_beneficio_Girona import entrenar_modelo_beneficio
-from modelos.modelo_asistencias_Girona import entrenar_modelo_asistencias
-from simulacion_datos import generar_datos_simulados
-from modelos.eventos_futuros_Girona import predecir_asistencias_Girona
+from src.modelos.modelo_beneficio_Girona import entrenar_modelo_beneficio
+from src.modelos.modelo_asistencias_Girona import entrenar_modelo_asistencias
+from src.simulacion_datos import generar_datos_simulados
+from src.modelos.eventos_futuros_Girona import predecir_eventos_girona
 
 # ------------------------------------------------------------------------------
 # 📁 Configuración
@@ -55,11 +55,11 @@ def ejecutar_limpieza():
     eventos_sin_tipo = df[df["TIPO_ACTIVIDAD"] == "otro"]["NOMBRE_EVENTO"].unique()
 
     if len(eventos_sin_tipo) > 0:
-        print(f"⚠️ Hay {len(eventos_sin_tipo)} eventos sin categorizar.")
+        print(f" Hay {len(eventos_sin_tipo)} eventos sin categorizar.")
         df[["NOMBRE_EVENTO", "FECHA_EVENTO"]].to_csv("data/entrada/eventos_sin_tipo.csv", index=False)
-        raise Exception("⛔ STOP: Hay eventos sin categorizar. Corrige antes de seguir.")
+        raise Exception(" STOP: Hay eventos sin categorizar. Corrige antes de seguir.")
     else:
-        print("✅ Todos los eventos están correctamente categorizados.")
+        print("odos los eventos están correctamente categorizados.")
 
 # ------------------------------------------------------------------------------
 # 3. Añadir variable TEMPERATURA a datasets
@@ -83,8 +83,8 @@ def simular_eventos_Girona():
     output_path = Path("data/raw/simulacion_datos_girona.csv")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     df_simulado.to_csv(output_path, index=False)
-    print(f"✅ Dataset simulado generado con {len(df_simulado)} eventos.")
-    print(f"📍 Guardado en: {output_path.resolve()}")
+    print(f"Dataset simulado generado con {len(df_simulado)} eventos.")
+    print(f"Guardado en: {output_path.resolve()}")
 
 # ------------------------------------------------------------------------------
 # 5. Entrenamiento de modelos
@@ -103,14 +103,16 @@ def entrenar_modelos():
 # 🔁 MAIN PIPELINE
 # ------------------------------------------------------------------------------
 def main():
-    #actualizar_datos_girona()
-    #actualizar_datos_elche()
-    #ejecutar_limpieza()
-    #simular_eventos_Girona()
-    #enriquecer_con_temperatura()
-    #entrenar_modelos()
-    predecir_asistencias_Girona()
-    print("✅ Pipeline ejecutado correctamente.")
+    actualizar_datos_girona()
+    actualizar_datos_elche()
+    ejecutar_limpieza()
+    simular_eventos_Girona()
+    enriquecer_con_temperatura()
+    entrenar_modelos()
+    predecir_eventos_girona()
+    entrenar_modelo_asistencias()
+    entrenar_modelo_beneficio()
+    print("Pipeline ejecutado correctamente.")
 
 if __name__ == "__main__":
     main()

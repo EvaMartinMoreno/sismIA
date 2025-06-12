@@ -1,12 +1,14 @@
 # =========================
 # 📦 Librerías
 # =========================
+import importlib
+import sys
+import src.pipeline_app as pipe
 import streamlit as st
 import pandas as pd
 import os
 import subprocess
 import locale
-import sys
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -17,6 +19,9 @@ load_dotenv()
 # =========================
 # 📁 Rutas
 # =========================
+SRC_PATH = Path(__file__).resolve().parent / "src"
+sys.path.insert(0, str(SRC_PATH))
+
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
 RESULTADOS_PATH = Path ("data/predicciones/predicciones_futuras.csv")
 REAL_PATH = Path("data/clean/dataset_modelo.csv")
@@ -71,11 +76,6 @@ st.markdown(
             text-decoration: none;
         }
     </style>
-    <div class="menu-container">
-        <a href="#actualizacion" class="menu-button">🔄 Actualizar datos</a>
-        <a href="#costes" class="menu-button">💸 Costes por evento</a>
-        <a href="#proximos-eventos" class="menu-button">📅 Próximos eventos</a>
-    </div>
     """,
     unsafe_allow_html=True
 )
@@ -83,17 +83,16 @@ st.markdown(
 # =========================
 # 🔄 Actualización de datos
 # =========================
-st.markdown("<h2 id='actualizacion'>Actualización de datos</h2>", unsafe_allow_html=True)
+if st.button("🔁 Actualizar datos"):
+    try:
+        with st.spinner("Actualizando datos…"):
+            importlib.reload(pipe)   
+            pipe.main()            
 
-if st.button("🔁"):
-    with st.spinner("Ejecutando actualización..."):
-        #result = subprocess.run([sys.executable, "src/pipeline_app.py"], capture_output=True, text=True)
-        result = scrappear_eventos(
-        usuario=USUARIO_GIRONA,
-        password=PASSWORD_GIRONA,
-        comunidad="GIRONA",
-        )
-        st.success(result or "Scraping completado.")
+        st.success("Datos actualizados✅")
+    except Exception as e:
+        st.error("⚠️ El pipeline falló.")
+        st.exception(e)
 
 # =========================
 # ✍️ Edición completa del evento
@@ -168,12 +167,12 @@ if REAL_PATH.exists():
 
                 if cambios > 0:
                     df_eventos.to_csv(REAL_PATH, index=False)
-                    st.success("✅ Cambios guardados correctamente.")
+                    st.success(" Cambios guardados correctamente.")
                     st.rerun()
                 else:
                     st.info("No se realizaron cambios.")
 else:
-    st.error("❌ No se encuentra el archivo de eventos.")
+    st.error("No se encuentra el archivo de eventos.")
 
 # =========================
 # 📊 Próximos eventos
@@ -185,35 +184,53 @@ col1, col2 = st.columns(2)
 
 # === 📍 Evento real
 with col1:
-    st.subheader("📢 Próximo evento")
     if REAL_PATH.exists():
         df_real = pd.read_csv(REAL_PATH, parse_dates=["FECHA_EVENTO"])
-        df_real = df_real[
-            (df_real["TIPO_EVENTO"] == "pago") & (df_real["FECHA_EVENTO"] >= pd.Timestamp.now())
-        ]
-        if not df_real.empty:
-            proximo_real = df_real.sort_values("FECHA_EVENTO").iloc[0]
-            fecha_real = proximo_real["FECHA_EVENTO"].strftime("%d/%m/%Y")
-            comunidad_real = proximo_real["COMUNIDAD"]
+
+        # Filtra solo eventos de tipo pago
+        df_real = df_real[df_real["TIPO_EVENTO"] == "pago"]
+
+        # Divide en futuros y pasados
+        df_futuros = df_real[df_real["FECHA_EVENTO"] >= pd.Timestamp.now()]
+        df_pasados = df_real[df_real["FECHA_EVENTO"] < pd.Timestamp.now()]
+
+        if not df_futuros.empty:
+            evento = df_futuros.sort_values("FECHA_EVENTO").iloc[0]
+            st.subheader("📢 Próximo evento")
+        elif not df_pasados.empty:
+            evento = df_pasados.sort_values("FECHA_EVENTO", ascending=False).iloc[0]
+            st.subheader("📢 Último evento realizado")
+        else:
+            evento = None
+            st.info("No hay eventos reales registrados.")
+
+        if evento is not None:
+            fecha_real = evento["FECHA_EVENTO"].strftime("%d/%m/%Y")
+            comunidad_real = evento["COMUNIDAD"]
 
             asistencia_real = (
-                int(proximo_real["NUM_ASISTENCIAS"])
-                if "NUM_ASISTENCIAS" in proximo_real and pd.notna(proximo_real["NUM_ASISTENCIAS"])
+                int(evento["NUM_ASISTENCIAS"])
+                if "NUM_ASISTENCIAS" in evento and pd.notna(evento["NUM_ASISTENCIAS"])
                 else "N/A"
             )
 
             beneficio_real = (
-                round(proximo_real["BENEFICIO_ESTIMADO"], 2)
-                if "BENEFICIO_ESTIMADO" in proximo_real and pd.notna(proximo_real["BENEFICIO_ESTIMADO"])
+                round(evento["BENEFICIO_ESTIMADO"], 2)
+                if "BENEFICIO_ESTIMADO" in evento and pd.notna(evento["BENEFICIO_ESTIMADO"])
                 else "N/A"
             )
 
             st.markdown(f"🗓️ Fecha: **{fecha_real}**")
             st.markdown(f"📍 Comunidad: **{comunidad_real}**")
             st.markdown(f"👥 Inscritas: **{asistencia_real}** personas")
-            st.markdown(f"💰 Beneficio actual: **{beneficio_real} €**")
-        else:
-            st.info("No hay eventos reales programados.")
+            st.markdown(f"💰 Beneficio: **{beneficio_real} €**")
+            # Mostrar imagen de Instagram si existe SHORTCODE
+            if "INSTAGRAM_SHORTCODE" in evento and pd.notna(evento["INSTAGRAM_SHORTCODE"]):
+                shortcode = evento["INSTAGRAM_SHORTCODE"]
+                insta_url = f"https://www.instagram.com/p/{shortcode}/media/?size=l"
+                st.image(insta_url, caption="📸 Imagen del evento en Instagram", use_column_width=True)
+                st.markdown(f"[Ver post en Instagram](https://www.instagram.com/p/{shortcode}/)")
+
     else:
         st.warning("Falta el archivo de datos reales.")
 
@@ -235,10 +252,11 @@ with col2:
             )
 
             beneficio_sim = (
-                round(proximo_sim["BENEFICIO_PREDICHO"], 2)
-                if "BENEFICIO_PREDICHO" in proximo_sim and pd.notna(proximo_sim["BENEFICIO_PREDICHO"])
+            round(proximo_sim["BENEFICIO_ESTIMADO"], 2)
+                if "BENEFICIO_ESTIMADO" in proximo_sim and pd.notna(proximo_sim["BENEFICIO_ESTIMADO"])
                 else "N/A"
-            )
+                )
+
 
             st.markdown(f"🗓️ Te recomiendo la fecha: **{fecha_sim}**")
             st.markdown(f"📍 Comunidad: **GIRONA**")
