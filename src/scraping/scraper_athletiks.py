@@ -8,8 +8,8 @@ import shutil
 import os
 from urllib.parse import urljoin, urlparse
 
-def scrappear_eventos(usuario, password, comunidad):
 
+def scrappear_eventos(usuario, password, comunidad):
     BASE_DIR = os.path.join("data", "raw", "athletiks", comunidad.upper())
     DESCARGAS_DIR = os.path.join(os.path.expanduser("~"), "Downloads")
     os.makedirs(BASE_DIR, exist_ok=True)
@@ -34,29 +34,27 @@ def scrappear_eventos(usuario, password, comunidad):
     if "signin" in driver.current_url or "login" in driver.current_url:
         print("Error: Credenciales inválidas")
         driver.quit()
+        return
 
     driver.get("https://athletiks.io/es/profile")
     time.sleep(5)
-    event_articles = driver.find_elements(By.TAG_NAME, "article")
-    total_eventos = len(event_articles)
-    print(f" [{comunidad}] Eventos encontrados: {total_eventos}")
-    for index in range(total_eventos):
+
+    print(f"📌 [{comunidad}] Buscando eventos con inscripción abierta...")
+
+    descargados = 0
+    intentos = 0
+
+    while descargados < 2 and intentos < 15:
+        event_articles = driver.find_elements(By.TAG_NAME, "article")
+        if intentos >= len(event_articles):
+            break
+
+        article = event_articles[intentos]
         try:
-            print(f"\n Procesando evento {index + 1} de {total_eventos}...")
-
-            driver.get("https://athletiks.io/es/profile")
-            time.sleep(4)
-            event_articles = driver.find_elements(By.TAG_NAME, "article")
-
-            if index >= len(event_articles):
-                print("El índice ya no existe. Saltando evento.")
-                continue
-
-            article = event_articles[index]
             driver.execute_script("arguments[0].scrollIntoView(true);", article)
             time.sleep(1)
             article.click()
-            time.sleep(2)
+            time.sleep(3)
 
             current_url = driver.current_url
             if not current_url.endswith("/"):
@@ -70,36 +68,50 @@ def scrappear_eventos(usuario, password, comunidad):
             nombre_archivo = f"{slug}.csv"
             ruta_archivo = os.path.join(BASE_DIR, nombre_archivo)
 
-            # 💾 Hacer click y descargar
+            if os.path.exists(ruta_archivo):
+                print(f"✅ Ya existe: {nombre_archivo}. Saltando.")
+                intentos += 1
+                driver.back()
+                time.sleep(2)
+                continue
+
             try:
                 download_button = driver.find_element(By.XPATH, "//button[.//span[contains(translate(text(),'ASISTENTES','asistentes'),'asistentes')]]")
                 download_button.click()
-                print(" Botón de descarga clicado")
+                print("📥 Botón de descarga clicado")
                 time.sleep(5)
-            except Exception as e:
-                print(f" No se pudo clicar botón de descarga. Error: {e}")
+            except Exception:
+                print("🚫 Evento sin inscripción abierta o sin botón de descarga. Saltando.")
+                intentos += 1
+                driver.back()
+                time.sleep(2)
                 continue
 
-            # Mover archivo descargado
             try:
                 files = [f for f in os.listdir(DESCARGAS_DIR) if f.endswith(".csv")]
                 if not files:
-                    print(" No se encontró ningún CSV en la carpeta de descargas.")
+                    print("❌ No se encontró ningún CSV en la carpeta de descargas.")
                 else:
                     latest_file = max(
                         [os.path.join(DESCARGAS_DIR, f) for f in files],
                         key=os.path.getctime
                     )
                     shutil.move(latest_file, ruta_archivo)
-                    print(f" CSV guardado como: {ruta_archivo}")
+                    print(f"✅ CSV guardado como: {ruta_archivo}")
+                    descargados += 1
             except Exception as e:
-                print(f" Error moviendo archivo: {e}")
+                print(f"❌ Error moviendo archivo: {e}")
 
         except Exception as e:
-            print(f"Error inesperado en evento {index + 1}: {e}")
+            print(f"⚠️ Error inesperado: {e}")
+
+        intentos += 1
+        driver.get("https://athletiks.io/es/profile")
+        time.sleep(3)
 
     driver.quit()
-    print(f"Scraping finalizado para {comunidad}.")
+    print(f"🚀 Scraping finalizado para {comunidad}. {descargados} evento(s) descargado(s).")
+
 
 if __name__ == "__main__":
     import getpass

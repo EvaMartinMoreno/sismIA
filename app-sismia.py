@@ -21,7 +21,7 @@ load_dotenv()
 # =========================
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
 RESULTADOS_PATH = Path ("data/predicciones/simulaciones_futuras.csv")
-REAL_PATH = Path("data/clean/dataset_modelo.csv")
+REAL_PATH = Path("data/raw/dataset_modelo.csv")
 USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
 PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
 USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
@@ -140,13 +140,14 @@ if REAL_PATH.exists():
 
                 colaboracion = col2.checkbox("¿Colaboración?", value=bool(row["COLABORACION"]), key=f"colab_{i}")
 
+                tipo_default = row["TIPO_ACTIVIDAD"] if row["TIPO_ACTIVIDAD"] in ["ludico", "only run", "desayuno", "deportivo", "charla"] else "ludico"
                 tipo = col3.selectbox(
                     "Tipo de actividad", 
-                    options=["ludico", "only run", "desayuno", "deportivo"], 
-                    index=4 if row["TIPO_ACTIVIDAD"] not in ["competitiva", "ludico", "social", "formativo"] else
-                          ["competitiva", "ludico", "social", "formativo", "otro"].index(row["TIPO_ACTIVIDAD"]),
+                    options=["ludico", "only run", "desayuno", "deportivo", "charla"], 
+                    index=["ludico", "only run", "desayuno", "deportivo", "charla"].index(tipo_default),
                     key=f"tipo_{i}"
                 )
+
                 validar = col5.checkbox("✅ Validar", key=f"validar_{i}")
 
                 nuevas_filas.append((row["NOMBRE_EVENTO"], coste, colaboracion, tipo, validar))
@@ -164,6 +165,7 @@ if REAL_PATH.exists():
 
                 if cambios > 0:
                     df_eventos.to_csv(REAL_PATH, index=False)
+                    df_eventos.to_csv("data/clean/dataset_modelo.csv", index=False)
                     st.success(" Cambios guardados correctamente.")
                     st.rerun()
                 else:
