@@ -100,3 +100,13 @@ def scrappear_eventos(usuario, password, comunidad):
 
     driver.quit()
     print(f"Scraping finalizado para {comunidad}.")
+
+if __name__ == "__main__":
+    import getpass
+
+    print("🟣 Scraper de Athletiks")
+    comunidad = input("Comunidad (ej. Girona, Elche): ").strip()
+    usuario = input("Email: ").strip()
+    password = getpass.getpass("Contraseña: ")
+
+    scrappear_eventos(usuario, password, comunidad)

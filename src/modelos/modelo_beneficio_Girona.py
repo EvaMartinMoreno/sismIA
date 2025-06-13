@@ -12,7 +12,7 @@ PATH_REAL = Path("data/clean/dataset_modelo.csv")
 PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
 MODEL_PATH = Path("src/modelos/modelo_beneficio_girona.pkl")
 VERSION_PATH = Path("src/modelos/beneficio_version.txt")
-CSV_FUTURO = Path("data/predicciones/predicciones_futuras.csv")
+CSV_FUTURO = Path("data/predicciones/simulaciones_futuras.csv")
 
 def entrenar_modelo_beneficio():
     # 📥 Cargar datos
@@ -34,28 +34,25 @@ def entrenar_modelo_beneficio():
     # 🔀 Unir
     df_total = pd.concat([df_real, df_sim], ignore_index=True)
 
-    # ✅ Validar si hay nuevos eventos
-    num_eventos_actual = df_total.shape[0]
-    if VERSION_PATH.exists():
-        with open(VERSION_PATH, "r") as f:
-            num_eventos_previo = int(f.read().strip())
-    else:
-        num_eventos_previo = -1
-
-    if num_eventos_actual == num_eventos_previo:
-        print("⏩ No hay nuevos eventos. Se omite el reentrenamiento.")
-        return
-
     # 🔢 Features y target
     features = [
         "NUM_ASISTENCIAS", "COSTE_UNITARIO", "PRECIO_MEDIO",
         "MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_DENTRO_DEL_MES",
         "TEMPORADA", "COLABORACION", "TIPO_ACTIVIDAD", "TEMPERATURA"
     ]
+    target = "BENEFICIO_ESTIMADO"
 
-    df_total = df_total.dropna(subset=features + ["BENEFICIO_ESTIMADO"])
-    X = pd.get_dummies(df_total[features], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-    y = df_total["BENEFICIO_ESTIMADO"]
+    df_total = df_total.dropna(subset=features + [target])
+    df_total["TIPO_ACTIVIDAD"] = df_total["TIPO_ACTIVIDAD"].str.strip().str.lower().replace({"ludica": "ludico"})
+
+    df_model = pd.get_dummies(df_total[features + [target]], columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
+
+    # Separar X e y
+    X = df_model.drop(columns=[target])
+    y = df_model[target]
+
+    # Guardar columnas usadas
+    final_features = X.columns.tolist()
 
     # ✂️ Split 80/20
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -64,15 +61,16 @@ def entrenar_modelo_beneficio():
     modelo = LinearRegression()
     modelo.fit(X_train, y_train)
 
-    # 💾 Guardar modelo
+    # 💾 Guardar modelo + columnas como tuple
     MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
-    joblib.dump(modelo, MODEL_PATH)
+    joblib.dump((modelo, final_features), MODEL_PATH)
 
-    # Guardar nueva versión
+    # Guardar versión de eventos
+    num_eventos_actual = df_total.shape[0]
     with open(VERSION_PATH, "w") as f:
         f.write(str(num_eventos_actual))
 
-    # 📏 Evaluación
+    # 📏 Métricas
     y_pred = modelo.predict(X_test)
     mae = mean_absolute_error(y_test, y_pred)
     rmse = np.sqrt(mean_squared_error(y_test, y_pred))
@@ -80,39 +78,6 @@ def entrenar_modelo_beneficio():
 
     print("✅ Modelo de beneficio entrenado y guardado")
     print(f"📊 MAE: {mae:.2f} | RMSE: {rmse:.2f} | R²: {r2:.2f}")
-
-    # ==========================================
-    # ➕ APLICAR MODELO A EVENTOS FUTUROS
-    # ==========================================
-    if CSV_FUTURO.exists():
-        df_futuro = pd.read_csv(CSV_FUTURO)
-
-        df_futuro["TIPO_ACTIVIDAD"] = df_futuro["TIPO_ACTIVIDAD"].str.strip().str.lower().replace({"ludica": "ludico"})
-
-        features_futuro = [
-            "NUM_ASISTENCIAS", "COSTE_UNITARIO", "PRECIO_MEDIO",
-            "MES", "DIA_SEMANA_NUM", "DIA_MES", "SEMANA_DENTRO_DEL_MES",
-            "TEMPORADA", "COLABORACION", "TIPO_ACTIVIDAD", "TEMPERATURA"
-        ]
-
-        df_modelo_futuro = df_futuro[features_futuro].copy()
-        df_modelo_futuro = pd.get_dummies(df_modelo_futuro, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-
-        # Alinear columnas
-        columnas_modelo = modelo.feature_names_in_
-        for col in columnas_modelo:
-            if col not in df_modelo_futuro.columns:
-                df_modelo_futuro[col] = 0
-        df_modelo_futuro = df_modelo_futuro[columnas_modelo]
-
-        # Predecir beneficio
-        df_futuro["BENEFICIO_ESTIMADO"] = modelo.predict(df_modelo_futuro).round(2)
-
-        # Guardar CSV actualizado
-        df_futuro.to_csv(CSV_FUTURO, index=False)
-        print("Columna BENEFICIO_ESTIMADO añadida al archivo de predicciones futuras.")
-    else:
-        print("No se encontró el archivo de predicciones futuras para aplicar el modelo.")
 
 if __name__ == "__main__":
     entrenar_modelo_beneficio()

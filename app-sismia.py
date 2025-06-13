@@ -19,11 +19,8 @@ load_dotenv()
 # =========================
 # 📁 Rutas
 # =========================
-SRC_PATH = Path(__file__).resolve().parent / "src"
-sys.path.insert(0, str(SRC_PATH))
-
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
-RESULTADOS_PATH = Path ("data/predicciones/predicciones_futuras.csv")
+RESULTADOS_PATH = Path ("data/predicciones/simulaciones_futuras.csv")
 REAL_PATH = Path("data/clean/dataset_modelo.csv")
 USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
 PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")

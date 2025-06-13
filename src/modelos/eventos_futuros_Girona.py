@@ -2,59 +2,68 @@
 import pandas as pd
 import joblib
 from pathlib import Path
-from datetime import timedelta, date
-from sklearn.preprocessing import StandardScaler
+from datetime import date, timedelta
 import random
 
 # 📁 Rutas
 PATH_REALES = Path("data/clean/dataset_modelo.csv")
-OUTPUT_PATH = Path("data/predicciones/predicciones_futuras.csv")
-MODEL_PATH = Path("src/modelos/modelo_asistencias_girona.pkl")
+OUTPUT_PATH = Path("data/predicciones/simulaciones_futuras.csv")
+MODEL_PATH_ASIST = Path("src/modelos/modelo_asistencias_girona.pkl")
+MODEL_PATH_BENEF = Path("src/modelos/modelo_beneficio_girona.pkl")
 
-def primer_domingo_del_mes(year, month):
-    for day in range(1, 8):
-        if date(year, month, day).weekday() == 6:  # 6 = domingo
-            return date(year, month, day)
+def generar_fecha_evento(prob_dias, prob_semanas, fecha_inicio):
+    for _ in range(10):  # intentar varias combinaciones
+        mes = random.randint(1, 12)
+        año = fecha_inicio.year + 1 if mes < fecha_inicio.month else fecha_inicio.year
+        dia_semana = random.choices(list(prob_dias.keys()), weights=prob_dias.values())[0]
+        semana_mes = random.choices(list(prob_semanas.keys()), weights=prob_semanas.values())[0]
+        base_dia = (semana_mes - 1) * 7 + 1
+
+        for offset in range(7):
+            dia_candidato = base_dia + offset
+            try:
+                fecha = date(año, mes, dia_candidato)
+                if fecha.weekday() == dia_semana and fecha > fecha_inicio:
+                    return fecha
+            except:
+                continue
+    return fecha_inicio + timedelta(days=30)  # fallback
 
 def predecir_eventos_girona():
     # === Cargar dataset real
     df_real = pd.read_csv(PATH_REALES)
     df_real["FECHA_EVENTO"] = pd.to_datetime(df_real["FECHA_EVENTO"], errors="coerce")
-
-    # === Filtrar solo eventos de pago
     df_real = df_real[df_real["TIPO_EVENTO"] == "pago"]
-
-    # === Excluir tipo de actividad "only run"
     df_real = df_real[df_real["TIPO_ACTIVIDAD"].str.lower().str.strip() != "only run"]
 
-    # === Detectar última fecha real
-    fecha_inicio = df_real["FECHA_EVENTO"].max().date()
-    primer_mes = fecha_inicio.month + 1 if fecha_inicio.day > 7 else fecha_inicio.month
-    primer_año = fecha_inicio.year
+    # === Probabilidades reales de fechas
+    df_real["DIA_SEMANA_NUM"] = df_real["FECHA_EVENTO"].dt.weekday
+    df_real["SEMANA_DENTRO_DEL_MES"] = (df_real["FECHA_EVENTO"].dt.day - 1) // 7 + 1
+    prob_dias = df_real["DIA_SEMANA_NUM"].value_counts(normalize=True).to_dict()
+    prob_semanas = df_real["SEMANA_DENTRO_DEL_MES"].value_counts(normalize=True).to_dict()
 
-    # === Calcular valores representativos
+    # === Punto de partida de fechas
+    fecha_inicio = df_real["FECHA_EVENTO"].max().date()
+
+    # === Valores promedio y top categorías
     promedio_coste = df_real["COSTE_ESTIMADO"].mean()
     promedio_precio = df_real["PRECIO_MEDIO"].mean()
     promedio_temp = df_real["TEMPERATURA"].mean()
-
-    # Muestreo aleatorio entre los más comunes
     top_tipos = df_real["TIPO_ACTIVIDAD"].value_counts().head(3).index.tolist()
     top_colab = df_real["COLABORACION"].value_counts().head(2).index.tolist()
     top_temp = df_real["TEMPORADA"].value_counts().head(3).index.tolist()
 
-    # === Generar eventos futuros (uno al mes)
+    # === Generar eventos futuros
     eventos_futuros = []
-    for i in range(6):
-        month = (primer_mes + i - 1) % 12 + 1
-        year = primer_año + ((primer_mes + i - 1) // 12)
-        fecha = primer_domingo_del_mes(year, month)
-
+    for _ in range(6):
+        fecha = generar_fecha_evento(prob_dias, prob_semanas, fecha_inicio)
         evento = {
             "FECHA_EVENTO": fecha,
             "COSTE_ESTIMADO": promedio_coste,
             "PRECIO_MEDIO": promedio_precio,
             "DIA_SEMANA_NUM": fecha.weekday(),
             "MES": fecha.month,
+            "DIA_MES": fecha.day,
             "SEMANA_DENTRO_DEL_MES": (fecha.day - 1) // 7 + 1,
             "COLABORACION": random.choice(top_colab),
             "TEMPORADA": random.choice(top_temp),
@@ -65,42 +74,31 @@ def predecir_eventos_girona():
         eventos_futuros.append(evento)
 
     df = pd.DataFrame(eventos_futuros)
+    df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].str.strip().str.lower().replace({"ludica": "ludico"})
 
-    # === Normalizar texto
-    df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].str.strip().str.lower()
-    df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].replace({"ludica": "ludico"})
+    # === Predicción de asistentes
+    modelo_asist, cols_asist = joblib.load(MODEL_PATH_ASIST)
+    df_asist = pd.get_dummies(df, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
+    for col in cols_asist:
+        if col not in df_asist.columns:
+            df_asist[col] = 0
+    df_asist = df_asist.reindex(columns=cols_asist, fill_value=0)
+    df["ASISTENCIAS_PREDICHAS"] = modelo_asist.predict(df_asist)
 
-    # === Cargar modelo y columnas esperadas
-    modelo, columnas_esperadas = joblib.load(MODEL_PATH)
+    # === Predicción de beneficio
+    modelo_benef, cols_benef = joblib.load(MODEL_PATH_BENEF)
+    df["NUM_ASISTENCIAS"] = df["ASISTENCIAS_PREDICHAS"]
+    df_benef = pd.get_dummies(df, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
+    for col in cols_benef:
+        if col not in df_benef.columns:
+            df_benef[col] = 0
+    df_benef = df_benef.reindex(columns=cols_benef, fill_value=0)
+    df["BENEFICIO_ESTIMADO"] = modelo_benef.predict(df_benef).round(2)
 
-    # === Validación de NaNs
-    features_basicos = [
-        "COSTE_ESTIMADO", "PRECIO_MEDIO", "DIA_SEMANA_NUM", "MES",
-        "SEMANA_DENTRO_DEL_MES", "COLABORACION", "TEMPORADA", "TIPO_ACTIVIDAD", "TEMPERATURA"
-    ]
-    df = df.dropna(subset=features_basicos)
-
-    # === Dummies
-    df_dummies = pd.get_dummies(df, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
-
-    # === Añadir columnas faltantes y reordenar
-    for col in columnas_esperadas:
-        if col not in df_dummies.columns:
-            df_dummies[col] = 0
-    df_dummies = df_dummies.reindex(columns=columnas_esperadas, fill_value=0)
-
-    # === Escalado
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(df_dummies)
-
-    # === Predicción
-    predicciones = modelo.predict(X_scaled)
-    df["ASISTENCIAS_PREDICHAS"] = predicciones
-
-    # === Guardado
+    # === Guardar CSV final
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUTPUT_PATH, index=False)
-    print(f"✅ Predicciones futuras guardadas en: {OUTPUT_PATH.resolve()}")
+    print(f"✅ Simulaciones futuras guardadas con beneficio en: {OUTPUT_PATH.resolve()}")
 
 if __name__ == "__main__":
     predecir_eventos_girona()
