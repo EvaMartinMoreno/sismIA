@@ -1,5 +1,5 @@
-** SismIA 💡** 
-Plataforma inteligente para la gestión, análisis y predicción de eventos deportivos diseñada para Comunidades Runners.
+** SismIA 💡: 
+Plataforma inteligente para la gestión, análisis y predicción de eventos deportivos diseñada para Comunidades Runners.** 
 Desde el scraping hasta la simulación de próximos eventos, esta app está diseñada para ayudar a tomar decisiones estratégicas basadas en datos reales.
 
 ---
@@ -12,9 +12,9 @@ Desde el scraping hasta la simulación de próximos eventos, esta app está dise
 - 🔮 Simula eventos futuros y recomienda fechas óptimas.
 - 📅 Muestra dashboards con próximos eventos reales y simulados.
 
----
-**Estructura del proyecto**
+## 🗂️ Estructura del proyecto
 
+```text
 sismia/
 ├── src/
 │   ├── app-sismia.py               # App principal con Streamlit
@@ -41,17 +41,18 @@ sismia/
 **⚙️ Instalación**
 1. Clona el repositorio:
 git clone https://github.com/tu_usuario/sismia.git
-2. Instala las dependencias:
+2. Crea el entorno virtual (sismia_env) y actívalo
+python -m venv sismia_env
+.\sismia_env\scripts\activate
+3. Instala las dependencias:
 pip install -r requirements.txt
-3. Crea un archivo .env en la raíz con tus credenciales de acceso:
-USUARIO_GIRONA=tu_usuario
-PASSWORD_GIRONA=tu_password
-USUARIO_ELCHE=tu_usuario
-PASSWORD_ELCHE=tu_password
+4. Crea un archivo .env en la raíz con tus credenciales de acceso:
+USUARIO=tu_usuario
+PASSWORD=tu_password
 
 ** ¿Cómo se ejecuta? **
 Desde la raíz del proyecto:
-streamlit run src/app-sismia.py
+streamlit run app-sismia.py
 
 ** ¿A quién va dirigido?**
 Organizadoras de eventos deportivos (clubs, comunidades, marcas).
@@ -64,5 +65,6 @@ Automatización de toda la cadena desde la app (scraping > predicción > dashboa
 Gestión multicomunidad y multiusuario.
 Packs de experiencias y turismo deportivo inteligente.
 
-"SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos." 🏃‍♀️📊
+"*SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
+Porque tu evento no se intuye, tu evento se entrena*".
 
