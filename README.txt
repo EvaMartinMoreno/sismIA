@@ -43,7 +43,6 @@ sismia/
 git clone https://github.com/tu_usuario/sismia.git
 2. Instala las dependencias:
 pip install -r requirements.txt
-🧾 Ver archivo de dependencias completo
 3. Crea un archivo .env en la raíz con tus credenciales de acceso:
 USUARIO_GIRONA=tu_usuario
 PASSWORD_GIRONA=tu_password
