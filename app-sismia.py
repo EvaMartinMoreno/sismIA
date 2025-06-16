@@ -12,7 +12,6 @@ import locale
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
-from src.scraping.scraper_athletiks import scrappear_eventos
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -22,6 +21,7 @@ load_dotenv()
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
 RESULTADOS_PATH = Path ("data/predicciones/simulaciones_futuras.csv")
 REAL_PATH = Path("data/raw/dataset_modelo.csv")
+VALIDADO_PATH = Path("data/raw/dataset_modelo_validado.csv")
 USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
 PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
 USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
@@ -78,17 +78,30 @@ st.markdown(
 )
 
 # =========================
-# 🔄 Actualización de datos
+# 🔄 Actualización de datos (Fase 1)
 # =========================
-if st.button("🔁 Actualizar datos"):
+if st.button("🔁 Actualizar datos (scraping + limpieza)"):
     try:
         with st.spinner("Actualizando datos…"):
-            importlib.reload(pipe)   
-            pipe.main()            
-
-        st.success("Datos actualizados✅")
+            importlib.reload(pipe)
+            pipe.main_primera_fase()
+        st.success("Datos actualizados correctamente ✅")
+        st.info("Ahora introduce los datos manualmente y valídalos antes de continuar.")
     except Exception as e:
-        st.error("⚠️ El pipeline falló.")
+        st.error("⚠️ El pipeline falló en la FASE 1.")
+        st.exception(e)
+
+# =========================
+# 🔄 Continuar con simulación y modelos (Fase 2)
+# =========================
+if st.button("🚀 Continuar actualización (simulación + modelos + predicción)"):
+    try:
+        with st.spinner("Procesando simulación y modelos…"):
+            importlib.reload(pipe)
+            pipe.main_segunda_fase()
+        st.success("Proceso completado correctamente ✅")
+    except Exception as e:
+        st.error("⚠️ El pipeline falló en la FASE 2.")
         st.exception(e)
 
 # =========================
@@ -98,7 +111,7 @@ if REAL_PATH.exists():
     df_eventos = pd.read_csv(REAL_PATH)
 
     # Inicializar columnas si faltan
-    for col in ["COSTE_UNITARIO", "COSTE_UNITARIO_VALIDADO", "COLABORACION", "TIPO_ACTIVIDAD", "INSTAGRAM_SHORTCODE"]:
+    for col in ["COSTE_UNITARIO", "COSTE_UNITARIO_VALIDADO", "COLABORACION", "TIPO_ACTIVIDAD"]:
         if col not in df_eventos.columns:
             if col == "COSTE_UNITARIO":
                 df_eventos[col] = np.nan
@@ -119,8 +132,11 @@ if REAL_PATH.exists():
 
     pendientes = df_formulario[df_formulario["COSTE_UNITARIO_VALIDADO"] == False].copy()
 
-    if pendientes.empty:
+    if pendientes.empty and not st.session_state.get("guardado_exitoso", False):
         st.success("🎉 Todos los eventos están validados.")
+    elif st.session_state.get("guardado_exitoso", False):
+        st.success("✅ Cambios guardados correctamente.")
+        st.session_state["guardado_exitoso"] = False  # Resetear
     else:
         with st.form("form_edicion_eventos"):
             nuevas_filas = []
@@ -149,7 +165,6 @@ if REAL_PATH.exists():
                 )
 
                 validar = col5.checkbox("✅ Validar", key=f"validar_{i}")
-
                 nuevas_filas.append((row["NOMBRE_EVENTO"], coste, colaboracion, tipo, validar))
                 st.markdown("---")
 
@@ -161,12 +176,12 @@ if REAL_PATH.exists():
                     df_eventos.loc[mask, "COLABORACION"] = int(colab)
                     df_eventos.loc[mask, "TIPO_ACTIVIDAD"] = tipo
                     df_eventos.loc[mask, "COSTE_UNITARIO_VALIDADO"] = validado
+                    df_eventos["BENEFICIO"] = df_eventos["TOTAL_RECAUDADO"] - df_eventos["COSTE_UNITARIO"] * df_eventos["NUM_ASISTENCIAS"].fillna(0)
                     cambios += 1
 
                 if cambios > 0:
-                    df_eventos.to_csv(REAL_PATH, index=False)
-                    df_eventos.to_csv("data/clean/dataset_modelo.csv", index=False)
-                    st.success(" Cambios guardados correctamente.")
+                    df_eventos.to_csv(VALIDADO_PATH, index=False)
+                    st.session_state["guardado_exitoso"] = True
                     st.rerun()
                 else:
                     st.info("No se realizaron cambios.")
@@ -223,13 +238,6 @@ with col1:
             st.markdown(f"📍 Comunidad: **{comunidad_real}**")
             st.markdown(f"👥 Inscritas: **{asistencia_real}** personas")
             st.markdown(f"💰 Beneficio: **{beneficio_real} €**")
-            # Mostrar imagen de Instagram si existe SHORTCODE
-            if "INSTAGRAM_SHORTCODE" in evento and pd.notna(evento["INSTAGRAM_SHORTCODE"]):
-                shortcode = evento["INSTAGRAM_SHORTCODE"]
-                insta_url = f"https://www.instagram.com/p/{shortcode}/media/?size=l"
-                st.image(insta_url, caption="📸 Imagen del evento en Instagram", use_column_width=True)
-                st.markdown(f"[Ver post en Instagram](https://www.instagram.com/p/{shortcode}/)")
-
     else:
         st.warning("Falta el archivo de datos reales.")
 

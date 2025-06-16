@@ -57,17 +57,20 @@ def ajustar_fecha_con_pesos(fecha_base: pd.Timestamp) -> pd.Timestamp:
     dias_hasta_dia = (dia_semana_num - fecha_base.weekday()) % 7
     return fecha_base + pd.Timedelta(days=dias_hasta_dia)
 
-df = pd.read_csv("data/raw/dataset_modelo.csv")
-
-# Filtra solo eventos validados
-df_validos = df[df["COSTE_UNITARIO_VALIDADO"] == True]
-
-if df_validos.empty:
-    raise ValueError("❌ No hay eventos con COSTE_UNITARIO_VALIDADO == True. No se puede simular.")
-
-
 def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60,
                              eventos_pago_por_mes: int = 1, eventos_gratuito_por_mes: int = 4) -> pd.DataFrame:
+    dataset_path = Path("data/raw/dataset_modelo_validado.csv")
+    if not dataset_path.exists():
+        raise FileNotFoundError("❌ No se encuentra el dataset_modelo.csv")
+
+    df = pd.read_csv(dataset_path)
+
+    if "COSTE_UNITARIO_VALIDADO" not in df.columns:
+        raise ValueError("❌ Falta la columna 'COSTE_UNITARIO_VALIDADO'")
+
+    if not df["COSTE_UNITARIO_VALIDADO"].any():
+        raise ValueError("❌ No hay eventos con COSTE_UNITARIO_VALIDADO == True. No se puede simular.")
+
     eventos = []
     contador_eventos = 1
     inicio_dt = pd.Timestamp(inicio)
