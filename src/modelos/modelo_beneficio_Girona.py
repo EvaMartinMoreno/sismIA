@@ -8,8 +8,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # 📁 Rutas
-PATH_REAL = Path("data/clean/dataset_modelo.csv")
-PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
+PATH_REAL = Path("data/raw/dataset_modelo_validado.csv")
+PATH_SIM = Path("data/raw/simulacion_datos_girona.csv")
 MODEL_PATH = Path("src/modelos/modelo_beneficio_girona.pkl")
 VERSION_PATH = Path("src/modelos/beneficio_version.txt")
 CSV_FUTURO = Path("data/predicciones/simulaciones_futuras.csv")
@@ -18,10 +18,6 @@ def entrenar_modelo_beneficio():
     # 📥 Cargar datos
     df_real = pd.read_csv(PATH_REAL, parse_dates=["FECHA_EVENTO"])
     df_sim = pd.read_csv(PATH_SIM, parse_dates=["FECHA_EVENTO"])
-
-    # 🚨 Validación de costes
-    if "COSTE_UNITARIO_VALIDADO" in df_real.columns and not df_real["COSTE_UNITARIO_VALIDADO"].all():
-        raise ValueError("⛔ Hay eventos sin COSTE_UNITARIO validado. Revisa antes de entrenar.")
 
     # 🧽 Filtrar Girona y eventos de pago
     df_real = df_real[(df_real["COMUNIDAD"].str.upper() == "GIRONA") & (df_real["TIPO_EVENTO"] == "pago")]

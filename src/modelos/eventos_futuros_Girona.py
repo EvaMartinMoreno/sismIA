@@ -1,33 +1,37 @@
 # 📦 Librerías
 import pandas as pd
 import joblib
+import numpy as np
 from pathlib import Path
 from datetime import date, timedelta
+from sklearn.preprocessing import StandardScaler
 import random
 
 # 📁 Rutas
-PATH_REALES = Path("data/clean/dataset_modelo.csv")
-PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
+PATH_REALES = Path("data/raw/dataset_modelo_validado.csv")
+PATH_SIM = Path("data/raw/simulacion_datos_girona.csv")
 OUTPUT_PATH = Path("data/predicciones/simulaciones_futuras.csv")
 MODEL_PATH_ASIST = Path("src/modelos/modelo_asistencias_girona.pkl")
 MODEL_PATH_BENEF = Path("src/modelos/modelo_beneficio_girona.pkl")
 
-def generar_fecha_evento(prob_dias, prob_semanas, fecha_inicio):
+def generar_fecha_evento(prob_dias, prob_semanas):
+    hoy = date.today()
+    mes_siguiente = hoy.month + 1 if hoy.month < 12 else 1
+    año = hoy.year if mes_siguiente != 1 else hoy.year + 1
+
     for _ in range(10):
-        mes = random.randint(1, 12)
-        año = fecha_inicio.year + 1 if mes < fecha_inicio.month else fecha_inicio.year
         dia_semana = random.choices(list(prob_dias.keys()), weights=prob_dias.values())[0]
         semana_mes = random.choices(list(prob_semanas.keys()), weights=prob_semanas.values())[0]
         base_dia = (semana_mes - 1) * 7 + 1
         for offset in range(7):
             dia_candidato = base_dia + offset
             try:
-                fecha = date(año, mes, dia_candidato)
-                if fecha.weekday() == dia_semana and fecha > fecha_inicio:
+                fecha = date(año, mes_siguiente, dia_candidato)
+                if fecha.weekday() == dia_semana:
                     return fecha
             except:
                 continue
-    return fecha_inicio + timedelta(days=30)
+    return date(año, mes_siguiente, 15)
 
 def predecir_eventos_girona():
     # === Cargar datasets reales + simulados
@@ -67,7 +71,7 @@ def predecir_eventos_girona():
     # === Generar nuevos eventos simulados
     eventos_futuros = []
     for _ in range(6):
-        fecha = generar_fecha_evento(prob_dias, prob_semanas, fecha_inicio)
+        fecha = generar_fecha_evento(prob_dias, prob_semanas)
         evento = {
             "FECHA_EVENTO": fecha,
             "COSTE_ESTIMADO": promedio_coste,
@@ -97,11 +101,14 @@ def predecir_eventos_girona():
     df_asist = df_asist.dropna()
     df = df.loc[df_asist.index]
 
+    scaler_asist = StandardScaler()
+    df_asist_scaled = scaler_asist.fit_transform(df_asist)
+
     if df_asist.empty:
         print("❌ No se han podido generar eventos futuros válidos para predecir asistencias.")
         return
 
-    df["ASISTENCIAS_PREDICHAS"] = modelo_asist.predict(df_asist)
+    df["ASISTENCIAS_PREDICHAS"] = np.maximum(0, modelo_asist.predict(df_asist_scaled).round())
     df["NUM_ASISTENCIAS"] = df["ASISTENCIAS_PREDICHAS"]
 
     # === Predicción de beneficio

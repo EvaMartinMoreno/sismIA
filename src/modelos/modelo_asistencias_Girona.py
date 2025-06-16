@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 # 📁 Rutas
-PATH_REAL = Path("data/clean/dataset_modelo.csv")
-PATH_SIM = Path("data/clean/simulacion_datos_girona.csv")
+PATH_REAL = Path("data/raw/dataset_modelo_validado.csv")
+PATH_SIM = Path("data/raw/simulacion_datos_girona.csv")
 MODEL_PATH = Path("src/modelos/modelo_asistencias_girona.pkl")
 VERSION_PATH = Path("src/modelos/asistencias_version.txt")
 

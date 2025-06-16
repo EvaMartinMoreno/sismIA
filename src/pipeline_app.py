@@ -24,8 +24,8 @@ PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
 USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
 PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
 REAL_OUTPUT = Path("data/raw/dataset_modelo.csv")
-VALIDADO_OUTPUT = Path("data/clean/dataset_modelo.csv")
-SIM_OUTPUT = Path("data/clean/simulacion_datos_girona.csv")
+VALIDADO_OUTPUT = Path("data/raw/dataset_modelo_validado.csv")
+SIM_OUTPUT = Path("data/raw/simulacion_datos_girona.csv")
 
 # 🔄 Fase 1: scraping y limpieza
 def main_primera_fase():
@@ -37,15 +37,15 @@ def main_primera_fase():
 
 # 🔄 Fase 2: simulación y modelos
 def main_segunda_fase():
-    df_real = pd.read_csv(REAL_OUTPUT)
+    df_real = pd.read_csv(VALIDADO_OUTPUT)
     if not df_real["COSTE_UNITARIO_VALIDADO"].any():
         raise ValueError("❌ No hay eventos con COSTE_UNITARIO_VALIDADO == True. No se puede simular.")
     
     df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
     df_simulado.to_csv("data/raw/simulacion_datos_girona.csv", index=False)
 
-    if necesita_temperatura(REAL_OUTPUT):
-        añadir_temperatura_a_csv(REAL_OUTPUT, punto_estacion, "Reales")
+    if necesita_temperatura(VALIDADO_OUTPUT):
+        añadir_temperatura_a_csv(VALIDADO_OUTPUT, punto_estacion, "Reales")
     if necesita_temperatura(SIM_OUTPUT):
         añadir_temperatura_a_csv(SIM_OUTPUT, punto_estacion, "Simulados")
 
