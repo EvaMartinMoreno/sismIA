@@ -20,7 +20,7 @@ def necesita_temperatura(path: Path) -> bool:
     hoy = pd.Timestamp.today().normalize()
     if "TEMPERATURA" not in df.columns:
         return True
-    # Comprueba si hay fechas pasadas sin temperatura
+    # Solo fechas pasadas con temperatura vacía
     return df[(df["FECHA_EVENTO"] < hoy) & (df["TEMPERATURA"].isna())].shape[0] > 0
 
 def añadir_temperatura_a_csv(path: Path, ciudad_point: Point, verbose: str):
@@ -47,17 +47,20 @@ def añadir_temperatura_a_csv(path: Path, ciudad_point: Point, verbose: str):
     df.to_csv(path, index=False)
     print(f"✅ {verbose}: Temperatura añadida y guardada en {path.name}")
 
-# === EJECUCIÓN DIRECTA AL LLAMAR EL SCRIPT DESDE TERMINAL
-print("🌡️ Comprobando si se necesita añadir temperatura...")
+# Solo se ejecuta si el script se llama directamente
+if __name__ == "__main__":
+    print("🌡️ Comprobando si se necesita añadir temperatura...")
 
-if necesita_temperatura(REAL_PATH):
-    print("🌡️ Añadiendo temperatura a datos REALES...")
-    añadir_temperatura_a_csv(REAL_PATH, punto_estacion, "Reales")
-else:
-    print("✅ Datos REALES ya tienen temperatura.")
+    if necesita_temperatura(REAL_PATH):
+        print("🌡️ Añadiendo temperatura a datos REALES...")
+        añadir_temperatura_a_csv(REAL_PATH, punto_estacion, "Reales")
+    else:
+        print("✅ Datos REALES ya tienen temperatura.")
 
-if necesita_temperatura(SIM_PATH):
-    print("🌡️ Añadiendo temperatura a datos SIMULADOS...")
-    añadir_temperatura_a_csv(SIM_PATH, punto_estacion, "Simulados")
-else:
-    print("✅ Datos SIMULADOS ya tienen temperatura.")
+    if necesita_temperatura(SIM_PATH):
+        print("🌡️ Añadiendo temperatura a datos SIMULADOS...")
+        añadir_temperatura_a_csv(SIM_PATH, punto_estacion, "Simulados")
+    else:
+        print("✅ Datos SIMULADOS ya tienen temperatura.")
+
+

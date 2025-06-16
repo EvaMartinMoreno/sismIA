@@ -6,6 +6,7 @@ import sys
 import src.pipeline_app as pipe
 import streamlit as st
 import pandas as pd
+import numpy as np
 import os
 import subprocess
 import locale
@@ -19,9 +20,8 @@ load_dotenv()
 # 📁 Rutas
 # =========================
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
-RESULTADOS_PATH = Path ("data/predicciones/simulaciones_futuras.csv")
-REAL_PATH = Path("data/raw/dataset_modelo.csv")
-VALIDADO_PATH = Path("data/raw/dataset_modelo_validado.csv")
+RESULTADOS_PATH = Path("data/predicciones/simulaciones_futuras.csv")
+REAL_PATH = Path("data/raw/dataset_modelo_validado.csv")
 USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
 PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
 USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
@@ -80,7 +80,7 @@ st.markdown(
 # =========================
 # 🔄 Actualización de datos (Fase 1)
 # =========================
-if st.button("🔁 Actualizar datos (scraping + limpieza)"):
+if st.button("🔁 Buscar nuevos datos"):
     try:
         with st.spinner("Actualizando datos…"):
             importlib.reload(pipe)
@@ -94,7 +94,7 @@ if st.button("🔁 Actualizar datos (scraping + limpieza)"):
 # =========================
 # 🔄 Continuar con simulación y modelos (Fase 2)
 # =========================
-if st.button("🚀 Continuar actualización (simulación + modelos + predicción)"):
+if st.button("🚀Predecir nuevos eventos"):
     try:
         with st.spinner("Procesando simulación y modelos…"):
             importlib.reload(pipe)
@@ -110,7 +110,6 @@ if st.button("🚀 Continuar actualización (simulación + modelos + predicción
 if REAL_PATH.exists():
     df_eventos = pd.read_csv(REAL_PATH)
 
-    # Inicializar columnas si faltan
     for col in ["COSTE_UNITARIO", "COSTE_UNITARIO_VALIDADO", "COLABORACION", "TIPO_ACTIVIDAD"]:
         if col not in df_eventos.columns:
             if col == "COSTE_UNITARIO":
@@ -122,7 +121,6 @@ if REAL_PATH.exists():
             elif col == "TIPO_ACTIVIDAD":
                 df_eventos[col] = "otro"
 
-    # Agrupar eventos únicos
     df_formulario = df_eventos.groupby("NOMBRE_EVENTO", as_index=False).agg({
         "COSTE_UNITARIO": "first",
         "COSTE_UNITARIO_VALIDADO": "first",
@@ -136,7 +134,7 @@ if REAL_PATH.exists():
         st.success("🎉 Todos los eventos están validados.")
     elif st.session_state.get("guardado_exitoso", False):
         st.success("✅ Cambios guardados correctamente.")
-        st.session_state["guardado_exitoso"] = False  # Resetear
+        st.session_state["guardado_exitoso"] = False
     else:
         with st.form("form_edicion_eventos"):
             nuevas_filas = []
@@ -180,7 +178,7 @@ if REAL_PATH.exists():
                     cambios += 1
 
                 if cambios > 0:
-                    df_eventos.to_csv(VALIDADO_PATH, index=False)
+                    df_eventos.to_csv(REAL_PATH, index=False)
                     st.session_state["guardado_exitoso"] = True
                     st.rerun()
                 else:
@@ -229,15 +227,17 @@ with col1:
             )
 
             beneficio_real = (
-                round(evento["BENEFICIO_ESTIMADO"], 2)
-                if "BENEFICIO_ESTIMADO" in evento and pd.notna(evento["BENEFICIO_ESTIMADO"])
+                round(evento["BENEFICIO"], 2)
+                if "BENEFICIO" in evento and pd.notna(evento["BENEFICIO"])
                 else "N/A"
             )
+            tipo_actividad = evento["TIPO_ACTIVIDAD"] if "TIPO_ACTIVIDAD" in evento else "no especificado"
 
             st.markdown(f"🗓️ Fecha: **{fecha_real}**")
             st.markdown(f"📍 Comunidad: **{comunidad_real}**")
             st.markdown(f"👥 Inscritas: **{asistencia_real}** personas")
             st.markdown(f"💰 Beneficio: **{beneficio_real} €**")
+            st.markdown(f"Tipo de actividad: **{tipo_actividad}**")
     else:
         st.warning("Falta el archivo de datos reales.")
 
