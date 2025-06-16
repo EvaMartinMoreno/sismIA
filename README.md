@@ -1,6 +1,6 @@
 **SismIA** 💡
 **Plataforma inteligente para la gestión, análisis y predicción de eventos deportivos diseñada para Comunidades Runners.** 
-Desde el scraping hasta la simulación de próximos eventos, esta app está diseñada para ayudar a tomar decisiones estratégicas basadas en datos reales.
+Desde el scraping hasta la simulación de próximos eventos, esta app está diseñada para ayudar a saber si un evento de social run será viable o no.
 
 ---
 
