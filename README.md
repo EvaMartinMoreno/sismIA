@@ -50,20 +50,18 @@ pip install -r requirements.txt
 USUARIO="tu_usuario"
 PASSWORD="tu_password"
 
-** ¿Cómo se ejecuta? **
+**¿Cómo se ejecuta?**
 Desde la raíz del proyecto:
 streamlit run main.py
 
-** ¿A quién va dirigido?**
-Organizadoras de eventos deportivos (clubs, comunidades, marcas).
-Gestores de marketing deportivo que quieran decisiones basadas en datos.
+**¿A quién va dirigido?**
 Proyectos que necesiten integrar scraping, limpieza, simulación y predicción.
+Organizadores de eventos deportivos de social run. 
+Gestores de marketing deportivo que quieran decisiones basadas en datos de comunidades.
 
 **¿Qué está por venir?**
 Integración con Instagram para cruzar engagement con asistencia.
-Automatización de toda la cadena desde la app (scraping > predicción > dashboard).
 Gestión multicomunidad y multiusuario.
-Packs de experiencias y turismo deportivo inteligente.
 
 "**SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
 Porque tu evento no se intuye, tu evento se entrena**".
