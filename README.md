@@ -13,7 +13,6 @@ Desde el scraping hasta la simulación de próximos eventos, esta app está dise
 - 📅 Muestra dashboards con próximos eventos reales y simulados.
 
 ## 🗂️ Estructura del proyecto
-
 ```text
 sismia/
 ├── src/
@@ -37,6 +36,7 @@ sismia/
 ├── secrets.toml
 ├── requirements.txt
 └── README.md
+```
 
 **⚙️ Instalación**
 1. Clona el repositorio:
