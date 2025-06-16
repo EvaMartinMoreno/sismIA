@@ -8,14 +8,25 @@ import re
 from datetime import datetime
 
 def limpiar_evento(nombre):
+    """
+    Limpia y normaliza el nombre del evento: elimina tildes, convierte a minúsculas
+    y elimina espacios sobrantes.
+    """
     nombre = str(nombre).strip().lower()
     nombre = unicodedata.normalize('NFKD', nombre).encode('ascii', errors='ignore').decode('utf-8')
     return nombre
 
 def obtener_temporada(mes):
+    """
+    Asigna una estación del año a partir del número de mes.
+    """
     return ["invierno", "primavera", "verano", "otoño"][(mes % 12) // 3]
 
 def extraer_fecha_desde_nombre(nombre_archivo):
+    """
+    Extrae una fecha (formato datetime) desde el nombre del archivo, asumiendo
+    que contiene un patrón como '12 de marzo de 2024'.
+    """
     nombre_archivo = nombre_archivo.lower()
     errores_comunes = {
         "dabril": "de abril", "doctubre": "de octubre", "dmarc": "de marc",
@@ -44,6 +55,9 @@ def extraer_fecha_desde_nombre(nombre_archivo):
     return pd.NaT
 
 def extraer_nombre_evento_desde_archivo(nombre_archivo):
+    """
+    Extrae el nombre del evento desde el nombre del archivo eliminando caracteres especiales y números.
+    """
     nombre = Path(nombre_archivo).stem
     nombre = unicodedata.normalize('NFKD', nombre).encode('ascii', errors='ignore').decode('utf-8')
     nombre = nombre.replace('-', ' ')
@@ -53,6 +67,10 @@ def extraer_nombre_evento_desde_archivo(nombre_archivo):
     return nombre
 
 def cargar_csvs_en_uno(directorio):
+    """
+    Lee todos los CSV en una carpeta y los unifica en un solo dataframe.
+    Realiza limpieza básica y añade columnas auxiliares como fecha, comunidad, etc.
+    """
     archivos = list(Path(directorio).rglob("*.csv"))
     dfs, errores, procesados = [], [], []
 
@@ -104,6 +122,11 @@ def cargar_csvs_en_uno(directorio):
     return pd.concat(dfs, ignore_index=True), errores, procesados
 
 def generar_dataset_modelo(input_dir, output_path):
+    """
+    Función principal que genera el dataset unificado y estructurado a partir
+    de múltiples archivos CSV de eventos. Calcula KPIs como asistentes, pagos,
+    beneficio, semana, temporada, etc. y guarda el resultado.
+    """
     df_raw, errores, procesados = cargar_csvs_en_uno(input_dir)
 
     columnas_obligatorias = ["PAGO", "PRECIO_PAGADO", "TOTAL_LINEA", "ASISTENTE", "NOMBRE_EVENTO", "COMUNIDAD"]
@@ -122,7 +145,7 @@ def generar_dataset_modelo(input_dir, output_path):
         "ASISTENTE": "count", "PAGO": "sum", "ASISTENCIA": "sum", "TOTAL_LINEA": "sum"
     }).rename(columns={
         "ASISTENTE": "NUM_INSCRITAS", "PAGO": "NUM_PAGOS",
-        "ASISTENCIA": "NUM_ASISTENCIAS", "TOTAL_LINEA": "TOTAL_RECAUDADO"
+        "ASISTENCIA": "NUM_ASISTENCIAS", "TOTAL_RECAUDADO": "TOTAL_RECAUDADO"
     })
 
     df["DIA_MES"] = df["FECHA_EVENTO"].dt.day
@@ -174,6 +197,7 @@ def generar_dataset_modelo(input_dir, output_path):
     else:
         print("🎉 Todos los archivos fueron leídos correctamente.")
 
+# Ejecución directa
 if __name__ == "__main__":
     generar_dataset_modelo(
         input_dir="data/raw/athletiks",

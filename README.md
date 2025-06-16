@@ -16,7 +16,7 @@ Desde el scraping hasta la simulación de próximos eventos, esta app está dise
 ```text
 sismia/
 ├── src/
-│   ├── app-sismia.py               # App principal con Streamlit
+│   ├── main.py               # App principal con Streamlit
 │   ├── pipeline_app.py             # Pipeline completo
 │   ├── scraping/
 │   │   ├── scraper_athletiks.py
@@ -52,7 +52,7 @@ PASSWORD="tu_password"
 
 ** ¿Cómo se ejecuta? **
 Desde la raíz del proyecto:
-streamlit run app-sismia.py
+streamlit run main.py
 
 ** ¿A quién va dirigido?**
 Organizadoras de eventos deportivos (clubs, comunidades, marcas).

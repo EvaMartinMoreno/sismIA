@@ -6,15 +6,15 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# === SEMILLA PARA REPRODUCIBILIDAD
+# Semilla de reproducibilidad
 random.seed(42)
 np.random.seed(42)
 
-# === DISTRIBUCIONES REALES DE EVENTOS DE PAGO EN GIRONA
-PESOS_DIA_SEMANA = {4: 0.16666666666666666, 6: 0.8333333333333334}  # viernes, domingo
+# Distribuciones reales de los eventos de Girona
+PESOS_DIA_SEMANA = {4: 0.16666666666666666, 6: 0.8333333333333334}  #Viernes y domingo
 PESOS_SEMANA_MES = {1: 0.16666666666666666, 2: 0.5, 3: 0.3333333333333333}
 
-# === FUNCIONES DE APOYO
+# Funciones de apoyo
 def obtener_temporada(mes):
     if mes in [12, 1, 2]:
         return "invierno"
@@ -158,7 +158,7 @@ def generar_datos_simulados(comunidad: str, inicio: str, meses_totales: int = 60
 
     return pd.DataFrame(eventos)
 
-# === EJECUCIÓN DIRECTA DEL SCRIPT
+# Ejecución directa
 if __name__ == "__main__":
     df_simulado = generar_datos_simulados("GIRONA", "2024-01-01")
     output_path = Path("data/raw/simulacion_datos_girona.csv")

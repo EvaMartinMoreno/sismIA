@@ -1,4 +1,3 @@
-# 📦 Librerías
 import os
 import sys
 from pathlib import Path
@@ -26,19 +25,19 @@ REAL_OUTPUT = Path("data/raw/dataset_modelo.csv")
 VALIDADO_OUTPUT = Path("data/raw/dataset_modelo_validado.csv")
 SIM_OUTPUT = Path("data/raw/simulacion_datos_girona.csv")
 
-# 🔄 Fase 1: scraping y limpieza
+# Fase 1: scraping y limpieza
 def main_primera_fase():
     scrappear_eventos(USUARIO_GIRONA, PASSWORD_GIRONA, comunidad="GIRONA")
     scrappear_eventos(USUARIO_ELCHE, PASSWORD_ELCHE, comunidad="ELCHE")
     input_path = Path("data/raw/athletiks")
     generar_dataset_modelo(input_path, REAL_OUTPUT)
     
-    # ✅ Aquí se fusionan los datos nuevos con los validados previos
+    # Aquí se fusionan los datos nuevos con los validados previos
     fusionar_datasets_validado_y_nuevos()
 
     print("✅ Datos reales limpios y guardados. Ahora ve a la app y valida los costes.")
 
-# 🔗 Fusionar validados con nuevos eventos sin perder validaciones anteriores
+# Fusionar validados con nuevos eventos sin perder validaciones anteriores
 def fusionar_datasets_validado_y_nuevos():
     if not REAL_OUTPUT.exists():
         print("❌ No existe dataset_modelo.csv para fusionar.")
@@ -53,9 +52,9 @@ def fusionar_datasets_validado_y_nuevos():
         df_merged = df_nuevo
 
     df_merged.to_csv(VALIDADO_OUTPUT, index=False)
-    print("✅ Fusión completada: dataset_modelo_validado.csv actualizado con nuevos eventos sin perder los validados.")
+    print("Fusión completada: dataset_modelo_validado.csv actualizado con nuevos eventos sin perder los validados.")
 
-# 🔄 Fase 2: simulación y modelos
+# Fase 2: simulación y modelos
 def main_segunda_fase():
     df_real = pd.read_csv(VALIDADO_OUTPUT)
     if not df_real["COSTE_UNITARIO_VALIDADO"].any():
@@ -81,10 +80,9 @@ def main_segunda_fase():
     entrenar_modelo_asistencias()
     entrenar_modelo_beneficio()
     predecir_eventos_girona()
-
     print("✅ Simulación, modelos y predicciones completadas.")
-
-# 🧪 Ejecución
+ 
+# Ejecución directa
 if __name__ == "__main__":
     main_primera_fase()
     main_segunda_fase()

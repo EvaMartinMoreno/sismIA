@@ -1,18 +1,28 @@
-
+import os
+import csv
+import time
+import shutil
+import getpass
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-import time
-import shutil
-import os
-import csv
+from pathlib import Path
 from urllib.parse import urljoin, urlparse
-import pandas as pd
 
+def scrappear_eventos(usuario: str, password: str, comunidad: str):
+    """
+    Automatiza el scraping de eventos con inscripción abierta desde Athletiks.io.
+    Descarga los CSV de asistentes y los guarda por comunidad.
 
-def scrappear_eventos(usuario, password, comunidad):
+    Args:
+        usuario (str): Email de acceso a Athletiks.io
+        password (str): Contraseña de acceso
+        comunidad (str): Nombre de la comunidad (ej. 'Girona', 'Elche')
+    """
+    # Configuración inicial del scrapeo
     BASE_DIR = os.path.join("data", "raw", "athletiks", comunidad.upper())
     DESCARGAS_DIR = os.path.join(os.path.expanduser("~"), "Downloads")
     os.makedirs(BASE_DIR, exist_ok=True)
@@ -26,7 +36,7 @@ def scrappear_eventos(usuario, password, comunidad):
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-    # === LOGIN ===
+    # Login en la web de Athletiks.io
     driver.get("https://athletiks.io/es/signin?redirectTo=/es")
     time.sleep(3)
     driver.find_element(By.NAME, "email").send_keys(usuario)
@@ -41,13 +51,14 @@ def scrappear_eventos(usuario, password, comunidad):
 
     print(f"📌 [{comunidad}] Buscando eventos con inscripción abierta...")
 
+    # Scrapeo de los eventos 
     index = 0
     while True:
         driver.get("https://athletiks.io/es/profile")
         time.sleep(3)
-
         event_articles = driver.find_elements(By.TAG_NAME, "article")
         total_eventos = len(event_articles)
+
         if index == 0:
             print(f"🔍 Se han detectado {total_eventos} eventos en la página de perfil.")
 
@@ -64,6 +75,7 @@ def scrappear_eventos(usuario, password, comunidad):
             current_url = driver.current_url
             if not current_url.endswith("/"):
                 current_url += "/"
+
             attendees_url = urljoin(current_url, "attendees")
             driver.get(attendees_url)
             time.sleep(2)
@@ -79,7 +91,10 @@ def scrappear_eventos(usuario, password, comunidad):
                 continue
 
             try:
-                download_button = driver.find_element(By.XPATH, "//button[.//span[contains(translate(text(),'ASISTENTES','asistentes'),'asistentes')]]")
+                download_button = driver.find_element(
+                    By.XPATH,
+                    "//button[.//span[contains(translate(text(),'ASISTENTES','asistentes'),'asistentes')]]"
+                )
                 download_button.click()
                 print("📥 Botón de descarga clicado")
                 time.sleep(5)
@@ -88,6 +103,7 @@ def scrappear_eventos(usuario, password, comunidad):
                 index += 1
                 continue
 
+            # Procesar el archivo descargado
             try:
                 files = [f for f in os.listdir(DESCARGAS_DIR) if f.endswith(".csv")]
                 if not files:
@@ -98,11 +114,10 @@ def scrappear_eventos(usuario, password, comunidad):
                         key=os.path.getctime
                     )
 
-                    # Leer y reparar delimitador si es necesario
+                    # Reescribir si está separado por punto y coma
                     with open(latest_file, "r", encoding="utf-8") as f:
                         content = f.read()
 
-                    # Comprobamos si hay solo una columna mal separada
                     if content.count(";") > 5 and "," not in content:
                         with open(latest_file, "w", encoding="utf-8", newline="") as f:
                             f.write(content)
@@ -120,13 +135,10 @@ def scrappear_eventos(usuario, password, comunidad):
     driver.quit()
     print(f"🚀 Scraping finalizado para {comunidad}.")
 
-
+# Ejecución directa
 if __name__ == "__main__":
-    import getpass
-
     print("🟣 Scraper de Athletiks")
     comunidad = input("Comunidad (ej. Girona, Elche): ").strip()
     usuario = input("Email: ").strip()
     password = getpass.getpass("Contraseña: ")
-
     scrappear_eventos(usuario, password, comunidad)

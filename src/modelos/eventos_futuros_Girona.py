@@ -1,4 +1,3 @@
-# 📦 Librerías
 import pandas as pd
 import joblib
 import numpy as np
@@ -7,7 +6,7 @@ from datetime import date, timedelta
 from sklearn.preprocessing import StandardScaler
 import random
 
-# 📁 Rutas
+# Rutas
 PATH_REALES = Path("data/raw/dataset_modelo_validado.csv")
 PATH_SIM = Path("data/raw/simulacion_datos_girona.csv")
 OUTPUT_PATH = Path("data/predicciones/simulaciones_futuras.csv")
@@ -15,6 +14,10 @@ MODEL_PATH_ASIST = Path("src/modelos/modelo_asistencias_girona.pkl")
 MODEL_PATH_BENEF = Path("src/modelos/modelo_beneficio_girona.pkl")
 
 def generar_fecha_evento(prob_dias, prob_semanas):
+    """
+    Genera una fecha futura probable en base a la distribución de días de la semana
+    y semanas del mes en los eventos históricos.
+    """
     hoy = date.today()
     mes_siguiente = hoy.month + 1 if hoy.month < 12 else 1
     año = hoy.year if mes_siguiente != 1 else hoy.year + 1
@@ -34,7 +37,11 @@ def generar_fecha_evento(prob_dias, prob_semanas):
     return date(año, mes_siguiente, 15)
 
 def predecir_eventos_girona():
-    # === Cargar datasets reales + simulados
+    """
+    Genera eventos futuros simulados para Girona y predice sus asistentes y beneficio
+    usando los modelos previamente entrenados.
+    """
+    # Cargar los datos y filtrarlos
     df_real = pd.read_csv(PATH_REALES)
     df_sim = pd.read_csv(PATH_SIM)
 
@@ -50,16 +57,15 @@ def predecir_eventos_girona():
         print("⛔ No hay datos suficientes para generar eventos futuros.")
         return
 
-    # === Probabilidades para fechas futuras
+    # Estadísticas de los datos anteriores para aportar a la predicción
     df_total["DIA_SEMANA_NUM"] = df_total["FECHA_EVENTO"].dt.weekday
     df_total["SEMANA_DENTRO_DEL_MES"] = (df_total["FECHA_EVENTO"].dt.day - 1) // 7 + 1
     prob_dias = df_total["DIA_SEMANA_NUM"].value_counts(normalize=True).to_dict()
     prob_semanas = df_total["SEMANA_DENTRO_DEL_MES"].value_counts(normalize=True).to_dict()
-    fecha_inicio = df_total["FECHA_EVENTO"].max().date()
 
-    # === Promedios y distribuciones
     df_total["COSTE_UNITARIO"] = pd.to_numeric(df_total["COSTE_UNITARIO"], errors="coerce")
     df_total["NUM_INSCRITAS"] = pd.to_numeric(df_total["NUM_INSCRITAS"], errors="coerce")
+
     promedio_coste = (df_total["COSTE_UNITARIO"] * df_total["NUM_INSCRITAS"]).dropna().mean()
     promedio_precio = df_total["PRECIO_MEDIO"].dropna().mean()
     promedio_temp = df_total["TEMPERATURA"].dropna().mean()
@@ -68,7 +74,7 @@ def predecir_eventos_girona():
     top_temp = df_total["TEMPORADA"].dropna().value_counts().head(3).index.tolist() or ["primavera"]
     p_colab = df_total["COLABORACION"].mean() if "COLABORACION" in df_total.columns else 0.5
 
-    # === Generar nuevos eventos simulados
+    # Generar eventos futuros
     eventos_futuros = []
     for _ in range(6):
         fecha = generar_fecha_evento(prob_dias, prob_semanas)
@@ -91,7 +97,7 @@ def predecir_eventos_girona():
     df = pd.DataFrame(eventos_futuros)
     df["TIPO_ACTIVIDAD"] = df["TIPO_ACTIVIDAD"].str.strip().str.lower().replace({"ludica": "ludico"})
 
-    # === Predicción de asistentes
+    # Predecir asistencias
     modelo_asist, cols_asist = joblib.load(MODEL_PATH_ASIST)
     df_asist = pd.get_dummies(df, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
     for col in cols_asist:
@@ -111,7 +117,7 @@ def predecir_eventos_girona():
     df["ASISTENCIAS_PREDICHAS"] = np.maximum(0, modelo_asist.predict(df_asist_scaled).round())
     df["NUM_ASISTENCIAS"] = df["ASISTENCIAS_PREDICHAS"]
 
-    # === Predicción de beneficio
+    # Predecir el beneficio
     modelo_benef, cols_benef = joblib.load(MODEL_PATH_BENEF)
     df_benef = pd.get_dummies(df, columns=["TEMPORADA", "TIPO_ACTIVIDAD"], drop_first=True)
     for col in cols_benef:
@@ -127,10 +133,11 @@ def predecir_eventos_girona():
 
     df["BENEFICIO_ESTIMADO"] = modelo_benef.predict(df_benef).round(2)
 
-    # === Guardar
+    # Guardar resultado
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUTPUT_PATH, index=False)
     print(f"✅ Simulaciones futuras guardadas con beneficio en: {OUTPUT_PATH.resolve()}")
 
+# Ejecución directa
 if __name__ == "__main__":
     predecir_eventos_girona()

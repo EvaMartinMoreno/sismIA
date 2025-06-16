@@ -1,6 +1,3 @@
-# =========================
-# 📦 Librerías
-# =========================
 import importlib
 import sys
 import src.pipeline_app as pipe
@@ -13,12 +10,8 @@ import locale
 import unicodedata
 from datetime import datetime, timedelta
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
 
-# =========================
-# 📁 Rutas
-# =========================
+# Rutas y credenciales
 ACTUALIZAR_SCRIPT = Path("src/pipeline_app.py")
 RESULTADOS_PATH = Path("data/predicciones/simulaciones_futuras.csv")
 REAL_PATH = Path("data/raw/dataset_modelo_validado.csv")
@@ -27,9 +20,7 @@ PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
 USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
 PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
 
-# =========================
-# 🚀 Configuración general
-# =========================
+# Configuración general
 st.set_page_config(page_title="SismIA - Gestión de Eventos", layout="wide")
 
 try:
@@ -50,9 +41,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =========================
-# 🔝 Menú superior
-# =========================
+# Menú superior
 st.markdown(
     """
     <style>
@@ -77,9 +66,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =========================
-# 🔄 Actualización de datos (Fase 1)
-# =========================
+# Actualización de datos (Fase 1)
 if st.button("🔁 Buscar nuevos datos"):
     try:
         with st.spinner("Actualizando datos…"):
@@ -91,9 +78,8 @@ if st.button("🔁 Buscar nuevos datos"):
         st.error("⚠️ El pipeline falló en la FASE 1.")
         st.exception(e)
 
-# =========================
-# 🔄 Continuar con simulación y modelos (Fase 2)
-# =========================
+
+# Continuar con simulación y modelos (Fase 2)
 if st.button("🚀Predecir nuevos eventos"):
     try:
         with st.spinner("Procesando simulación y modelos…"):
@@ -104,9 +90,7 @@ if st.button("🚀Predecir nuevos eventos"):
         st.error("⚠️ El pipeline falló en la FASE 2.")
         st.exception(e)
 
-# =========================
-# ✍️ Edición completa del evento
-# =========================
+# Edición completa del evento
 if REAL_PATH.exists():
     df_eventos = pd.read_csv(REAL_PATH)
 
@@ -186,23 +170,21 @@ if REAL_PATH.exists():
 else:
     st.error("No se encuentra el archivo de eventos.")
 
-# =========================
-# 📊 Próximos eventos
-# =========================
+# Próximos eventos
 st.markdown("---")
 st.markdown("<h2 id='proximos-eventos'>📅 Próximos eventos</h2>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
-# === 📍 Evento real
+# === Evento real
 with col1:
     if REAL_PATH.exists():
         df_real = pd.read_csv(REAL_PATH, parse_dates=["FECHA_EVENTO"])
 
-        # Filtra solo eventos de tipo pago
+        # Filtrar solo eventos de tipo pago
         df_real = df_real[df_real["TIPO_EVENTO"] == "pago"]
 
-        # Divide en futuros y pasados
+        # Dividir en futuros y pasados
         df_futuros = df_real[df_real["FECHA_EVENTO"] >= pd.Timestamp.now()]
         df_pasados = df_real[df_real["FECHA_EVENTO"] < pd.Timestamp.now()]
 
@@ -241,7 +223,7 @@ with col1:
     else:
         st.warning("Falta el archivo de datos reales.")
 
-# === 📍 Evento simulado
+# === Evento simulado
 with col2:
     st.subheader("📢 Simulación del próximo evento")
     if RESULTADOS_PATH.exists():
@@ -263,8 +245,7 @@ with col2:
                 if "BENEFICIO_ESTIMADO" in proximo_sim and pd.notna(proximo_sim["BENEFICIO_ESTIMADO"])
                 else "N/A"
                 )
-
-
+            
             st.markdown(f"🗓️ Te recomiendo la fecha: **{fecha_sim}**")
             st.markdown(f"📍 Comunidad: **GIRONA**")
             st.markdown(f"👥 Asistencia esperada: **{asistencia_sim}** personas")
