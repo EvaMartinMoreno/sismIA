@@ -1,5 +1,5 @@
-** SismIA 💡: 
-Plataforma inteligente para la gestión, análisis y predicción de eventos deportivos diseñada para Comunidades Runners.** 
+**SismIA** 💡
+**Plataforma inteligente para la gestión, análisis y predicción de eventos deportivos diseñada para Comunidades Runners.** 
 Desde el scraping hasta la simulación de próximos eventos, esta app está diseñada para ayudar a tomar decisiones estratégicas basadas en datos reales.
 
 ---
@@ -68,10 +68,10 @@ Packs de experiencias y turismo deportivo inteligente.
 "**SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
 Porque tu evento no se intuye, tu evento se entrena**".
 
-** Demo de la app**
-*Puedes probar la app desplegada en Streamlit aquí:
+**Demo de la app**
+*Puedes probar la app desplegada en Streamlit aquí:*
 🔗 **[sismia.streamlit.app](https://sismia.streamlit.app)**
 
-Esta versión utiliza mis propias credenciales y datos (almacenados de forma segura mediante `secrets.toml`, no accesibles públicamente) para mostrar cómo funciona el sistema completo: scraping, limpieza, simulación, predicción y dashboard.
+*Esta versión utiliza mis propias credenciales y datos (almacenados de forma segura mediante `secrets.toml`, no accesibles públicamente) para mostrar cómo funciona el sistema completo: scraping, limpieza, simulación, predicción y dashboard.*
 
-> ⚠️ Por privacidad, los datos de acceso a plataformas externas (como Athletiks o Instagram) no están incluidos en el repositorio. Sin embargo, puedes clonar el proyecto y usar tus propias credenciales para adaptarlo a tu comunidad o entorno.*
+> *⚠️ Por privacidad, los datos de acceso a plataformas externas (como Athletiks o Instagram) no están incluidos en el repositorio. Sin embargo, puedes clonar el proyecto y usar tus propias credenciales para adaptarlo a tu comunidad o entorno.*
