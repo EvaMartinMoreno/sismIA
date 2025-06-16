@@ -1,3 +1,4 @@
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -6,7 +7,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import shutil
 import os
+import csv
 from urllib.parse import urljoin, urlparse
+import pandas as pd
 
 
 def scrappear_eventos(usuario, password, comunidad):
@@ -32,25 +35,27 @@ def scrappear_eventos(usuario, password, comunidad):
     time.sleep(5)
 
     if "signin" in driver.current_url or "login" in driver.current_url:
-        print("Error: Credenciales inválidas")
+        print("❌ Error: Credenciales inválidas")
         driver.quit()
         return
 
-    driver.get("https://athletiks.io/es/profile")
-    time.sleep(5)
-
     print(f"📌 [{comunidad}] Buscando eventos con inscripción abierta...")
 
-    descargados = 0
-    intentos = 0
+    index = 0
+    while True:
+        driver.get("https://athletiks.io/es/profile")
+        time.sleep(3)
 
-    while descargados < 2 and intentos < 15:
         event_articles = driver.find_elements(By.TAG_NAME, "article")
-        if intentos >= len(event_articles):
+        total_eventos = len(event_articles)
+        if index == 0:
+            print(f"🔍 Se han detectado {total_eventos} eventos en la página de perfil.")
+
+        if index >= total_eventos:
             break
 
-        article = event_articles[intentos]
         try:
+            article = event_articles[index]
             driver.execute_script("arguments[0].scrollIntoView(true);", article)
             time.sleep(1)
             article.click()
@@ -70,9 +75,7 @@ def scrappear_eventos(usuario, password, comunidad):
 
             if os.path.exists(ruta_archivo):
                 print(f"✅ Ya existe: {nombre_archivo}. Saltando.")
-                intentos += 1
-                driver.back()
-                time.sleep(2)
+                index += 1
                 continue
 
             try:
@@ -82,9 +85,7 @@ def scrappear_eventos(usuario, password, comunidad):
                 time.sleep(5)
             except Exception:
                 print("🚫 Evento sin inscripción abierta o sin botón de descarga. Saltando.")
-                intentos += 1
-                driver.back()
-                time.sleep(2)
+                index += 1
                 continue
 
             try:
@@ -96,21 +97,28 @@ def scrappear_eventos(usuario, password, comunidad):
                         [os.path.join(DESCARGAS_DIR, f) for f in files],
                         key=os.path.getctime
                     )
+
+                    # Leer y reparar delimitador si es necesario
+                    with open(latest_file, "r", encoding="utf-8") as f:
+                        content = f.read()
+
+                    # Comprobamos si hay solo una columna mal separada
+                    if content.count(";") > 5 and "," not in content:
+                        with open(latest_file, "w", encoding="utf-8", newline="") as f:
+                            f.write(content)
+
                     shutil.move(latest_file, ruta_archivo)
                     print(f"✅ CSV guardado como: {ruta_archivo}")
-                    descargados += 1
             except Exception as e:
                 print(f"❌ Error moviendo archivo: {e}")
 
         except Exception as e:
             print(f"⚠️ Error inesperado: {e}")
 
-        intentos += 1
-        driver.get("https://athletiks.io/es/profile")
-        time.sleep(3)
+        index += 1
 
     driver.quit()
-    print(f"🚀 Scraping finalizado para {comunidad}. {descargados} evento(s) descargado(s).")
+    print(f"🚀 Scraping finalizado para {comunidad}.")
 
 
 if __name__ == "__main__":
