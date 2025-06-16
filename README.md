@@ -34,7 +34,7 @@ sismia/
 │   │   └── dataset_modelo_validado.csv
 │   └── predicciones/
 │       └── simulaciones_futuras.csv
-├── .env
+├── secrets.toml
 ├── requirements.txt
 └── README.md
 
@@ -46,9 +46,9 @@ python -m venv sismia_env
 .\sismia_env\scripts\activate
 3. Instala las dependencias:
 pip install -r requirements.txt
-4. Crea un archivo .env en la raíz con tus credenciales de acceso:
-USUARIO=tu_usuario
-PASSWORD=tu_password
+4. Crea un archivo secrets.toml en la raíz con tus credenciales de acceso:
+USUARIO="tu_usuario"
+PASSWORD="tu_password"
 
 ** ¿Cómo se ejecuta? **
 Desde la raíz del proyecto:
@@ -68,3 +68,10 @@ Packs de experiencias y turismo deportivo inteligente.
 "*SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
 Porque tu evento no se intuye, tu evento se entrena*".
 
+** Demo de la app**
+Puedes probar la app desplegada en Streamlit aquí:
+🔗 **[sismia.streamlit.app](https://sismia.streamlit.app)**
+
+Esta versión utiliza mis propias credenciales y datos (almacenados de forma segura mediante `secrets.toml`, no accesibles públicamente) para mostrar cómo funciona el sistema completo: scraping, limpieza, simulación, predicción y dashboard.
+
+> ⚠️ Por privacidad, los datos de acceso a plataformas externas (como Athletiks o Instagram) no están incluidos en el repositorio. Sin embargo, puedes clonar el proyecto y usar tus propias credenciales para adaptarlo a tu comunidad o entorno.

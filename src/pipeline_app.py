@@ -2,11 +2,9 @@
 import os
 import sys
 from pathlib import Path
+import streamlit as st
 import pandas as pd
-from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.append(str(ROOT))
-load_dotenv()
 from src.limpieza_eventos_athletiks import generar_dataset_modelo
 from src.scraping.scraper_athletiks import scrappear_eventos
 from src.scraping.scraper_temperatura import (
@@ -19,12 +17,11 @@ from src.modelos.modelo_asistencias_Girona import entrenar_modelo_asistencias
 from src.simulacion_datos import generar_datos_simulados
 from src.modelos.eventos_futuros_Girona import predecir_eventos_girona
 
-# 📁 Configuración
-USUARIO_GIRONA = os.getenv("USUARIO_GIRONA")
-PASSWORD_GIRONA = os.getenv("PASSWORD_GIRONA")
-USUARIO_ELCHE = os.getenv("USUARIO_ELCHE")
-PASSWORD_ELCHE = os.getenv("PASSWORD_ELCHE")
-
+# Credenciales y rutas 
+USUARIO_GIRONA = st.secrets["USUARIO_GIRONA"]
+PASSWORD_GIRONA = st.secrets["PASSWORD_GIRONA"]
+USUARIO_ELCHE = st.secrets["USUARIO_ELCHE"]
+PASSWORD_ELCHE = st.secrets["PASSWORD_ELCHE"]
 REAL_OUTPUT = Path("data/raw/dataset_modelo.csv")
 VALIDADO_OUTPUT = Path("data/raw/dataset_modelo_validado.csv")
 SIM_OUTPUT = Path("data/raw/simulacion_datos_girona.csv")

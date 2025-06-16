@@ -9,6 +9,7 @@ Thumbs.db
 
 # Datos sensibles
 .env
+.toml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
