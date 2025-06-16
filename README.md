@@ -65,13 +65,13 @@ Automatización de toda la cadena desde la app (scraping > predicción > dashboa
 Gestión multicomunidad y multiusuario.
 Packs de experiencias y turismo deportivo inteligente.
 
-"*SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
-Porque tu evento no se intuye, tu evento se entrena*".
+"**SismIA no es solo una app. Es la entrenadora personal de tus eventos deportivos.
+Porque tu evento no se intuye, tu evento se entrena**".
 
 ** Demo de la app**
-Puedes probar la app desplegada en Streamlit aquí:
+*Puedes probar la app desplegada en Streamlit aquí:
 🔗 **[sismia.streamlit.app](https://sismia.streamlit.app)**
 
 Esta versión utiliza mis propias credenciales y datos (almacenados de forma segura mediante `secrets.toml`, no accesibles públicamente) para mostrar cómo funciona el sistema completo: scraping, limpieza, simulación, predicción y dashboard.
 
-> ⚠️ Por privacidad, los datos de acceso a plataformas externas (como Athletiks o Instagram) no están incluidos en el repositorio. Sin embargo, puedes clonar el proyecto y usar tus propias credenciales para adaptarlo a tu comunidad o entorno.
+> ⚠️ Por privacidad, los datos de acceso a plataformas externas (como Athletiks o Instagram) no están incluidos en el repositorio. Sin embargo, puedes clonar el proyecto y usar tus propias credenciales para adaptarlo a tu comunidad o entorno.*
